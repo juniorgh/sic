@@ -1,0 +1,47 @@
+<div class="block-flat">
+  <div class="header">              
+    <h3>Cadastro de Grupos</h3>
+  </div>
+  <div class="content">
+    <table class="no-border hover">
+      <thead class="no-border">
+        <tr>
+          <th>Nome</th>
+          <th class="text-right"></th>
+        </tr>
+      </thead>
+      
+      <tbody class="no-border-y">
+        <?php
+        foreach ($this->grupo as $grupos) {
+        ?>  
+        <tr>
+          <td>
+            <?php echo utf8_encode($grupos['grupoNome']); ?>
+          </td>
+          <td class="text-right">
+            <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'grupo', 'action' => 'view', 'id' => $grupos['grupoId']), null, true); ?>" class="btn btn-primary">
+              <i class="fa fa-search">
+              </i>
+            </a>
+
+
+            <a class="btn btn-danger" href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'grupo', 'action' => 'drop', 'id' => $grupos['grupoId']), null, true); ?>">
+              <i class="fa fa-trash">
+              </i>
+            </a>
+
+
+            <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'grupo', 'action' => 'form', 'id' => $grupos['grupoId']), null, true); ?>" class="btn btn-success">
+              <i class="fa fa-edit">    
+              </i>
+            </a>
+          </td>
+        </tr>
+        <?php  
+        }
+        ?>
+      </tbody>
+    </table>            
+  </div>
+</div>

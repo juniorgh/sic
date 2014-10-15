@@ -1,0 +1,69 @@
+<div class="block-flat">
+	<div class="header">							
+		<h3>Basic Elements</h3>
+	</div>
+	<div class="content">
+		<form class="form-horizontal group-border-dashed" action="<?php echo $this->url(array('module' => 'admin', 'controller' => 'cursos', 'action' => 'index'),null,true); ?>" style="border-radius: 0px;">
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Escolha o seu Curso</label>
+				<div class="col-sm-6">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Nome</label>
+				<div class="col-sm-6">
+					<input type="text" placeholder="Digite aqui seu nome" class="form-control" name="usuarioNome" value="<?php echo $this->usuario['usuarioNome'];?>"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Password</label>
+				<div class="col-sm-6">
+					<input type="password" placeholder="Digite aqui sua senha" class="form-control" value="<?php echo $this->usuario['usuarioSenha'];?>">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Email</label>
+				<div class="col-sm-6">
+					<input type="text" name="usuarioEmail" class="form-control" placeholder="Digite aqui seu E-Mail" value="<?php echo $this->usuario['usuarioEmail'];?>">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Fone</label>
+				<div class="col-sm-6">
+					<input placeholder="Digite aqui seu telefone" type="text" class="form-control" placeholder="Disabled input text">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Login</label>
+				<div class="col-sm-6">
+					<input type="text" class="form-control" value="<?php echo $this->usuario['usuarioLogin'];?>" placeholder="Digite aqui seu login">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Periodo</label>
+				<div class="col-sm-6">
+					<input type="text" class="form-control" value="<?php echo $this->usuario['usuarioPeriodo'];?>" placeholder="Digite aqui seu periodo">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Status</label>
+				<div class="col-sm-6">
+					<input type="text" class="form-control" value="<?php echo $this->usuario['usuarioPeriodo'];?>" placeholder="Digite aqui seu periodo">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label"></label>
+				<div class="col-sm-6">
+					<input type="submit" class="btn btn-success" value="Cadastrar">
+					<a class="btn btn-primary" href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'curso', 'action' => 'index'),null,true);?>"> Voltar</a>
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>

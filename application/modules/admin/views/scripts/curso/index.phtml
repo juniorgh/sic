@@ -1,0 +1,46 @@
+<div class="block-flat">
+  <div class="header">              
+    <h3>Cadastro de Cursos</h3>
+  </div>
+  <div class="content">
+    <div class="table table-responsive">
+      <table class="no-border hover">
+        <thead class="no-border">
+          <tr>
+            <th class="text-left">Cursos</th>
+            <th class="text-right"></th>
+          </tr>
+        </thead>
+
+        <tbody class="no-border-y"> 
+        <?php foreach($this->curso as $cursos){ ?>
+          <tr>
+            <td class="text-left">
+              <?php echo utf8_encode($cursos['cursoNome']); ?>
+            </td>
+            <td class="text-right">
+              <a class="btn btn-primary" href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'curso', 'action' => 'view', 'id' => $cursos['cursoId']),null,true);?>">
+                <i class="fa fa-search">
+                </i>
+              </a>
+
+
+              <a class="btn btn-danger" href="<?php echo $this->
+              url(array('module' => 'admin', 'controller' =>'curso','action' => 'drop', 'id' => $cursos['cursoId']),null,true); ?>">
+                <i class="fa fa-trash">
+                </i>
+              </a>
+
+
+              <a href="" class="btn btn-success">
+                <i class="fa fa-edit">    
+                </i>
+              </a>
+            </td>
+          </tr>
+          <?php } ?>
+        </tbody>
+      </table>
+    </div>            
+  </div>
+</div>
