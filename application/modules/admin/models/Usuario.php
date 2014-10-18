@@ -33,5 +33,16 @@ class Admin_Model_Usuario {
 	  $where = $usuario->getAdapter()->quoteInto("usuarioId", $id);
 	  $usuario->delete($where);
   }
-
+  
+  public function save($data = array()){
+     $usuario = new Admin_Model_DbTable_Usuario();
+     return $usuario->insert($data);
+  }
+  
+  public static function update(array $data) {
+        $usuario = new Admin_Model_DbTable_Usuario();
+        $where = $usuario->getAdapter()->quoteInto('usuarioId = ?', $data['usuarioId']);
+        unset($data['usuarioId']);
+        return $usuario->update($data, $where);
+    }
 }

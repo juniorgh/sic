@@ -1,6 +1,16 @@
 <div class="block-flat">
   <div class="header">              
-    <h3>Cadastro de Usuários</h3>
+    <h4>
+      <i class="fa fa-user">
+      </i>
+          Cadastro de Usuários
+    </h4>
+    <div class="text-center">
+      <a class="btn btn-trans btn-default"  href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'usuario', 'action' => 'form'),null,true);?>">
+        <i class="fa fa-plus"></i>
+        Adicionar Usuario
+      </a>
+    </div>
   </div>
   <div class="content">
     <table class="no-border hover">
@@ -28,7 +38,7 @@
             <?php echo utf8_encode($value['usuarioStatus']); ?>
           </td>
           <td class="text-right">
-            <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'usuario', 'action' => 'view', 'id' => $value["usuarioId"]),null,true);?>" class="btn btn-primary">
+            <a class="btn btn-success" href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'usuario', 'action' => 'view', 'id' => $value["usuarioId"]),null,true);?>" class="btn btn-primary">
               <i class="fa fa-search">
               </i>
             </a>
@@ -40,7 +50,7 @@
             </a>
 
 
-            <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'usuario', 'action' => 'form', 'id' => $value['usuarioId']), null, true); ?>" class="btn btn-success">
+            <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'usuario', 'action' => 'form', 'id' => $value['usuarioId']), null, true); ?>" class="btn btn-primary">
               <i class="fa fa-edit">    
               </i>
             </a>

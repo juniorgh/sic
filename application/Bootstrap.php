@@ -10,6 +10,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
   protected function _initPlugins() {
   	$front = Zend_Controller_Front::getInstance();
   	$front->registerPlugin(new Application_Plugin_LayoutPlugin());
+    $front->registerPlugin(new Application_Plugin_AuthPlugin());
   }
 
   /** 
@@ -24,7 +25,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
   /**
    * Realiza o autoload de Namespaces da aplicação
    * 
-   * @return Zend_Application_Module_Autoloader
+   * @return Zend_Application_Module_Autoload er
    */
   protected function _initAutoload() {
     $autoloader = new Zend_Application_Module_Autoloader(array(

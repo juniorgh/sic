@@ -56,6 +56,7 @@
               <actionMethod actionName="drop"/>
               <actionMethod actionName="form"/>
               <actionMethod actionName="view"/>
+              <actionMethod actionName="save"/>
             </controllerFile>
             <controllerFile controllerName="Curso">
               <actionMethod actionName="index"/>
@@ -142,6 +143,9 @@
               <viewControllerScriptsDirectory forControllerName="Auth">
                 <viewScriptFile forActionName="logout"/>
               </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Usuario">
+                <viewScriptFile forActionName="save"/>
+              </viewControllerScriptsDirectory>
             </viewScriptsDirectory>
             <viewHelpersDirectory/>
             <viewFiltersDirectory/>
@@ -200,6 +204,7 @@
                 <testApplicationActionMethod forActionName="drop"/>
                 <testApplicationActionMethod forActionName="form"/>
                 <testApplicationActionMethod forActionName="view"/>
+                <testApplicationActionMethod forActionName="save"/>
               </testApplicationControllerFile>
               <testApplicationControllerFile forControllerName="Curso">
                 <testApplicationActionMethod forActionName="index"/>

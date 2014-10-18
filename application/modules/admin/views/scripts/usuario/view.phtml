@@ -1,5 +1,45 @@
-<pre>
-	<?php
-	print_r($this->usuario); 	
-	?>
-</pre>
+<?php
+$usuario = $this->usuario;
+?>
+<div class="row">
+  <div class="col-md-12">
+    <div class="block-flat">
+      <div class="header">							
+        <h3>
+          <i class="fa fa-user">            
+          </i>
+          <?php
+          echo utf8_encode($usuario['usuarioNome']);
+          ?>
+        </h3>
+      </div>
+      <div class="content">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-2 col-md-2">
+              <img src="imagens/<?php echo $usuario['usuarioFotoCaminho'] ?>" width="180" height="185"/>
+            </div>
+            <div class="col-sm-4 col-md-4">
+              <p> <i class="glyphicon glyphicon-envelope"></i> <?php echo 'Email:  '  .$usuario['usuarioEmail']; ?>
+                <br/> <cite title="Source Title"> <i class="fa fa-info"></i>  <?php if($usuario['usuarioStatus'] == 1){echo 'status: Atívo';} else { echo 'status: Inatívo';}?></cite>
+                <br/> <i class="fa fa-phone"></i> <?php echo 'Telefone:  ' . $usuario['usuarioFone']; ?>
+                <br/> <i class="fa fa-user"></i> <?php echo 'Login: ' . $usuario['usuarioLogin'];?>
+                <br/> <i class="fa fa-pencil"></i> <?php echo $usuario['usuarioPeriodo'] .'° ' . 'Período';?>
+                <br/> <i class="fa fa-info"></i> <?php echo 'Login: ' . $usuario['usuarioLogin'];?>
+              </p>
+            </div>
+          </div>
+          <br/>
+          <br/>
+          <br/>
+          <a  class="btn btn-dark" href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'usuario', 'action' => 'index'),null,true);?>">
+            Voltar 
+          </a>
+          <a  class="btn btn-info" href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'usuario', 'action' => 'form', 'id' => $usuario['usuarioId']),null,true);?>">
+            Editar 
+          </a>
+        </div>
+      </div>
+    </div>				
+  </div>
+</div>
