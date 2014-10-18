@@ -22,18 +22,23 @@ class Admin_UsuarioController extends Zend_Controller_Action {
 
   public function formAction() {
     $id = $this->_request->getParam('id');
-
+    
+    $usuario = new Admin_Model_Usuario();
+    $curso = new Admin_Model_Curso();
+    $dadosCursoAll = $curso->find();
+    $this->view->assign('cursoAll', $dadosCursoAll);
+    
     if (!is_null($id)) {
-      $usuario = new Admin_Model_Usuario();
-      $curso = new Admin_Model_Curso();
-
+      try {
       $dadosUsuario = $usuario->find($id);
       $dadosCursoId = $curso->find($id);
-      $dadosCursoAll = $curso->find();
 
       $this->view->assign('usuario', $dadosUsuario);
       $this->view->assign('curso', $dadosCursoId);
-      $this->view->assign('cursoAll', $dadosCursoAll);
+      
+      } catch (Exception $exc) {
+        echo $exc->getMessage();
+      }
     }
   }
 
@@ -48,24 +53,25 @@ class Admin_UsuarioController extends Zend_Controller_Action {
       $request = $this->getRequest();
       if ($request->isPost()) {
         $params = $request->getPost();
-        
-        print_r($params);
-        if (!array_key_exists('id', $params)) {
+
+        if (!array_key_exists('usuarioId', $params)) {
           $usuario = new Admin_Model_Usuario();
           $usuario->save($params);
         } else {
-          $usuario = new Admin_Model_Usuario();
-          $usuario->update(array_pop($params));
+          $upload = new Zend_File_Transfer();
+          $files = $upload->getFileInfo('usuarioFotoCaminho');
+          $ext = pathinfo($files['usuarioFotoCaminho']['name'])['extension'];
           
-          echo '<pre>';
-          print_r($params);
-          echo '</pre>';
+          $upload->addFilter('Rename', APPLICATION_PATH.'/../public/imagens/' . time() . '.' . $ext);
+          
+          $upload->receive('usuarioFotoCaminho');
+          $usuario = new Admin_Model_Usuario();
+          $usuario->update($params);
         }
       }
-      //$this->_redirect('admin/usuario/index');
+//      $this->_redirect('admin/usuario/index');
     } catch (Exception $exc) {
       echo $exc->getMessage();
     }
   }
-
 }

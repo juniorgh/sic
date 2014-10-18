@@ -17,11 +17,12 @@ $usuario = $this->usuario;
         <div class="container">
           <div class="row">
             <div class="col-sm-2 col-md-2">
-              <img src="imagens/<?php echo $usuario['usuarioFotoCaminho'] ?>" width="180" height="185"/>
+              
+              <img src="imagens/<?php echo $usuario['usuarioFotoCaminho'] == '' ? 'sem_imagem.jpg' : $usuario['usuarioFotoImagem'] ?>" width="180" height="185"/>
             </div>
             <div class="col-sm-4 col-md-4">
               <p> <i class="glyphicon glyphicon-envelope"></i> <?php echo 'Email:  '  .$usuario['usuarioEmail']; ?>
-                <br/> <cite title="Source Title"> <i class="fa fa-info"></i>  <?php if($usuario['usuarioStatus'] == 1){echo 'status: Atívo';} else { echo 'status: Inatívo';}?></cite>
+                <br/> <cite title="Source Title"> <i class="fa fa-info"></i>  <?php echo $usuario['usuarioStatus'] == 1 ? 'Status: Atívo' : 'Status: Inatívo'?></cite>
                 <br/> <i class="fa fa-phone"></i> <?php echo 'Telefone:  ' . $usuario['usuarioFone']; ?>
                 <br/> <i class="fa fa-user"></i> <?php echo 'Login: ' . $usuario['usuarioLogin'];?>
                 <br/> <i class="fa fa-pencil"></i> <?php echo $usuario['usuarioPeriodo'] .'° ' . 'Período';?>

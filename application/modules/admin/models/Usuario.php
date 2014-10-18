@@ -30,7 +30,7 @@ class Admin_Model_Usuario {
 
   public function drop($id){
 	  $usuario = new Admin_Model_DbTable_Usuario();
-	  $where = $usuario->getAdapter()->quoteInto("usuarioId", $id);
+	  $where = $usuario->getAdapter()->quoteInto("usuarioId = ?", $id);
 	  $usuario->delete($where);
   }
   

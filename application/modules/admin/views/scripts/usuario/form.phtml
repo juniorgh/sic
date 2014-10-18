@@ -1,54 +1,21 @@
 <div class="block-flat">
   <div class="header">							
-    <h3>Basic Elements</h3>
+    <h4>Cadastro de Usuários</h4>
   </div>
   <div class="content">
-    <form method="post" enctype="multipart/form-data" class="form-horizontal group-border-dashed" action="<?php  echo $this->url(array('module' => 'admin', 'controller' => 'usuario', 'action' => 'save'), null, true); ?>" style="border-radius: 0px;">
-
+    <form method="post" enctype="multipart/form-data" class="form-horizontal group-border-dashed" action="<?php echo $this->url(array('module' => 'admin', 'controller' => 'usuario', 'action' => 'save'), null, true); ?>" style="border-radius: 0px;">
       <div class="form-group">
         <label class="col-sm-3 control-label">Escolha o seu Curso</label>
         <div class="col-sm-6">
           <select class="form-control" name="usuarioCursoId">
-                        <option value="1">  1 - Administração - Bacharelado</option>	
-            <option value="2">  2 - Ciências Biologicas- Licenciatura</option>	
-            <option value="3">  3 - Biomedicina - Bacharelado</option>	
-            <option value="4">  4 - Ciência da Computação - Bacharelado</option>	
-            <option value="5">  5 - Ciências Contábeis - Bacharelado</option>	
-            <option value="6">  6 - Design de Moda - Bacharelado</option>	
-            <option value="7">  7 - Direito - Bacharelado</option>	
-            <option value="8">  8 - Educação Física - Bacharelado</option>	
-            <option value="9">  9 - Educação Física - Licenciatura</option>	
-            <option value="10"> 10 - enfermagem - Bacharelado</option>	
-            <option value="11"> 11 - Engenharia de Produção- Bacharelado</option>	
-            <option value="12"> 12 - Engenharia Civil- Bacharelado</option>	
-            <option value="13"> 13 - Engenharia Ambiental- Bacharelado</option>	
-            <option value="14"> 14 - Engenharia Elétrica- Bacharelado</option>	
-            <option value="15"> 15 - Engenharia Mecânica- Bacharelado</option>	
-            <option value="16"> 16 - Engenharia de Controle e automação- Bacharelado</option>	
-            <option value="17"> 17 - Farmácia - Bacharelado</option>	
-            <option value="18"> 18 - Filosofia - Licenciatura</option>	
-            <option value="19"> 19 - Física - Licenciatura</option>	
-            <option value="20"> 20 - Fisioterapia - Bacharelado</option>	
-            <option value="21"> 21 - Geografia - Licenciatura</option>	
-            <option value="22"> 22 - História - Licenciatura</option>	
-            <option value="23"> 23 - Letras - Português/Inglês - Licenciatura</option>	
-            <option value="24"> 24 - Matemática - Licenciatura</option>	
-            <option value="25"> 25 - Nutrição - Bacharelado</option>	
-            <option value="26"> 26 - Pedagogia - Licenciatura</option>	
-            <option value="27"> 27 - Psicologia - Bacharelado</option>	
-            <option value="28"> 28 - Secretariado Executivo</option>	
-            <option value="29"> 29 - Publicidade e Propaganda</option>	
-            <option value="30"> 30 - Análise e Desenvolvimento de Sistemas</option>	
-            <option value="31"> 31 - Design de Interiores</option>	
-            <option value="32"> 32 - Estética e Cosmética</option>	
-            <option value="33"> 33 - Gestão de Recursos Humanos</option>	
-            <option value="34"> 34 - Gestão Financeira</option>	
-            <option value="35"> 35 - Gestão Ambiental</option>	
-            <option value="36"> 36 - Gestão de Empresas de Serviços</option>	
-            <option value="37"> 37 - Gestão Hospitalar</option>	
-            <option value="38"> 38 - Logística</option>	
-            <option value="39"> 39 - Marketing</option>	
-            <option value="40"> 40 - Segurança no Trabalho </option>	
+              <option>
+                Selecione o curso
+              </option>
+              <?php foreach ($this->cursoAll as $cursos) { ?>
+              <option <?php echo $this->usuario['usuarioCursoId'] == $cursos['cursoId'] ? 'selected' : '';?> value="<?php echo $cursos['cursoId']?>"> 
+                <?php echo utf8_encode($cursos['cursoNome']); ?>
+              </option>
+              <?php } ?>
           </select>
         </div>
       </div>
@@ -90,7 +57,7 @@
           <input type="text" name="usuarioPeriodo" class="form-control" value="<?php echo $this->usuario['usuarioPeriodo']; ?>" placeholder="Digite aqui seu periodo">
         </div>
       </div>
-      
+
       <div class="form-group">
         <label class="col-sm-3 control-label">Status</label>
         <div class="col-sm-6">
@@ -98,25 +65,20 @@
         </div>
       </div>
 
-      <?php if( $this->usuario['usuarioId'] != null) {?>
+      <?php if ($this->usuario['usuarioId'] != null) { ?>
         <div class="form-group">
           <label class="col-sm-3 control-label"></label>
           <div class="col-sm-6">
-            <input type="hidden" name="id" class="form-control" value="<?php echo $this->usuario['usuarioId']; ?>">
+            <input type="hidden" name="usuarioId" class="form-control" value="<?php echo $this->usuario['usuarioId']; ?>">
           </div>  
         </div>
-      <?php }?>
+      <?php } ?>
 
       <div class="form-group">
-        <label class="col-sm-3 control-label">Inserir imagem</label>
+        <label class="col-sm-3 control-label">Inserir Imagem</label>
         <div class="col-sm-6">
-          <div class="fileinput fileinput-new" data-provides="fileinput">
-            <div>
-              <span class="btn btn-primary btn-file"><span class="fileinput-new"></span><span class="fileinput-exists"></span><input type="file" name="usuarioFoto  Caminho"></span>
-              <a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">Remove</a>
-            </div>
-          </div>
-        </div>
+          <input type="file" name="usuarioFotoCaminho" class="form-control" value="<?php echo $this->usuario['usuarioFotoCaminho']; ?>">
+        </div>  
       </div>
 
       <div class="form-group">
