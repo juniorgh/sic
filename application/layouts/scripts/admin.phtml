@@ -58,60 +58,13 @@
                 </div>
               </div>
               <ul class="cl-vnavigation">
+                <?php foreach($this->sidebarMainMenu as $sidebarMenu) { ?>
                 <li>
-                  <a href="<?php echo $this->url(array('module' => 'admin', 'controller', 'index'), null, true); ?>"><i class="fa fa-home"></i><span>Dashboard</span></a>
+                  <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => $sidebarMenu['menuController'], 'action' => $sidebarMenu['menuAction']), null, true); ?>"><i class="<?php echo $sidebarMenu['menuIcone'] ?>"></i><span><?php echo $sidebarMenu['menuTitulo'] ?></span></a>
                 </li>
-                <li>
-                  <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'usuario', 'action' => 'index'), null, true); ?>"> <i class="fa fa-user"></i> <span> Usuarios </span>
-                  </a>
-                </li>
-                <li><a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'curso', 'action' => 'index'), null, true); ?>"><i class="fa fa-pencil"></i><span>Cursos</span></a>
-                </li>
-                <li><a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'grupo', 'action' => 'index'), null, true); ?>"><i class="fa fa-users"></i><span>Grupos</span></a>
-                </li>
-                <li><a href="#"><i class="fa fa-table"></i><span>Tables</span></a>
-                </li>
-                <li><a href="#"><i class="fa fa-map-marker nav-icon"></i><span>Maps</span></a>
-                  <ul class="sub-menu">
-                    <li  ><a href="maps.html">Maps</a></li>
-                    <li  ><a href="vector-maps.html">Vector Maps</a></li>
-                  </ul>
-                </li>
-                <li><a href="#"><i class="fa fa-envelope nav-icon"></i><span>Email</span></a>
-                  <ul class="sub-menu">
-                    <li  ><a href="email-inbox.html">Inbox</a></li>
-                    <li  ><a href="email-read.html">Email Detail</a></li>
-                    <li  ><a href="email-compose.html"><span class="label label-primary pull-right">New</span>Email Compose</a></li>
-                  </ul>
-                </li>
-                <li  ><a href="typography.html"><i class="fa fa-text-height"></i><span>Typography</span></a></li>
-                <li  ><a href="charts.html"><i class="fa fa-bar-chart-o"></i><span>Charts</span></a></li>
-                <li><a href="#"><i class="fa fa-file"></i><span>Pages</span></a>
-                  <ul class="sub-menu">
-                    <li  ><a href="pages-blank.html">Blank Page</a></li>
-                    <li class="active" ><a href="pages-blank-header.html">Blank Page Header</a></li>
-                    <li  ><a href="pages-blank-aside.html">Blank Page Aside</a></li>
-                    <li  ><a href="pages-blank-aside-header.html"><span class="label label-primary pull-right">New</span>Blank Page Aside Header</a></li>
-                    <li  ><a href="pages-profile.html"><span class="label label-primary pull-right">New</span>Profile</a></li>
-                    <li><a href="pages-login.html">Login</a></li>
-                    <li><a href="pages-sign-up.html"><span class="label label-primary pull-right">New</span>Sign Up</a></li>
-                    <li><a href="pages-forgot.html"><span class="label label-primary pull-right">New</span>Forgot Password</a></li>
-                    <li><a href="pages-404.html">404 Page</a></li>
-                    <li><a href="pages-500.html">500 Page</a></li>
-                    <li  ><a href="pages-tour.html"><span class="label label-primary pull-right">New</span>Tour Guide</a></li>
-                    <li  ><a href="pages-gallery.html">Gallery</a></li>
-                    <li  ><a href="pages-search.html"><span class="label label-primary pull-right">New</span>Search</a></li>
-                    <li  ><a href="pages-timeline.html">Timeline</a></li>
-                    <li  ><a href="pages-code-editor.html">Code Editor</a></li>
-                  </ul>
-                </li>
-
+                <?php } ?>
               </ul>
             </div>
-          </div>
-          <div class="text-right collapse-button" style="padding:7px 9px;">
-            <input type="text" class="form-control search" placeholder="Search..." />
-            <button id="sidebar-collapse" class="btn btn-default" style=""><i style="color:#fff;" class="fa fa-angle-left"></i></button>
           </div>
         </div>
       </div>

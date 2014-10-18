@@ -90,10 +90,12 @@
               <dbTableFile dbTableName="Postagem"/>
               <dbTableFile dbTableName="Url"/>
               <dbTableFile dbTableName="Usuario"/>
+              <dbTableFile dbTableName="Menu"/>
             </dbTableDirectory>
             <modelFile modelName="Usuario"/>
             <modelFile modelName="Curso"/>
             <modelFile modelName="Grupo"/>
+            <modelFile modelName="Menu"/>
           </modelsDirectory>
           <servicesDirectory enabled="false"/>
           <viewsDirectory>

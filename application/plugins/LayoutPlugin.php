@@ -30,6 +30,8 @@ class Application_Plugin_LayoutPlugin extends Zend_Controller_Plugin_Abstract {
     // Escolhendo em qual layout a página irá renderizar a view
     if ($request->getModuleName() == 'admin') {
       $layout->setLayout('admin');
+      $menu = Admin_Model_Menu::find(null, null, null, array('menuOrdem ASC'));
+      $view->assign('sidebarMainMenu', $menu);
     }
   }
 }

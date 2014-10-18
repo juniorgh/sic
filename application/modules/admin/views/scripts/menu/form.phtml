@@ -1,0 +1,65 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="block-flat">
+      <div class="header">
+        <h3><?php echo $this->formActionName ?> menu</h3>
+      </div>
+      <div class="content">
+       <form action="<?php echo $this->url(array('module' => 'admin', 'controller' => 'menu', 'action' => 'save'), null, true) ?>" class="form-horizontal group-border-dashed" style="border-radius: 0px;" method="post">
+        <?php if (isset($this->menu['menuId'])) { ?>
+        <input type="hidden" name="menu[menuId]" value="<?php echo isset($this->menu['menuId']) ? $this->menu['menuId'] : '' ?>">
+        <?php } ?>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Título</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" name="menu[menuTitulo]" value="<?php echo isset($this->menu['menuTitulo']) ? $this->menu['menuTitulo'] : '' ?>">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">MVC</label>
+          <div class="col-sm-3">
+            <input type="text" class="form-control" name="menu[menuController]" placeholder="Controller" value="<?php echo isset($this->menu['menuController']) ? $this->menu['menuController'] : '' ?>">
+          </div>
+          <div class="col-sm-3">
+            <input type="text" class="form-control" name="menu[menuAction]" placeholder="Action" value="<?php echo isset($this->menu['menuAction']) ? $this->menu['menuAction'] : '' ?>">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Ordem</label>
+          <div class="col-sm-6">
+            <select class="form-control" name="menu[menuOrdem]">
+              <option value="0">Selecione</option>
+              <?php for($i = 1; $i <= 10; $i++) { ?>
+              <option<?php echo isset($this->menu['menuOrdem']) && $i == $this->menu['menuOrdem'] ? " selected" : "" ?> value="<?php echo $i ?>"><?php echo $i ?></option>
+              <?php } ?>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Ícone</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" name="menu[menuIcone]" value="<?php echo isset($this->menu['menuIcone']) ? $this->menu['menuIcone'] : '' ?>">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Superior</label>
+          <div class="col-sm-6">
+            <select name="menu[menuSuperior]" class="form-control">
+              <option value="0">Selecione</option>
+              <?php foreach ($this->menus as $menu) { ?>
+              <option<?php echo isset($this->menu['menuId']) && $menu['menuId'] == $this->menu['menuId'] ? ' selected' : '' ?> value="<?php echo $menu['menuId'] ?>"><?php echo $menu['menuTitulo']; ?></option>
+              <?php } ?>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-9 col-sm-offset-3">
+            <button type="submit" class="btn btn-primary">Salvar</button>
+
+            <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'menu', 'action' => 'index'), null, true); ?>" class="btn btn-default">Voltar</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

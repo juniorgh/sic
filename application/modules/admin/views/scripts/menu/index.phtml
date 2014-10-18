@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="block-flat">
+      <div class="content">
+        <div class="container-fluid text-center">
+          <a href="<?php echo $this->url(array('action' => 'form')) ?>" class="btn btn-primary"><i class="fa fa-plus"></i>&nbsp;&nbsp;Novo menu</a>
+        </div>
+        <div class="table-responsive">
+          <table class="table no-border hover">
+            <thead class="no-border-y">
+              <tr>
+                <td><strong>Título</strong></td>
+                <td style="width:15%;" class="text-center"><strong>Ordem</strong></td>
+                <td style="width:25%;" class="text-center"></td>
+              </tr>
+            </thead>
+            <tbody class="no-border-y">
+              <?php foreach ($this->menus as $menu) { ?>
+              <tr>
+                <td><?php echo $menu['menuTitulo'] ?></td>
+                <td class="text-center"><?php echo $menu['menuOrdem'] ?></td>
+                <td class="text-center">
+                  <a class="btn btn-primary" href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'menu', 'action' => 'view', 'id' => $menu['menuId']), null, true) ?>"><i class="fa fa-search"></i></a>
+                  
+                  <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'menu', 'action' => 'form', 'id' => $menu['menuId']), null, true) ?>" class="btn btn-success"><i class="fa fa-edit"></i></a>
+
+                  <a class="btn btn-danger" href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'menu', 'action' => 'drop', 'id' => $menu['menuId']), null, true) ?>"><i class="fa fa-trash"></i></a>
+                </td>
+              </tr>
+              <?php } ?>
+            </tbody>
+          </table>    
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
