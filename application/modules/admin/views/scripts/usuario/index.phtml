@@ -6,9 +6,9 @@
           Cadastro de Usuários
     </h4>
     <div class="text-center">
-      <a class="btn btn-trans btn-default"  href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'usuario', 'action' => 'form'),null,true);?>">
+      <a class="btn btn-trans btn-primary"  href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'usuario', 'action' => 'form'),null,true);?>">
         <i class="fa fa-plus"></i>
-        Adicionar Usuario
+        Novo usuário
       </a>
     </div>
   </div>
@@ -35,14 +35,13 @@
             <?php echo utf8_encode($value['usuarioEmail']); ?>
           </td>
           <td>
-            <?php echo utf8_encode($value['usuarioStatus']); ?>
+            <?php echo $value['usuarioStatus'] == 1 ? 'Atívo' : 'Inatívo'; ?>
           </td>
           <td class="text-right">
-            <a class="btn btn-success" href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'usuario', 'action' => 'view', 'id' => $value["usuarioId"]),null,true);?>" class="btn btn-primary">
+           <a class="btn btn-primary" href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'usuario', 'action' => 'view', 'id' => $value["usuarioId"]),null,true);?>">
               <i class="fa fa-search">
               </i>
-            </a>
-
+            </a>   
 
             <a class="btn btn-danger" href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'usuario', 'action' => 'drop', 'id' => $value['usuarioId']), null, true); ?>">
               <i class="fa fa-trash">
@@ -50,7 +49,7 @@
             </a>
 
 
-            <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'usuario', 'action' => 'form', 'id' => $value['usuarioId']), null, true); ?>" class="btn btn-primary">
+            <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'usuario', 'action' => 'form', 'id' => $value['usuarioId']), null, true); ?>" class="btn btn-success">
               <i class="fa fa-edit">    
               </i>
             </a>

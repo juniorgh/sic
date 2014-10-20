@@ -31,10 +31,8 @@ class Admin_UsuarioController extends Zend_Controller_Action {
     if (!is_null($id)) {
       try {
       $dadosUsuario = $usuario->find($id);
-      $dadosCursoId = $curso->find($id);
 
       $this->view->assign('usuario', $dadosUsuario);
-      $this->view->assign('curso', $dadosCursoId);
       
       } catch (Exception $exc) {
         echo $exc->getMessage();
@@ -53,23 +51,27 @@ class Admin_UsuarioController extends Zend_Controller_Action {
       $request = $this->getRequest();
       if ($request->isPost()) {
         $params = $request->getPost();
-
+        
+         $upload = new Zend_File_Transfer();
+          $files = $upload->getFileInfo('usuarioFotoCaminho');
+          $ext = pathinfo($files['usuarioFotoCaminho']['name'])['extension'];
+          $fotoNome = time() . '.' . $ext;
+          
+          $upload->addFilter('Rename', APPLICATION_PATH.'/../public/imagens/' . $fotoNome);
+          $upload->receive('usuarioFotoCaminho');
+        
         if (!array_key_exists('usuarioId', $params)) {
           $usuario = new Admin_Model_Usuario();
           $usuario->save($params);
         } else {
-          $upload = new Zend_File_Transfer();
-          $files = $upload->getFileInfo('usuarioFotoCaminho');
-          $ext = pathinfo($files['usuarioFotoCaminho']['name'])['extension'];
-          
-          $upload->addFilter('Rename', APPLICATION_PATH.'/../public/imagens/' . time() . '.' . $ext);
-          
-          $upload->receive('usuarioFotoCaminho');
           $usuario = new Admin_Model_Usuario();
+          
+          $params['usuarioFotoCaminho'] = $fotoNome;
+          
           $usuario->update($params);
         }
       }
-//      $this->_redirect('admin/usuario/index');
+      $this->_redirect('admin/usuario/index');
     } catch (Exception $exc) {
       echo $exc->getMessage();
     }

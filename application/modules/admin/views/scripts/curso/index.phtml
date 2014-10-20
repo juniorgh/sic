@@ -1,8 +1,11 @@
 <div class="block-flat">
   <div class="header">              
-    <h3>Cadastro de Cursos</h3>
+    <h4><i class="fa fa-graduation-cap"></i> Cadastro de Cursos</h4>
   </div>
   <div class="content">
+    <div class="container-fluid text-center">
+          <a href="<?php echo $this->url(array('action' => 'form')) ?>" class="btn btn-trans btn-primary"><i class="fa fa-plus"></i>&nbsp;&nbsp;Novo menu</a>
+        </div>
     <div class="table table-responsive">
       <table class="no-border hover">
         <thead class="no-border">
@@ -32,7 +35,7 @@
               </a>
 
 
-              <a href="" class="btn btn-success">
+              <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'curso', 'action' => 'form', 'id' => $cursos['cursoId']));?>" class="btn btn-success">
                 <i class="fa fa-edit">    
                 </i>
               </a>

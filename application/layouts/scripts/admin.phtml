@@ -47,7 +47,7 @@
                 </div>
               </div>
               <div class="side-user">
-                <div class="avatar"><img width="50" height="50" src="imagens/<?php echo $usuario->usuarioFotoCaminho == '' ? 'sem_imagem.jpg' : $usuario->usuarioFotoCaminho ?>" alt="Avatar" /></div>
+                <div class="avatar"><img width="50" height="50" src="<?php echo empty($usuario->usuarioFotoCaminho) ? 'http://placehold.it/50x50' : 'imagens/'. $usuario->usuarioFotoCaminho ?>" alt="Avatar" /></div>
                 <div class="info">
                   <p>40 <b>GB</b> / 100 <b>GB</b><span><a href="#"><i class="fa fa-plus"></i></a></span></p>
                   <div class="progress progress-user">

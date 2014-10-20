@@ -33,6 +33,18 @@ class Admin_Model_Curso
     $where = $curso->getAdapter()->quoteInto("cursoId = ?", $id);
     $curso->delete($where);
   }
+  
+  public function save($data = array()){
+     $curso = new Admin_Model_DbTable_Curso();
+     return $curso->insert($data);
+  }
+  
+  public static function update(array $data) {
+        $curso = new Admin_Model_DbTable_Curso();
+        $where = $curso->getAdapter()->quoteInto('cursoId = ?', $data['cursoId']);
+        unset($data['cursoId']);
+        return $curso->update($data, $where);
+    }
 }
 
 

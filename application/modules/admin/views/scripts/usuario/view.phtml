@@ -1,6 +1,7 @@
 <?php
 $usuario = $this->usuario;
 ?>
+
 <div class="row">
   <div class="col-md-12">
     <div class="block-flat">
@@ -18,7 +19,7 @@ $usuario = $this->usuario;
           <div class="row">
             <div class="col-sm-2 col-md-2">
               
-              <img src="imagens/<?php echo $usuario['usuarioFotoCaminho'] == '' ? 'sem_imagem.jpg' : $usuario['usuarioFotoImagem'] ?>" width="180" height="185"/>
+              <img src="imagens/<?php echo $usuario['usuarioFotoCaminho'] == '' ? 'sem_imagem.jpg' : $usuario['usuarioFotoCaminho'] ?>" width="180" height="185"/>
             </div>
             <div class="col-sm-4 col-md-4">
               <p> <i class="glyphicon glyphicon-envelope"></i> <?php echo 'Email:  '  .$usuario['usuarioEmail']; ?>
@@ -33,10 +34,10 @@ $usuario = $this->usuario;
           <br/>
           <br/>
           <br/>
-          <a  class="btn btn-dark" href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'usuario', 'action' => 'index'),null,true);?>">
+          <a  class="btn btn-danger" href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'usuario', 'action' => 'index'),null,true);?>">
             Voltar 
           </a>
-          <a  class="btn btn-info" href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'usuario', 'action' => 'form', 'id' => $usuario['usuarioId']),null,true);?>">
+          <a  class="btn btn-primary" href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'usuario', 'action' => 'form', 'id' => $usuario['usuarioId']),null,true);?>">
             Editar 
           </a>
         </div>
