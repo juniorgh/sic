@@ -44,5 +44,4 @@ class Admin_AuthController extends Zend_Controller_Action {
     Zend_Auth::getInstance()->clearIdentity();
     $this->_redirect('admin/auth/index');
   }
-
 }

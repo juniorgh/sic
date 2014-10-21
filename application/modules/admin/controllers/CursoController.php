@@ -38,38 +38,31 @@ class Admin_CursoController extends Zend_Controller_Action {
   }
 
   public function saveAction() {
+
     $request = $this->getRequest();
     if ($request->isPost()) {
       $params = $request->getPost();
 
+      $curso = new Admin_Model_Curso();
+      $upload = new Zend_File_Transfer();
+      $files = $upload->getFileInfo('cursoBanner');
+      $ext = pathinfo($files['cursoBanner']['name'])['extension'];
+      $fotoNome = time() . '.' . $ext;
+
+      $upload->addFilter('Rename', APPLICATION_PATH . '/../public/imagens/' . $fotoNome);
+      $upload->receive('cursoBanner');
+
+      $params['cursoBanner'] = $fotoNome;
+
       if (!array_key_exists('cursoId', $params)) {
-
-        $curso = new Admin_Model_Curso();
-        $upload = new Zend_File_Transfer();
-        $files = $upload->getFileInfo('cursoBanner');
-        $ext = pathinfo($files['cursoBanner']['name'])['extension'];
-        $fotoNome = time() . '.' . $ext;
-
-        $upload->addFilter('Rename', APPLICATION_PATH . '/../public/imagens/' . $fotoNome);
-        $upload->receive('cursoBanner');
-
-        $params['cursoBanner'] = $fotoNome;
-
         $curso->save($params);
       } else {
-        $curso = new Admin_Model_Curso();
-        $upload = new Zend_File_Transfer();
-        $files = $upload->getFileInfo('cursoBanner');
-        $ext = pathinfo($files['cursoBanner']['name'])['extension'];
-        $fotoNome = time() . '.' . $ext;
-
-        $upload->addFilter('Rename', APPLICATION_PATH . '/../public/imagens/' . $fotoNome);
-        $upload->receive('cursoBanner');
+        $dados = $curso->find($params['cursoId']);
         
-        $params['cursoBanner'] = $fotoNome;
+        unlink(APPLICATION_PATH . '/../public/imagens/' . $dados['cursoBanner']);
         
         $curso->update($params);
-      } 
+      }
       $this->_redirect('admin/curso/');
     }
   }

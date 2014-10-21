@@ -24,6 +24,18 @@
               <actionMethod actionName="index"/>
               <actionMethod actionName="error"/>
             </controllerFile>
+            <controllerFile controllerName="Blog">
+              <actionMethod actionName="index"/>
+            </controllerFile>
+            <controllerFile controllerName="Projeto">
+              <actionMethod actionName="index"/>
+            </controllerFile>
+            <controllerFile controllerName="Sobre">
+              <actionMethod actionName="index"/>
+            </controllerFile>
+            <controllerFile controllerName="Postagem">
+              <actionMethod actionName="index"/>
+            </controllerFile>
           </controllersDirectory>
           <formsDirectory enabled="false"/>
           <layoutsDirectory enabled="false"/>
@@ -39,6 +51,18 @@
               </viewControllerScriptsDirectory>
               <viewControllerScriptsDirectory forControllerName="Error">
                 <viewScriptFile forActionName="error"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Blog">
+                <viewScriptFile forActionName="index"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Projeto">
+                <viewScriptFile forActionName="index"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Sobre">
+                <viewScriptFile forActionName="index"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Postagem">
+                <viewScriptFile forActionName="index"/>
               </viewControllerScriptsDirectory>
             </viewScriptsDirectory>
             <viewHelpersDirectory/>
@@ -201,6 +225,18 @@
               <testApplicationControllerFile forControllerName="Error">
                 <testApplicationActionMethod forActionName="index"/>
                 <testApplicationActionMethod forActionName="error"/>
+              </testApplicationControllerFile>
+              <testApplicationControllerFile forControllerName="Blog">
+                <testApplicationActionMethod forActionName="index"/>
+              </testApplicationControllerFile>
+              <testApplicationControllerFile forControllerName="Projeto">
+                <testApplicationActionMethod forActionName="index"/>
+              </testApplicationControllerFile>
+              <testApplicationControllerFile forControllerName="Sobre">
+                <testApplicationActionMethod forActionName="index"/>
+              </testApplicationControllerFile>
+              <testApplicationControllerFile forControllerName="Postagem">
+                <testApplicationActionMethod forActionName="index"/>
               </testApplicationControllerFile>
             </testApplicationControllerDirectory>
           </testApplicationModuleDirectory>

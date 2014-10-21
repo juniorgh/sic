@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 20-Out-2014 às 21:08
+-- Generation Time: 21-Out-2014 às 19:50
 -- Versão do servidor: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `curso` (
 `cursoId` int(11) NOT NULL,
   `cursoNome` varchar(255) NOT NULL,
   `cursoBanner` varchar(700) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=44 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=42 ;
 
 --
 -- Extraindo dados da tabela `curso`
@@ -102,7 +102,7 @@ INSERT INTO `curso` (`cursoId`, `cursoNome`, `cursoBanner`) VALUES
 (38, 'Logística', ''),
 (39, 'Marketing', ''),
 (40, 'Segurança no Trabalho', ''),
-(41, 'Administracao - Bacharelado', '');
+(41, 'Administracao - Bacharelado', '1413892668.jpg');
 
 -- --------------------------------------------------------
 
@@ -176,7 +176,7 @@ CREATE TABLE IF NOT EXISTS `menu` (
   `menuIcone` varchar(255) DEFAULT NULL,
   `menuSuperior` varchar(255) DEFAULT NULL,
   `menuOrdem` int(11) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Extraindo dados da tabela `menu`
@@ -187,18 +187,6 @@ INSERT INTO `menu` (`menuId`, `menuTitulo`, `menuController`, `menuAction`, `men
 (8, 'Cursos', 'curso', 'index', 'fa fa-graduation-cap', '0', 2),
 (9, 'UsuÃ¡rios', 'usuario', 'index', 'fa fa-user', '0', 3),
 (10, 'Grupos', 'grupo', 'index', 'fa fa-users', '0', 4);
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `permissao`
---
-
-CREATE TABLE IF NOT EXISTS `permissao` (
-`permissaoId` int(11) NOT NULL,
-  `permissaoGrupoId` int(11) NOT NULL,
-  `permissaoUsuarioId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -241,15 +229,38 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `usuarioPeriodo` varchar(10) NOT NULL,
   `usuarioStatus` tinyint(1) DEFAULT '1',
   `usuarioFotoCaminho` varchar(600) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Extraindo dados da tabela `usuario`
 --
 
 INSERT INTO `usuario` (`usuarioId`, `usuarioCursoId`, `usuarioNome`, `usuarioEmail`, `usuarioFone`, `usuarioSenha`, `usuarioLogin`, `usuarioPeriodo`, `usuarioStatus`, `usuarioFotoCaminho`) VALUES
-(1, 17, 'Gilson', 'jr_juk@hotmail.com', '882500jr_', '078f40fa23e0672777adc7c05d4773dd', 'super', '7', 1, '1413829333.jpg'),
-(4, 3, 'William Davis Urbano', 'williamurbano@gmail.com', '(41) 9788-1329', 'a7da37da7e1bbd05c984dcd384d7445c', 'desenvolvimento', '7', 1, '1413830520.jpg');
+(1, 17, 'Gilson', 'jr_juk@hotmail.com', '882500jr_', '078f40fa23e0672777adc7c05d4773dd', 'super', '7', 1, '1413893399.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `usuariogrupo`
+--
+
+CREATE TABLE IF NOT EXISTS `usuariogrupo` (
+`usuarioGrupoId` int(11) NOT NULL,
+  `usuarioGrupoUsuarioId` int(11) NOT NULL,
+  `usuarioGrupoGrupoId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `usuariomenu`
+--
+
+CREATE TABLE IF NOT EXISTS `usuariomenu` (
+`usuarioMenuId` int(11) NOT NULL,
+  `usuarioMenuUsuarioId` int(11) NOT NULL,
+  `usuarioMenuMenuId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
 -- Indexes for dumped tables
@@ -304,12 +315,6 @@ ALTER TABLE `menu`
  ADD PRIMARY KEY (`menuId`);
 
 --
--- Indexes for table `permissao`
---
-ALTER TABLE `permissao`
- ADD PRIMARY KEY (`permissaoId`), ADD KEY `fkPermissaoGrupo` (`permissaoGrupoId`), ADD KEY `fkPermissaoUsuario` (`permissaoUsuarioId`);
-
---
 -- Indexes for table `postagem`
 --
 ALTER TABLE `postagem`
@@ -320,6 +325,18 @@ ALTER TABLE `postagem`
 --
 ALTER TABLE `usuario`
  ADD PRIMARY KEY (`usuarioId`), ADD KEY `fkUsuarioCurso` (`usuarioCursoId`);
+
+--
+-- Indexes for table `usuariogrupo`
+--
+ALTER TABLE `usuariogrupo`
+ ADD PRIMARY KEY (`usuarioGrupoId`), ADD KEY `fkUsuarioGrupoUsuario` (`usuarioGrupoUsuarioId`), ADD KEY `fkUsuarioGrupoGrupoId` (`usuarioGrupoGrupoId`);
+
+--
+-- Indexes for table `usuariomenu`
+--
+ALTER TABLE `usuariomenu`
+ ADD PRIMARY KEY (`usuarioMenuId`), ADD KEY `fkUsuarioMenuUsuario` (`usuarioMenuUsuarioId`), ADD KEY `fkUsuarioMenuMenu` (`usuarioMenuMenuId`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -339,7 +356,7 @@ MODIFY `comentarioId` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `curso`
 --
 ALTER TABLE `curso`
-MODIFY `cursoId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=44;
+MODIFY `cursoId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=42;
 --
 -- AUTO_INCREMENT for table `curtir`
 --
@@ -364,12 +381,7 @@ MODIFY `integranteId` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
-MODIFY `menuId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
---
--- AUTO_INCREMENT for table `permissao`
---
-ALTER TABLE `permissao`
-MODIFY `permissaoId` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `menuId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `postagem`
 --
@@ -379,7 +391,17 @@ MODIFY `postagemId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-MODIFY `usuarioId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `usuarioId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `usuariogrupo`
+--
+ALTER TABLE `usuariogrupo`
+MODIFY `usuarioGrupoId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `usuariomenu`
+--
+ALTER TABLE `usuariomenu`
+MODIFY `usuarioMenuId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Constraints for dumped tables
 --
@@ -405,17 +427,24 @@ ALTER TABLE `imagem`
 ADD CONSTRAINT `fkImagemPostagemId` FOREIGN KEY (`imagemPostagemId`) REFERENCES `postagem` (`postagemId`);
 
 --
--- Limitadores para a tabela `permissao`
---
-ALTER TABLE `permissao`
-ADD CONSTRAINT `fkPermissaoGrupo` FOREIGN KEY (`permissaoGrupoId`) REFERENCES `grupo` (`grupoId`),
-ADD CONSTRAINT `fkPermissaoUsuario` FOREIGN KEY (`permissaoUsuarioId`) REFERENCES `usuario` (`usuarioId`);
-
---
 -- Limitadores para a tabela `usuario`
 --
 ALTER TABLE `usuario`
 ADD CONSTRAINT `fkUsuarioCurso` FOREIGN KEY (`usuarioCursoId`) REFERENCES `curso` (`cursoId`);
+
+--
+-- Limitadores para a tabela `usuariogrupo`
+--
+ALTER TABLE `usuariogrupo`
+ADD CONSTRAINT `fkUsuarioGrupoGrupoId` FOREIGN KEY (`usuarioGrupoGrupoId`) REFERENCES `grupo` (`grupoId`),
+ADD CONSTRAINT `fkUsuarioGrupoUsuario` FOREIGN KEY (`usuarioGrupoUsuarioId`) REFERENCES `usuario` (`usuarioId`);
+
+--
+-- Limitadores para a tabela `usuariomenu`
+--
+ALTER TABLE `usuariomenu`
+ADD CONSTRAINT `fkUsuarioMenuMenu` FOREIGN KEY (`usuarioMenuMenuId`) REFERENCES `menu` (`menuId`),
+ADD CONSTRAINT `fkUsuarioMenuUsuario` FOREIGN KEY (`usuarioMenuUsuarioId`) REFERENCES `usuario` (`usuarioId`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
