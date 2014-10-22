@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="block-flat">
+      <div class="header">
+        <h4><i class="fa fa-group"> &thinsp; Cadastrar Grupo</i></h4>
+      </div>
+      <div class="content">
+        <form action="<?php echo $this->url(array('module' => 'admin', 'controller' => 'grupo', 'action' => 'save'),null,true);?>" class="form-horizontal group-border-dashed" style="border-radius: 0px;" method="post">
+            <?php if ($this->grupo['grupoId'] !== null) { ?>
+              <input name="grupoId" type="hidden" value="<?php echo!empty($this->grupo['grupoId']) ? $this->grupo['grupoId'] : '' ?>"  />
+            <?php } ?>  
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Nome</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" name="grupoNome" value="<?php echo !empty($this->grupo) ? utf8_encode($this->grupo['grupoNome']) : '';?>">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-9 col-sm-offset-3">
+              <button type="submit" class="btn btn-primary">Salvar</button>
+
+              <a href="" class="btn btn-default">Voltar</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

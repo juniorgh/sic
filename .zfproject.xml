@@ -12,7 +12,22 @@
           <layoutScriptFile layoutName="layout"/>
         </layoutScriptsDirectory>
       </layoutsDirectory>
-      <modelsDirectory/>
+      <modelsDirectory>
+        <dbTableDirectory>
+          <dbTableFile dbTableName="Arquivo"/>
+          <dbTableFile dbTableName="Comentario"/>
+          <dbTableFile dbTableName="Curso"/>
+          <dbTableFile dbTableName="Curtir"/>
+          <dbTableFile dbTableName="Grupo"/>
+          <dbTableFile dbTableName="Integrante"/>
+          <dbTableFile dbTableName="Menu"/>
+          <dbTableFile dbTableName="Postagem"/>
+          <dbTableFile dbTableName="Usuario"/>
+          <dbTableFile dbTableName="Usuariogrupo"/>
+          <dbTableFile dbTableName="Usuariomenu"/>
+          <dbTableFile dbTableName="UsuarioMenu"/>
+        </dbTableDirectory>
+      </modelsDirectory>
       <modulesDirectory>
         <moduleDirectory moduleName="default">
           <configsDirectory enabled="false"/>
@@ -93,6 +108,8 @@
               <actionMethod actionName="index"/>
               <actionMethod actionName="view"/>
               <actionMethod actionName="drop"/>
+              <actionMethod actionName="form"/>
+              <actionMethod actionName="save"/>
             </controllerFile>
             <controllerFile controllerName="Auth">
               <actionMethod actionName="index"/>
@@ -117,11 +134,14 @@
               <dbTableFile dbTableName="Url"/>
               <dbTableFile dbTableName="Usuario"/>
               <dbTableFile dbTableName="Menu"/>
+              <dbTableFile dbTableName="UsuarioMenu"/>
+              <dbTableFile dbTableName="UsuarioGrupo"/>
             </dbTableDirectory>
             <modelFile modelName="Usuario"/>
             <modelFile modelName="Curso"/>
             <modelFile modelName="Grupo"/>
             <modelFile modelName="Menu"/>
+            <modelFile modelName="UsuarioGrupo"/>
           </modelsDirectory>
           <servicesDirectory enabled="false"/>
           <viewsDirectory>
@@ -178,6 +198,12 @@
                 <viewScriptFile forActionName="form"/>
               </viewControllerScriptsDirectory>
               <viewControllerScriptsDirectory forControllerName="Curso">
+                <viewScriptFile forActionName="save"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Grupo">
+                <viewScriptFile forActionName="form"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Grupo">
                 <viewScriptFile forActionName="save"/>
               </viewControllerScriptsDirectory>
             </viewScriptsDirectory>
@@ -263,6 +289,8 @@
                 <testApplicationActionMethod forActionName="index"/>
                 <testApplicationActionMethod forActionName="view"/>
                 <testApplicationActionMethod forActionName="drop"/>
+                <testApplicationActionMethod forActionName="form"/>
+                <testApplicationActionMethod forActionName="save"/>
               </testApplicationControllerFile>
               <testApplicationControllerFile forControllerName="Auth">
                 <testApplicationActionMethod forActionName="index"/>

@@ -1,5 +1,32 @@
-<pre>
-	<?php
-	print_r($this->grupo); 
-	?>
-</pre>
+<div class="row">
+  <div class="col-md-12">
+    <div class="block-flat">
+      <div class="header">
+        <h4> <i class="fa fa-group"></i> Grupos</h4>
+      </div>
+      <div class="content">
+        <div class="form-horizontal group-border-dashed" style="border-radius: 0px;">
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Nome</label>
+            <div class="col-sm-3">
+              <p class="form-control-static"> <?php echo utf8_encode($this->grupo['grupoNome']);?></p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Integrantes</label>
+            <div class="col-sm-3">
+              <p class="form-control-static">
+                Lista de Integrantes de um grupo
+              </p>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-9 col-sm-offset-3">
+              <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'menu', 'action' => 'form')); ?>" class="btn btn-primary">Editar</a>
+              <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'menu', 'action' => 'index'), null, true); ?>" class="btn btn-default">Voltar</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

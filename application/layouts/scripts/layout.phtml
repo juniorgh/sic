@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta http-equiv = "Content-Type" content = "text/html; charset=UTF-8" />
+    <title>Semana de Iniciação Científica</title>
+    <link href = "assets/site/css/style.css"  rel = "stylesheet" />
+    <link href = "assets/site/css/posicionamento.css"  rel = "stylesheet" />
+    <link href = "assets/site/css/galery.css"  rel = "stylesheet" />
+    <link href = "assets/site/css/ie.css"  rel = "stylesheet" />
+    <link href = "assets/site/css/reset.css"  rel = "stylesheet" />
+    <link href = "assets/site/css/ie-css3.htc"  rel = "stylesheet" />
+
+    <link href = "assets/site/vendors/shadowbox/shadowbox.css" type = "text/css" rel = "stylesheet" />
+    <script src = "assets/site/vendors/jquery.min.js" type = "text/javascript"></script>
+    <script src="assets/site/vendors/shadowbox/shadowbox.js" type="text/javascript"></script>
+
+    <script src="assets/site/js/functions.js" type="text/javascript"></script>
+    <script src="assets/site/js/global.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+      Shadowbox.init();
+    </script>
+
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#filter_galery a').click(function () {
+          $('#filter_galery a').removeClass('ativo');
+          $(this).addClass('ativo');
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div id="all">
+      <header id="header">
+        <div id="header_content">
+          <section id="sing-in">
+            <a id="btn-sing">Entrar</a>
+          </section>
+          <section id="logo">
+            <a href=""></a>
+          </section>
+          <nav id="main_menu">
+            <ul>
+              <li class="link"><a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'index', 'action' => 'index'),null, true);?>" class="ativo">Home</a></li>
+              <li class="divisor">|</li>
+              <li class="link"><a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'projeto', 'action' => 'index'),null, true);?>">Projetos</a></li>
+              <li class="divisor">|</li>
+              <li class="link"><a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'sobre', 'action' => 'index'),null, true);?>">Sobre</a></li>
+              <li class="divisor">|</li>
+              <li class="link"><a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'blog', 'action' => 'index'),null, true);?>">Blog</a></li>
+
+              <section id="search">
+                <div class="input">
+                  <input value="Pesquisar..." type="text" id="query" name="query"/>
+                  <button class="btn-search" id="exec_query" type="button"></button>
+                </div>
+              </section>
+            </ul>
+          </nav>
+        </div>
+      </header>
+      <?php echo $this->layout()->content; ?>
+      <div class="clear">
+      </div>
+      
+        <br/>
+        <br/>
+      <footer id="footer">
+        <section id="footer_content">
+          <aside class="left">
+            <a href="http://www.uniandrade.br/">
+              <img src="assets/site/images/uni_logo.png" />
+            </a>
+          </aside>
+          <nav id="footer_menu" class="right">
+            <ul>
+              <li><a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'index', 'action' => 'index'),null, true);?>">Home</a></li>
+              <li><a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'projeto', 'action' => 'index'),null, true);?>">Projetos</a></li>
+              <li><a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'sobre', 'action' => 'index'),null, true);?>">Sobre</a></li>
+              <li><a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'blog', 'action' => 'index'),null, true);?>">Blog</a></li>
+              <li><a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'desenvolvedor', 'action' => 'index'),null, true);?>">Desenvolvedores</a></li>
+            </ul>
+          </nav>
+        </section>
+      </footer>
+    </div>
+  </body>
+</html>
+
+
+
