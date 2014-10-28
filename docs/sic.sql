@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 21-Out-2014 às 19:50
+-- Generation Time: 23-Out-2014 às 15:15
 -- Versão do servidor: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -120,47 +120,32 @@ CREATE TABLE IF NOT EXISTS `curtir` (
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `equipe`
+--
+
+CREATE TABLE IF NOT EXISTS `equipe` (
+`equipeId` int(11) NOT NULL,
+  `equipeNome` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `grupo`
 --
 
 CREATE TABLE IF NOT EXISTS `grupo` (
 `grupoId` int(11) NOT NULL,
   `grupoNome` varchar(50) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Extraindo dados da tabela `grupo`
 --
 
 INSERT INTO `grupo` (`grupoId`, `grupoNome`) VALUES
-(1, 'Administrador'),
-(2, 'Coordenação'),
 (3, 'Aluno'),
-(4, 'Visitante');
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `imagem`
---
-
-CREATE TABLE IF NOT EXISTS `imagem` (
-`imagemId` int(11) NOT NULL,
-  `imagemCaminho` varchar(600) NOT NULL,
-  `imagemPostagemId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `integrante`
---
-
-CREATE TABLE IF NOT EXISTS `integrante` (
-`integranteId` int(11) NOT NULL,
-  `integranteUsuarioId` int(11) NOT NULL,
-  `integrantePostagemId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+(5, 'Coordenadores');
 
 -- --------------------------------------------------------
 
@@ -229,14 +214,31 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `usuarioPeriodo` varchar(10) NOT NULL,
   `usuarioStatus` tinyint(1) DEFAULT '1',
   `usuarioFotoCaminho` varchar(600) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Extraindo dados da tabela `usuario`
 --
 
 INSERT INTO `usuario` (`usuarioId`, `usuarioCursoId`, `usuarioNome`, `usuarioEmail`, `usuarioFone`, `usuarioSenha`, `usuarioLogin`, `usuarioPeriodo`, `usuarioStatus`, `usuarioFotoCaminho`) VALUES
-(1, 17, 'Gilson', 'jr_juk@hotmail.com', '882500jr_', '078f40fa23e0672777adc7c05d4773dd', 'super', '7', 1, '1413893399.jpg');
+(1, 17, 'Gilson', 'jr_juk@hotmail.com', '882500jr_', '078f40fa23e0672777adc7c05d4773dd', 'super', '7', 1, '1413989741.jpg'),
+(8, 2, 'Gonçalves', 'juninho8579@gmail.com', '88250055', '078f40fa23e0672777adc7c05d4773dd', 'tester', '9', 1, NULL),
+(9, 2, 'junior', 'teste1@gmail.com', '88250055', '078f40fa23e0672777adc7c05d4773dd', 'tester1', '9', 1, '1414064954.jpg'),
+(10, 2, 'Whalter', 'teste2@gmail.com', '88250055', '078f40fa23e0672777adc7c05d4773dd', 'tester2', '9', 1, NULL),
+(11, 2, 'White', 'teste3@gmail.com', '88250055', '078f40fa23e0672777adc7c05d4773dd', 'tester3', '9', 1, '1413982799.'),
+(12, 2, 'Gus Fring', 'teste4@gmail.com', '88250055', '078f40fa23e0672777adc7c05d4773dd', 'tester4', '9', 1, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `usuarioequipe`
+--
+
+CREATE TABLE IF NOT EXISTS `usuarioequipe` (
+`usuarioEquipeId` int(11) NOT NULL,
+  `usuarioEquipeUsuarioId` int(11) NOT NULL,
+  `usuarioEquipeEquipeId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -248,7 +250,22 @@ CREATE TABLE IF NOT EXISTS `usuariogrupo` (
 `usuarioGrupoId` int(11) NOT NULL,
   `usuarioGrupoUsuarioId` int(11) NOT NULL,
   `usuarioGrupoGrupoId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
+
+--
+-- Extraindo dados da tabela `usuariogrupo`
+--
+
+INSERT INTO `usuariogrupo` (`usuarioGrupoId`, `usuarioGrupoUsuarioId`, `usuarioGrupoGrupoId`) VALUES
+(19, 1, 3),
+(20, 8, 3),
+(21, 9, 3),
+(22, 10, 3),
+(23, 11, 3),
+(24, 12, 3),
+(25, 1, 5),
+(26, 8, 5),
+(27, 12, 5);
 
 -- --------------------------------------------------------
 
@@ -291,22 +308,16 @@ ALTER TABLE `curtir`
  ADD PRIMARY KEY (`curtirId`), ADD KEY `fkCurtirUsuario` (`curtirUsuarioId`), ADD KEY `fkCurtirPostagem` (`curtirPostagemId`);
 
 --
+-- Indexes for table `equipe`
+--
+ALTER TABLE `equipe`
+ ADD PRIMARY KEY (`equipeId`);
+
+--
 -- Indexes for table `grupo`
 --
 ALTER TABLE `grupo`
  ADD PRIMARY KEY (`grupoId`);
-
---
--- Indexes for table `imagem`
---
-ALTER TABLE `imagem`
- ADD PRIMARY KEY (`imagemId`), ADD KEY `fkImagemPostagemId` (`imagemPostagemId`);
-
---
--- Indexes for table `integrante`
---
-ALTER TABLE `integrante`
- ADD PRIMARY KEY (`integranteId`);
 
 --
 -- Indexes for table `menu`
@@ -325,6 +336,12 @@ ALTER TABLE `postagem`
 --
 ALTER TABLE `usuario`
  ADD PRIMARY KEY (`usuarioId`), ADD KEY `fkUsuarioCurso` (`usuarioCursoId`);
+
+--
+-- Indexes for table `usuarioequipe`
+--
+ALTER TABLE `usuarioequipe`
+ ADD PRIMARY KEY (`usuarioEquipeId`), ADD KEY `fkUsuarioEquipeUsuario` (`usuarioEquipeUsuarioId`), ADD KEY `fkUsuarioEquipeEquipe` (`usuarioEquipeEquipeId`);
 
 --
 -- Indexes for table `usuariogrupo`
@@ -363,20 +380,15 @@ MODIFY `cursoId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=42;
 ALTER TABLE `curtir`
 MODIFY `curtirId` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `equipe`
+--
+ALTER TABLE `equipe`
+MODIFY `equipeId` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `grupo`
 --
 ALTER TABLE `grupo`
-MODIFY `grupoId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `imagem`
---
-ALTER TABLE `imagem`
-MODIFY `imagemId` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `integrante`
---
-ALTER TABLE `integrante`
-MODIFY `integranteId` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `grupoId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `menu`
 --
@@ -391,12 +403,17 @@ MODIFY `postagemId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-MODIFY `usuarioId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+MODIFY `usuarioId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+--
+-- AUTO_INCREMENT for table `usuarioequipe`
+--
+ALTER TABLE `usuarioequipe`
+MODIFY `usuarioEquipeId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `usuariogrupo`
 --
 ALTER TABLE `usuariogrupo`
-MODIFY `usuarioGrupoId` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `usuarioGrupoId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT for table `usuariomenu`
 --
@@ -421,16 +438,17 @@ ADD CONSTRAINT `fkCurtirPostagem` FOREIGN KEY (`curtirPostagemId`) REFERENCES `p
 ADD CONSTRAINT `fkCurtirUsuario` FOREIGN KEY (`curtirUsuarioId`) REFERENCES `usuario` (`usuarioId`);
 
 --
--- Limitadores para a tabela `imagem`
---
-ALTER TABLE `imagem`
-ADD CONSTRAINT `fkImagemPostagemId` FOREIGN KEY (`imagemPostagemId`) REFERENCES `postagem` (`postagemId`);
-
---
 -- Limitadores para a tabela `usuario`
 --
 ALTER TABLE `usuario`
 ADD CONSTRAINT `fkUsuarioCurso` FOREIGN KEY (`usuarioCursoId`) REFERENCES `curso` (`cursoId`);
+
+--
+-- Limitadores para a tabela `usuarioequipe`
+--
+ALTER TABLE `usuarioequipe`
+ADD CONSTRAINT `fkUsuarioEquipeEquipe` FOREIGN KEY (`usuarioEquipeEquipeId`) REFERENCES `equipe` (`equipeId`),
+ADD CONSTRAINT `fkUsuarioEquipeUsuario` FOREIGN KEY (`usuarioEquipeUsuarioId`) REFERENCES `usuario` (`usuarioId`);
 
 --
 -- Limitadores para a tabela `usuariogrupo`

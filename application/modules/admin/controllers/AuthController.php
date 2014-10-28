@@ -6,7 +6,7 @@ class Admin_AuthController extends Zend_Controller_Action {
     
   }
 
-  public function indexAction() {
+  public function indexAction() { 
     $this->_helper->layout->disableLayout();
   }
 

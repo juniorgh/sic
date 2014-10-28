@@ -1,0 +1,20 @@
+<?php
+foreach ($this->curso as $cursos) {
+    if (!empty($cursos['cursoBanner'])) {
+        $banners['nome'] = $cursos['cursoBanner'];
+        $cursos['cursoN'] = $cursos['cursoNome'];
+    }
+}
+?>
+
+<?php foreach ($banners as $banner) { ?>
+    <div id="cursos">
+        <div class="centralizar">
+            <img  src="<?php echo 'http://placehold.it/800x180'; ?>">
+        </div>
+        <div id="curso-nome">
+            <i><strong>Curso:</strong> Ciência da Computação<br/></i>
+        </div>
+        <hr>
+    </div>
+<?php } ?>

@@ -1,45 +1,39 @@
 @import url('reset.css');
 @import url('posicionamento.css');
 
-/* Logo do site */
-#header #logo {
-    float: left;
+.body{
+    background: url('../images/textura.png');
 }
 
+/* Logo do site */
+#logo {
+    text-align: center;
+}
+
+
 #header #logo a {
-    background: url('../images/logo.png') no-repeat;
+    background: url('../images/.png') no-repeat;
     height: 88px;
     width: 192px;
     display: block;
 }
 
-/* Menu principal */
-#header nav#main_menu ul {
-    float: left;
+#menu li{
+    display: inline-block;
+}
+
+#menu li a {
+    text-decoration: none;
     text-transform: uppercase;
-    margin: 30px;
+    color: #990e29;
+    display: block;
+    padding: 10px;
 }
 
-#header nav#main_menu ul li {
-    float: left;
+#menu li a:hover {
+    outline: 2px solid #fff;
 }
 
-#header nav#main_menu ul li.link a {
-    font-size: 16px;
-    color: #3e3e3e;
-    font-weight: bolder;
-}
-
-#header nav#main_menu ul li a:hover,
-#header nav#main_menu ul li a.ativo {
-    color: #a41b1b;
-}
-
-#header nav#main_menu ul li.divisor {
-    font-size: 14px;
-    padding: 0 30px;
-    color: #d0d0d0;
-}
 
 /* Botão entrar */
 #header section#sing-in a#btn-sing {
@@ -312,7 +306,7 @@ input#query {
     margin-top: 10px;
 }
 #postagem_img {
-    
+
     margin-top: 10px;
     float: left;
     margin-right: 10px;
@@ -323,3 +317,52 @@ input#query {
     margin-top: 52px;
     width: 180px;
 }
+
+.postagens-recentes{
+    margin: auto;
+    height: 330px;
+    width: 1000px;
+}
+
+
+.postagens {
+border: 2px solid #ddd4d5;
+    margin-left: 13px;
+    display: inline;
+    width: 315px;
+    height: 260px;
+    float: left;
+    margin-top: 10px;
+}
+
+.projetos{
+    width: 1000px;
+    margin: auto;
+    padding-top: 5px;
+}
+.centralizar{
+    text-align: center;
+}
+
+#projetos-gerais{
+    margin: auto;
+    width: 1030px;
+    border: 2px solid #ddd4d5;
+    border-radius: 4px;
+}
+
+#cursos{
+    width: 800px;
+    margin: auto;
+}
+
+#curso-nome{
+    width: 390px;
+    float: left;
+}
+#curso-visualizar{
+    width: 390px;
+    float: left;
+    text-align: right;
+}
+
