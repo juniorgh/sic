@@ -129,6 +129,9 @@
               <actionMethod actionName="falha"/>
               <actionMethod actionName="logout"/>
             </controllerFile>
+            <controllerFile controllerName="Grupomenu">
+              <actionMethod actionName="index"/>
+            </controllerFile>
           </controllersDirectory>
           <formsDirectory enabled="false"/>
           <layoutsDirectory enabled="false"/>
@@ -148,12 +151,14 @@
               <dbTableFile dbTableName="Menu"/>
               <dbTableFile dbTableName="UsuarioMenu"/>
               <dbTableFile dbTableName="UsuarioGrupo"/>
+              <dbTableFile dbTableName="Grupomenu"/>
             </dbTableDirectory>
             <modelFile modelName="Usuario"/>
             <modelFile modelName="Curso"/>
             <modelFile modelName="Grupo"/>
             <modelFile modelName="Menu"/>
             <modelFile modelName="UsuarioGrupo"/>
+            <modelFile modelName="Grupomenu"/>
           </modelsDirectory>
           <servicesDirectory enabled="false"/>
           <viewsDirectory>
@@ -217,6 +222,9 @@
               </viewControllerScriptsDirectory>
               <viewControllerScriptsDirectory forControllerName="Grupo">
                 <viewScriptFile forActionName="save"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Grupomenu">
+                <viewScriptFile forActionName="index"/>
               </viewControllerScriptsDirectory>
             </viewScriptsDirectory>
             <viewHelpersDirectory/>
@@ -315,6 +323,9 @@
                 <testApplicationActionMethod forActionName="login"/>
                 <testApplicationActionMethod forActionName="falha"/>
                 <testApplicationActionMethod forActionName="logout"/>
+              </testApplicationControllerFile>
+              <testApplicationControllerFile forControllerName="Grupomenu">
+                <testApplicationActionMethod forActionName="index"/>
               </testApplicationControllerFile>
             </testApplicationControllerDirectory>
           </testApplicationModuleDirectory>

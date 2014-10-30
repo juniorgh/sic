@@ -1,28 +1,67 @@
-<div class="row">
-  <div class="col-md-12">
-    <div class="block-flat">
-      <div class="header">
-        <h4><i class="fa fa-group"> &thinsp; Cadastrar Grupo</i></h4>
-      </div>
-      <div class="content">
-        <form action="<?php echo $this->url(array('module' => 'admin', 'controller' => 'grupo', 'action' => 'save'),null,true);?>" class="form-horizontal group-border-dashed" style="border-radius: 0px;" method="post">
-            <?php if ($this->grupo['grupoId'] !== null) { ?>
-              <input name="grupoId" type="hidden" value="<?php echo!empty($this->grupo['grupoId']) ? $this->grupo['grupoId'] : '' ?>"  />
-            <?php } ?>  
-          <div class="form-group">
-            <label class="col-sm-3 control-label">Nome</label>
-            <div class="col-sm-6">
-              <input type="text" class="form-control" name="grupoNome" value="<?php echo !empty($this->grupo) ? utf8_encode($this->grupo['grupoNome']) : '';?>">
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-9 col-sm-offset-3">
-              <button type="submit" class="btn btn-primary">Salvar</button>
+<?php
+$ids = null;
 
-              <a href="" class="btn btn-default">Voltar</a>
+if (!is_null($this->menuGrupo)) {
+    foreach ($this->menuGrupo as $id) {
+        $ids[] = $id['menuId'];   
+    }
+}
+?>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block-flat">
+            <div class="header">
+                <h4><i class="fa fa-group"> &thinsp; Cadastrar Grupo</i></h4>
             </div>
-          </div>
-        </form>
-      </div>
+            <div class="content">
+                <form action="<?php echo $this->url(array('module' => 'admin', 'controller' => 'grupo', 'action' => 'save'), null, true); ?>" class="form-horizontal group-border-dashed" style="border-radius: 0px;" method="post">
+                    <?php if ($this->grupo['grupoId'] !== null) { ?>
+                        <input name="grupoId" type="hidden" value="<?php echo!empty($this->grupo['grupoId']) ? $this->grupo['grupoId'] : '' ?>"  />
+                    <?php } ?> 
+
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Nome</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="grupoNome" value="<?php echo!empty($this->grupo) ? utf8_encode($this->grupo['grupoNome']) : ''; ?>">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Permissões</label>
+                        <div class="col-sm-6">
+                            <?php if (!is_null($ids)) { ?>
+                                <?php foreach ($this->menu as $value) { ?>
+                                    <?php 
+                                    $id = $value['menuId'];
+                                    ?>
+
+                                    <?php if (in_array($id, $ids)) { ?>
+                                        <input name='grupoMenu[]' type='checkbox' checked value='<?php echo $id; ?>'/> <?php echo $value['menuTitulo']; ?>
+                                    <?php } else { ?>
+                                        <input name='grupoMenu[]' type='checkbox' value='<?php echo $id; ?>'> <?php echo $value['menuTitulo']; ?>
+                                    <?php } ?>
+                                    <br/>
+                                <?php } ?>
+                            <?php } else { ?>
+                                <?php foreach ($this->menu as $id) { ?>
+                                    <input name='grupoMenu[]' type='checkbox' value='<?php echo $id['menuId']; ?>'/> <?php echo $id['menuTitulo']; ?><br/>
+                                <?php } ?>
+                            <?php } ?>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-1 col-sm-offset-3">
+                            <a class="btn" href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'grupo'),null,true);?>"> voltar</a>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-  </div>
+</div>
+
+

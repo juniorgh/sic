@@ -2,7 +2,7 @@
 foreach ($this->curso as $cursos) {
     if (!empty($cursos['cursoBanner'])) {
         $banners['nome'] = $cursos['cursoBanner'];
-        $cursos['cursoN'] = $cursos['cursoNome'];
+        $cursos['cursoNome'] = $cursos['cursoNome'];
     }
 }
 ?>
@@ -10,7 +10,7 @@ foreach ($this->curso as $cursos) {
 <?php foreach ($banners as $banner) { ?>
     <div id="cursos">
         <div class="centralizar">
-            <img  src="<?php echo 'http://placehold.it/800x180'; ?>">
+            <img src="<?php echo 'imagens/'.$banner; ?>" style="width: 800px; height: 180px;"/>
         </div>
         <div id="curso-nome">
             <i><strong>Curso:</strong> Ciência da Computação<br/></i>

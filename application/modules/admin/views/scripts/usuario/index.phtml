@@ -1,64 +1,71 @@
+
 <div class="block-flat">
-  <div class="header">              
-    <h4>
-      <i class="fa fa-user">
-      </i>
-          &nbsp;&nbsp;Cadastro de Usuários
-    </h4>
-    <div class="text-center">
-      <a class="btn btn-trans btn-primary"  href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'usuario', 'action' => 'form'),null,true);?>">
-        <i class="fa fa-plus"></i>
-        Novo usuário
-      </a>
+    <div class="header">              
+        <h4>
+            <i class="fa fa-user">
+            </i>
+            &nbsp;&nbsp;Cadastro de Usuários
+        </h4>
+        <div class="text-center">
+            <a class="btn btn-trans btn-primary"  href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'usuario', 'action' => 'form'), null, true); ?>">
+                <i class="fa fa-plus"></i>
+                Novo usuário
+            </a>
+        </div>
     </div>
-  </div>
-  <div class="content">
-    <table class="no-border hover">
-      <thead class="no-border">
-        <tr>
-          <th class="text-left">Nome</th>
-          <th>Email</th>
-          <th>Status</th>
-          <th class="text-right"></th>
-        </tr>
-      </thead>
-      
-      <tbody class="no-border-y">
+    <div class="content">
         <?php
-        foreach ($this->usuario as $value) {
-        ?>  
-        <tr>
-          <td class="text-left">
-            <?php echo utf8_encode($value['usuarioNome']); ?>
-          </td>
-          <td>
-            <?php echo utf8_encode($value['usuarioEmail']); ?>
-          </td>
-          <td>
-            <?php echo $value['usuarioStatus'] == 1 ? 'Atívo' : 'Inatívo'; ?>
-          </td>
-          <td class="text-right">
-           <a class="btn btn-primary" href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'usuario', 'action' => 'view', 'id' => $value["usuarioId"]),null,true);?>">
-              <i class="fa fa-search">
-              </i>
-            </a>   
+        if (empty($this->usuario)) {
+            echo 'Não existem usuarios cadastrados no sistema';
+        } else {
+            ?>
+            <table class="no-border hover">
+                <thead class="no-border">
+                    <tr>
+                        <th class="text-left">Nome</th>
+                        <th>Email</th>
+                        <th>Status</th>
+                        <th class="text-right"></th>
+                    </tr>
+                </thead>
 
-            <a class="btn btn-danger" href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'usuario', 'action' => 'drop', 'id' => $value['usuarioId']), null, true); ?>">
-              <i class="fa fa-trash">
-              </i>
-            </a>
+                <tbody class="no-border-y">
+                    <?php
+                    foreach ($this->usuario as $value) {
+                        ?>  
+                        <tr>
+                            <td class="text-left">
+                                <?php echo utf8_encode($value['usuarioNome']); ?>
+                            </td>
+                            <td>
+                                <?php echo utf8_encode($value['usuarioEmail']); ?>
+                            </td>
+                            <td>
+                                <?php echo $value['usuarioStatus'] == 1 ? 'Atívo' : 'Inatívo'; ?>
+                            </td>
+                            <td class="text-right">
+                                <a class="btn btn-primary" href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'usuario', 'action' => 'view', 'id' => $value["usuarioId"]), null, true); ?>">
+                                    <i class="fa fa-search">
+                                    </i>
+                                </a>   
+
+                                <a class="btn btn-danger" href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'usuario', 'action' => 'drop', 'id' => $value['usuarioId']), null, true); ?>">
+                                    <i class="fa fa-trash">
+                                    </i>
+                                </a>
 
 
-            <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'usuario', 'action' => 'form', 'id' => $value['usuarioId']), null, true); ?>" class="btn btn-success">
-              <i class="fa fa-edit">    
-              </i>
-            </a>
-          </td>
-        </tr>
-        <?php  
-        }
-        ?>
-      </tbody>
-    </table>            
-  </div>
+                                <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'usuario', 'action' => 'form', 'id' => $value['usuarioId']), null, true); ?>" class="btn btn-success">
+                                    <i class="fa fa-edit">    
+                                    </i>
+                                </a>
+                            </td>
+                        </tr>
+                        <?php
+                    }
+                    ?>
+                </tbody>
+            </table>
+        <?php } ?>            
+    </div>
 </div>

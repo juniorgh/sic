@@ -1,49 +1,57 @@
 <div class="block-flat">
-  <div class="header">              
-    <h4><i class="fa fa-graduation-cap"></i> Cadastro de Cursos</h4>
-  </div>
-  <div class="content">
-    <div class="container-fluid text-center">
-          <a href="<?php echo $this->url(array('action' => 'form')) ?>" class="btn btn-trans btn-primary"><i class="fa fa-plus"></i>&nbsp;&nbsp;Novo curso</a>
+    <div class="header">              
+        <h4><i class="fa fa-graduation-cap"></i> Cadastro de Cursos</h4>
+    </div>
+    <div class="content">
+        <div class="container-fluid text-center">
+            <a href="<?php echo $this->url(array('action' => 'form')) ?>" class="btn btn-trans btn-primary"><i class="fa fa-plus"></i>&nbsp;&nbsp;Novo curso</a>
         </div>
-    <div class="table table-responsive">
-      <table class="no-border hover">
-        <thead class="no-border">
-          <tr>
-            <th class="text-left">Cursos</th>
-            <th class="text-right"></th>
-          </tr>
-        </thead>
+        <div class="table table-responsive">
+            <?php
+            if (empty($this->curso)) {
+                echo 'não existem cursos cadastrados nesse sistema.';
+            } else {
+                ?>
+                <table class="no-border hover">
+                    <thead class="no-border">
+                        <tr>
+                            <th class="text-left">Cursos</th>
+                            <th class="text-right"></th>
+                        </tr>
+                    </thead>
 
-        <tbody class="no-border-y"> 
-        <?php foreach($this->curso as $cursos){ ?>
-          <tr>
-            <td class="text-left">
-              <?php echo utf8_encode($cursos['cursoNome']); ?>
-            </td>
-            <td class="text-right">
-              <a class="btn btn-primary" href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'curso', 'action' => 'view', 'id' => $cursos['cursoId']),null,true);?>">
-                <i class="fa fa-search">
-                </i>
-              </a>
-
-
-              <a class="btn btn-danger" href="<?php echo $this->
-              url(array('module' => 'admin', 'controller' =>'curso','action' => 'drop', 'id' => $cursos['cursoId']),null,true); ?>">
-                <i class="fa fa-trash">
-                </i>
-              </a>
+                    <tbody class="no-border-y"> 
+                        <?php foreach ($this->curso as $cursos) { ?>
+                            <tr>
+                                <td class="text-left">
+                                    <?php echo utf8_encode($cursos['cursoNome']); ?>
+                                </td>
+                                <td class="text-right">
+                                    <a class="btn btn-primary" href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'curso', 'action' => 'view', 'id' => $cursos['cursoId']), null, true); ?>">
+                                        <i class="fa fa-search">
+                                        </i>
+                                    </a>
 
 
-              <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'curso', 'action' => 'form', 'id' => $cursos['cursoId']));?>" class="btn btn-success">
-                <i class="fa fa-edit">    
-                </i>
-              </a>
-            </td>
-          </tr>
-          <?php } ?>
-        </tbody>
-      </table>
-    </div>            
-  </div>
+                                    <a class="btn btn-danger" href="<?php
+                                    echo $this->
+                                            url(array('module' => 'admin', 'controller' => 'curso', 'action' => 'drop', 'id' => $cursos['cursoId']), null, true);
+                                    ?>">
+                                        <i class="fa fa-trash">
+                                        </i>
+                                    </a>
+
+
+                                    <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'curso', 'action' => 'form', 'id' => $cursos['cursoId'])); ?>" class="btn btn-success">
+                                        <i class="fa fa-edit">    
+                                        </i>
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            <?php } ?>
+        </div>            
+    </div>
 </div>

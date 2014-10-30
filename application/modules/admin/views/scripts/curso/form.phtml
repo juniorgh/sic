@@ -1,37 +1,45 @@
-<?php
-?>
+<?php ?>
 <div class="row">
-  <div class="col-md-12">
-    <div class="block-flat">
-      <div class="header">
-        <h4><?php echo $this->formActionName ?><i class="fa fa-graduation-cap"></i> Curso</h4>
-      </div>
-      <div class="content">
-        <form enctype="multipart/form-data" action="<?php echo $this->url(array('module' => 'admin', 'controller' => 'curso', 'action' => 'save'), null, true);?>" class="form-horizontal group-border-dashed" style="border-radius: 0px;" method="post">
-          
-          <?php if($this->curso['cursoId'] != null){?>
-            <input type="hidden" name="cursoId" value="<?php echo $this->curso['cursoId'];?>">
-          <?php }?>
-          
-          <div class="form-group">
-            <label class="col-sm-3 control-label">Nome</label>
-            <div class="col-sm-6">
-              <input type="text" class="form-control" name="cursoNome" value="<?php echo utf8_encode($this->curso['cursoNome']);?>">
+    <div class="col-md-12">
+        <div class="block-flat">
+            <div class="header">
+                <h4><?php echo $this->formActionName ?><i class="fa fa-graduation-cap"></i> Curso</h4>
             </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-3 control-label">Inserir Banner</label>
-            <div class="col-sm-6">
-              <input type="file" class="form-control" name="cursoBanner" value="">
+            <div class="content">
+                <form enctype="multipart/form-data" action="<?php echo $this->url(array('module' => 'admin', 'controller' => 'curso', 'action' => 'save'), null, true); ?>" class="form-horizontal group-border-dashed" style="border-radius: 0px;" method="post">
+
+                    <?php if ($this->curso['cursoId'] != null) { ?>
+                        <input type="hidden" name="cursoId" value="<?php echo $this->curso['cursoId']; ?>">
+                    <?php } ?>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Nome</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="cursoNome" value="<?php echo utf8_encode($this->curso['cursoNome']); ?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Thumbnail Input</label>
+                        <div class="col-sm-6">
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                                    <img src="<?php echo !empty($this->curso['cursoBanner']) ? 'imagens/' . $this->curso['cursoBanner'] : 'http://placehold.it/190x140/7761A7/ffffff';?>">
+                                </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                                <div>
+                                    <span class="btn btn-primary btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span><input type="file" name="cursoBanner"></span>
+                                    <a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">Remove</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label"></label>
+                        <div class="col-sm-6">
+                            <input type="submit" class="btn btn-primary" value="Confirmar"/>
+                        </div>
+                    </div>
+                </form>
             </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-3 control-label"></label>
-            <div class="col-sm-6">
-              <input type="submit" class="btn btn-primary" value="Confirmar"/>
-            </div>
-          </div>
-        </form>
-      </div>
+        </div>
     </div>
-  </div>

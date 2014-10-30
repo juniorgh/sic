@@ -28,16 +28,15 @@ class Admin_Model_UsuarioGrupo {
     }
   }
 
-  public function findJoinGrupo($id) {
-    $usuarioGrupo = new Admin_Model_DbTable_UsuarioGrupo();
-    $dados = $usuarioGrupo->select()
-        ->from(array('u' => 'usuario'),
-            array('usuarioId'))
-        ->join(array('ug' => 'usuarioGrupo'), 
-            'u.usuarioId = ug.usuarioGrupoUsuarioId')
-        ->where(array('ug.usuarioGrupoGrupoId = ?' => $id));
+public function findUsuarioGrupo($id) {
+      $usuarioGrupo = new Admin_Model_DbTable_UsuarioGrupo();
+      $query = $usuarioGrupo->select()
+              ->setIntegrityCheck(false)
+              ->from(array('u' => 'usuario'))
+              ->join(array('ug' => 'usuariogrupo'), 'u.usuarioId = ug.usuarioGrupoUsuarioId')
+              ->join(array('g ' => 'grupo'), 'g.grupoId = ug.usuarioGrupoGrupoId')
+              ->where('g.grupoId = ?', $id);
 
-        return $usuarioGrupo->fetchAll($dados);
+      return $usuarioGrupo->fetchAll($query);
   }
-
 }

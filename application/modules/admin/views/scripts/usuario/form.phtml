@@ -1,93 +1,113 @@
+<?php
+$periodo = array(
+    1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20
+);
+?>
 <div class="block-flat">
-  <div class="header">							
-    <h4>Cadastro de Usuários</h4>
-  </div>
-  <div class="content">
-    <form method="post" enctype="multipart/form-data" class="form-horizontal group-border-dashed" action="<?php echo $this->url(array('module' => 'admin', 'controller' => 'usuario', 'action' => 'save'), null, true); ?>" style="border-radius: 0px;">
-      <div class="form-group">
-        <label class="col-sm-3 control-label">Escolha o seu Curso</label>
-        <div class="col-sm-6">
-          <select class="form-control" name="usuarioCursoId">
-              <option>
-                Selecione o curso
-              </option>
-              <?php foreach ($this->cursoAll as $cursos) { ?>
-              <option <?php echo $this->usuario['usuarioCursoId'] == $cursos['cursoId'] ? 'selected' : '';?> value="<?php echo $cursos['cursoId']?>"> 
-                <?php echo utf8_encode($cursos['cursoNome']); ?>
-              </option>
-              <?php } ?>
-          </select>
-        </div>
-      </div>
+    <div class="header">							
+        <h4>Cadastro de Usuários</h4>
+    </div>
+    <div class="content">
+        <form method="post" enctype="multipart/form-data" class="form-horizontal group-border-dashed" action="<?php echo $this->url(array('module' => 'admin', 'controller' => 'usuario', 'action' => 'save'), null, true); ?>" style="border-radius: 0px;">
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Escolha o seu Curso</label>
+                <div class="col-sm-6">
+                    <select class="form-control" name="usuarioCursoId">
+                        <option>
+                            Selecione o curso
+                        </option>
+                        <?php foreach ($this->cursoAll as $cursos) { ?>
+                            <option <?php echo $this->usuario['usuarioCursoId'] == $cursos['cursoId'] ? 'selected' : ''; ?> value="<?php echo $cursos['cursoId'] ?>"> 
+                                <?php echo utf8_encode($cursos['cursoNome']); ?>
+                            </option>
+                        <?php } ?>
+                    </select>
+                </div>
+            </div>
 
-      <div class="form-group">
-        <label class="col-sm-3 control-label">Nome</label>
-        <div class="col-sm-6">
-          <input type="text"  placeholder="Digite aqui seu nome" class="form-control" name="usuarioNome" value="<?php echo utf8_encode($this->usuario['usuarioNome']); ?>"/>
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="col-sm-3 control-label">Password</label>
-        <div class="col-sm-6">
-          <input type="password" name="usuarioSenha" placeholder="Digite aqui sua senha" class="form-control" value="<?php echo $this->usuario['usuarioSenha']; ?>">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="col-sm-3 control-label">Email</label>
-        <div class="col-sm-6">
-          <input type="text" name="usuarioEmail" class="form-control" placeholder="Digite aqui seu E-Mail" value="<?php echo $this->usuario['usuarioEmail']; ?>">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="col-sm-3 control-label">Fone</label>
-        <div class="col-sm-6">
-          <input class="form-control" name="usuarioFone" placeholder="Digite aqui seu telefone" value="<?php echo $this->usuario['usuarioFone']; ?>" />
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="col-sm-3 control-label">Login</label>
-        <div class="col-sm-6">
-          <input type="text" name="usuarioLogin" class="form-control" value="<?php echo $this->usuario['usuarioLogin']; ?>" placeholder="Digite aqui seu login">
-        </div>
-      </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Nome</label>
+                <div class="col-sm-6">
+                    <input type="text"  placeholder="Digite aqui seu nome" class="form-control" name="usuarioNome" value="<?php echo utf8_encode($this->usuario['usuarioNome']); ?>"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Password</label>
+                <div class="col-sm-3">
+                    <input type="password" name="usuarioSenha" placeholder="Digite aqui sua senha" class="form-control" value="<?php $this->usuario['usuarioSenha']; ?>">
+                </div>
+                <div class="col-sm-3">
+                    <input type="password" placeholder="Confirme sua senha" class="form-control" value="<?php $this->usuario['usuarioSenha']; ?>">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Email</label>
+                <div class="col-sm-6">
+                    <input type="text" name="usuarioEmail" class="form-control" placeholder="Digite aqui seu E-Mail" value="<?php echo $this->usuario['usuarioEmail']; ?>">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Fone</label>
+                <div class="col-sm-6">
+                    <input class="form-control" name="usuarioFone" placeholder="Digite aqui seu telefone" value="<?php echo $this->usuario['usuarioFone']; ?>" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Período</label>
+                <div class="col-sm-6">
+                    <select name="usuarioPeriodo" class="form-control">
+                        <option>
+                            informe seu período
+                        </option>
+                        <?php foreach ($periodo as $p) { ?>
+                            <option <?php echo $this->usuario['usuarioPeriodo'] == $p ? 'selected' : ''; ?> value="<?php echo $p ?>"> 
+                                <?php echo utf8_encode($p); ?>
+                            </option>
+                        <?php } ?>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Login</label>
+                <div class="col-sm-6">
+                    <input type="text" name="usuarioLogin" class="form-control" value="<?php echo $this->usuario['usuarioLogin']; ?>" placeholder="Digite aqui seu login">
+                </div>
+            </div>
 
-      <div class="form-group">
-        <label class="col-sm-3 control-label">Periodo</label>
-        <div class="col-sm-6">
-          <input type="text" name="usuarioPeriodo" class="form-control" value="<?php echo $this->usuario['usuarioPeriodo']; ?>" placeholder="Digite aqui seu periodo">
-        </div>
-      </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Status</label>
+                <div class="col-sm-6">
+                    <input type="text" name="usuarioStatus" class="form-control" value="<?php echo $this->usuario['usuarioStatus']; ?>" placeholder="Defina o Status">
+                </div>
+            </div>
 
-      <div class="form-group">
-        <label class="col-sm-3 control-label">Status</label>
-        <div class="col-sm-6">
-          <input type="text" name="usuarioStatus" class="form-control" value="<?php echo $this->usuario['usuarioStatus']; ?>" placeholder="Defina o Status">
-        </div>
-      </div>
+            <?php if ($this->usuario['usuarioId'] != null) { ?>
+                <input type="hidden" name="usuarioId" class="form-control" value="<?php echo $this->usuario['usuarioId']; ?>">
+            <?php } ?>
 
-      <?php if ($this->usuario['usuarioId'] != null) { ?>
-        <div class="form-group">
-          <label class="col-sm-3 control-label"></label>
-          <div class="col-sm-6">
-            <input type="hidden" name="usuarioId" class="form-control" value="<?php echo $this->usuario['usuarioId']; ?>">
-          </div>  
-        </div>
-      <?php } ?>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Selecione a Imagem</label>
+                <div class="col-sm-6">
+                  <div class="fileinput fileinput-new" data-provides="fileinput">
+                    <div class="fileinput-new thumbnail" style="height: 150px;">
+                        <img src="<?php echo !empty($this->usuario['usuarioFotoCaminho']) ? 'imagens/'. $this->usuario['usuarioFotoCaminho'] : 'http://placehold.it/190x140/7761A7/ffffff' ?>" alt="...">
+                    </div>
+                    <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                    <div>
+                      <span class="btn btn-primary btn-file"><span class="fileinput-new">Selecione</span><span class="fileinput-exists">Change</span><input type="file" name="usuarioFotoCaminho"></span>
+                      <a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">Remove</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-      <div class="form-group">
-        <label class="col-sm-3 control-label">Inserir Imagem</label>
-        <div class="col-sm-6">
-          <input type="file" name="usuarioFotoCaminho" class="form-control" value="<?php echo $this->usuario['usuarioFotoCaminho']; ?>">
-        </div>  
-      </div>
-
-      <div class="form-group">
-        <label class="col-sm-3 control-label"></label>
-        <div class="col-sm-6">
-          <input type="submit" class="btn btn-success" value="Confirmar">
-          <a class="btn btn-primary" href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'curso', 'action' => 'index'), null, true); ?>"> Voltar</a>
-        </div>
-      </div>
-    </form>
-  </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label"></label>
+                <div class="col-sm-6">
+                    <input type="submit" class="btn btn-success" value="Confirmar">
+                    <a class="btn btn-primary" href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'usuario'), null, true); ?>"> Voltar</a>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
