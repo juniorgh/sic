@@ -1,2 +1,73 @@
-chegou na view grupos
+<div class="row">
+    <div class="col-md-11">
+        <div class="block-flat">
+            <div class="header">
+                <h4> <i class="fa fa-group"> </i> <?php echo utf8_encode('Grupo de ' . $this->grupo['grupoNome']); ?></h4>
+            </div>
+            <?php
+            if (count($this->usuarioGrupo) == 0) {
+                echo ' <br/>     Não existem integrantes no grupo selecionado!';
+            } else {
+                ?>
+                <div class="content">
+                    <div class="form-horizontal group-border-dashed" style="border-radius: 0px;">
+                        <div class="form-group">
+                            <div class="">
+                                <div class="content table table-responsive">
+                                    <table class="no-border hover">
+                                        <thead class="no-border">
+                                        <div class="header text-center">							
+                                            <h4>
+                                                Integrantes
+                                            </h4>
+                                        </div>
+                                        <th>
+                                            Nomes 
+                                        </th>
+                                        <th> 
+                                        </th>
+                                        </thead>
+                                        <tbody class="no-border-y">
+                                            <?php foreach ($this->usuarioGrupo as $value) { ?>
+                                                <tr>
+                                                    <td style="width:95%;">
+                                                        <?php echo utf8_encode($value['usuarioNome']); ?>
+                                                    </td>
+                                                    <td style="width:5%;">
+                                                        <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'grupo', 'action' => 'dropIntegrante'), null, TRUE) ?>" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>						
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label"></label>
+                            <div class="col-sm-6">
+                                <p class="form-control-static">
+                                    <a  class="btn btn-danger" href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'grupo', 'action' => 'index'), null, true); ?>">
+                                        Voltar 
+                                    </a>
+                                    <a  class="btn btn-primary" href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'grupo', 'action' => 'form', 'id' => $this->grupo['grupoId']), null, true); ?>">
+                                        Editar 
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
 

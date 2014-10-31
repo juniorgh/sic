@@ -1,7 +1,12 @@
 <?php
-$periodo = array(
-    1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20
-);
+$ids = null;
+$id = null;
+
+if (!is_null($this->usuarioGrupoFiltrado)) {
+    foreach ($this->usuarioGrupoFiltrado as $id) {
+        $ids[] = $id['usuarioGrupoUsuarioId'];
+    }
+}
 ?>
 <div class="block-flat">
     <div class="header">							
@@ -47,36 +52,29 @@ $periodo = array(
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">Fone</label>
-                <div class="col-sm-6">
-                    <input class="form-control" name="usuarioFone" placeholder="Digite aqui seu telefone" value="<?php echo $this->usuario['usuarioFone']; ?>" />
-                </div>
-            </div>
-            <div class="form-group">
                 <label class="col-sm-3 control-label">Período</label>
-                <div class="col-sm-6">
+                <div class="col-sm-2">
                     <select name="usuarioPeriodo" class="form-control">
                         <option>
                             informe seu período
                         </option>
-                        <?php foreach ($periodo as $p) { ?>
+                        <?php foreach ($this->periodo as $p) { ?>
                             <option <?php echo $this->usuario['usuarioPeriodo'] == $p ? 'selected' : ''; ?> value="<?php echo $p ?>"> 
                                 <?php echo utf8_encode($p); ?>
                             </option>
                         <?php } ?>
                     </select>
                 </div>
+                <div class="col-sm-4">
+                    <input class="form-control" name="usuarioFone" placeholder="Digite aqui seu telefone" value="<?php echo $this->usuario['usuarioFone']; ?>" />
+                </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-3 control-label">Login</label>
-                <div class="col-sm-6">
+                <div class="col-sm-3">
                     <input type="text" name="usuarioLogin" class="form-control" value="<?php echo $this->usuario['usuarioLogin']; ?>" placeholder="Digite aqui seu login">
                 </div>
-            </div>
-
-            <div class="form-group">
-                <label class="col-sm-3 control-label">Status</label>
-                <div class="col-sm-6">
+                <div class="col-sm-3">
                     <input type="text" name="usuarioStatus" class="form-control" value="<?php echo $this->usuario['usuarioStatus']; ?>" placeholder="Defina o Status">
                 </div>
             </div>
@@ -88,19 +86,18 @@ $periodo = array(
             <div class="form-group">
                 <label class="col-sm-3 control-label">Selecione a Imagem</label>
                 <div class="col-sm-6">
-                  <div class="fileinput fileinput-new" data-provides="fileinput">
-                    <div class="fileinput-new thumbnail" style="height: 150px;">
-                        <img src="<?php echo !empty($this->usuario['usuarioFotoCaminho']) ? 'imagens/'. $this->usuario['usuarioFotoCaminho'] : 'http://placehold.it/190x140/7761A7/ffffff' ?>" alt="...">
+                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                        <div class="fileinput-new thumbnail" style="height: 150px;">
+                            <img src="<?php echo!empty($this->usuario['usuarioFotoCaminho']) ? 'imagens/' . $this->usuario['usuarioFotoCaminho'] : 'http://placehold.it/190x140/7761A7/ffffff' ?>" alt="...">
+                        </div>
+                        <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                        <div>
+                            <span class="btn btn-primary btn-file"><span class="fileinput-new">Selecione</span><span class="fileinput-exists">Change</span><input type="file" name="usuarioFotoCaminho"></span>
+                            <a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">Remove</a>
+                        </div>
                     </div>
-                    <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
-                    <div>
-                      <span class="btn btn-primary btn-file"><span class="fileinput-new">Selecione</span><span class="fileinput-exists">Change</span><input type="file" name="usuarioFotoCaminho"></span>
-                      <a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">Remove</a>
-                    </div>
-                  </div>
                 </div>
-              </div>
-
+            </div>
             <div class="form-group">
                 <label class="col-sm-3 control-label"></label>
                 <div class="col-sm-6">

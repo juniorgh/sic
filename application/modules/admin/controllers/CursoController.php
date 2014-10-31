@@ -2,8 +2,12 @@
 
 class Admin_CursoController extends Zend_Controller_Action {
 
+  protected $_flashMessenger = null;  
+    
   public function init() {
-    /* Initialize action controller here */
+      $this->_flashMessenger =
+      $this->_helper->getHelper('FlashMessenger');
+      $this->initView();
   }
 
   public function indexAction() {
@@ -61,7 +65,9 @@ class Admin_CursoController extends Zend_Controller_Action {
         
         unlink(APPLICATION_PATH . '/../public/imagens/' . $dados['cursoBanner']);
         
-        $curso->update($params);
+        if($curso->update($params)){
+            $this->_flashMessenger->addMessage('Record Saved!');
+        }
       }
       $this->_redirect('admin/curso/');
     }

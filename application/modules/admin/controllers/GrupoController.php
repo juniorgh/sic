@@ -13,13 +13,19 @@ class Admin_GrupoController extends Zend_Controller_Action {
     }
 
     public function viewAction() {
-        $grupo = new Admin_Model_Grupo();
-        $id = $this->_request->getParam('id');
-        $dados = $grupo->find($id);
-        
-        
-        
-        
+        try {
+            $grupo = new Admin_Model_Grupo();
+            $usuarioGrupo = new Admin_Model_UsuarioGrupo();
+            $id = $this->_request->getParam('id');
+
+            $dados = $grupo->find($id);
+            $usuarioGrupoDados = $usuarioGrupo->findUsuarioGrupo($id);
+
+            $this->view->assign('grupo', $dados);
+            $this->view->assign('usuarioGrupo', $usuarioGrupoDados);
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        }
     }
 
     public function dropAction() {
@@ -35,18 +41,18 @@ class Admin_GrupoController extends Zend_Controller_Action {
         $grupo = new Admin_Model_Grupo();
         $grupoMenu = new Admin_Model_Grupomenu();
         $menu = new Admin_Model_Menu();
-        
+
         $id = $this->_request->getParam('id');
         $dadosMenu = $menu->find();
         if (!is_null($id)) {
-            
+
             $menuGrupo = $grupoMenu->findGrupoMenu($id);
             $dados = $grupo->find($id);
-            
+
             $this->view->assign('grupo', $dados);
-            $this->view->assign('menuGrupo',$menuGrupo);    
+            $this->view->assign('menuGrupo', $menuGrupo);
         }
-        
+
         $this->view->assign('menu', $dadosMenu);
     }
 
@@ -55,25 +61,25 @@ class Admin_GrupoController extends Zend_Controller_Action {
             $request = $this->getRequest();
             if ($request->isPost()) {
                 $params = $request->getPost();
-                
+
                 $idsGrupoMenu = $request->getPost('grupoMenu');
                 unset($params['grupoMenu']);
-                
+
                 $grupo = new Admin_Model_Grupo();
                 $grupoMenu = new Admin_Model_Grupomenu();
-                
+
                 if (!array_key_exists('grupoId', $params)) {
                     $params['grupoId'] = $grupo->save($params);
-                } else {    
-                        $grupo->update($params);
+                } else {
+                    $grupo->update($params);
                 }
-                
-                $grupoMenu->drop($params['grupoId']);   
-                
+
+                $grupoMenu->drop($params['grupoId']);
+
                 foreach ($idsGrupoMenu as $menu_id) {
                     $tmp = array(
                         'grupoMenuGrupoId' => $params['grupoId'],
-                            'grupoMenuMenuId' => $menu_id
+                        'grupoMenuMenuId' => $menu_id
                     );
                     $grupoMenu->save($tmp);
                 }
