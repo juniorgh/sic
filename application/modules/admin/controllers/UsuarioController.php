@@ -64,19 +64,26 @@ class Admin_UsuarioController extends Zend_Controller_Action {
 
     public function saveAction() {
         $request = $this->getRequest();
+        
         if ($request->isPost()) {
+            
             $usuario = new Admin_Model_Usuario();
             $params = $request->getPost();
             $senhaMd5 = md5($request->getPost('usuarioSenha'));
+            
             unset($params['usuarioSenha']);
+            
             $upload = new Zend_File_Transfer();
             $files = $upload->getFileInfo('usuarioFotoCaminho');
+            
             $ext = pathinfo($files['usuarioFotoCaminho']['name'])['extension'];
             $fotoNome = time() . '.' . $ext;
+            
             $upload->addFilter('Rename', APPLICATION_PATH . '/../public/imagens/' . $fotoNome);
             $upload->receive('usuarioFotoCaminho');
             $params['usuarioFotoCaminho'] = $fotoNome;
             $params['usuarioSenha'] = $senhaMd5;
+            
             if (!array_key_exists('usuarioId', $params)) {
                 $usuario->save($params);
             } else {

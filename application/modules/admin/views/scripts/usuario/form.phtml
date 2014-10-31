@@ -6,6 +6,10 @@ if (!is_null($this->usuarioGrupoFiltrado)) {
     foreach ($this->usuarioGrupoFiltrado as $id) {
         $ids[] = $id['usuarioGrupoUsuarioId'];
     }
+    
+    echo '<pre>';
+    print_r($ids);
+    echo '</pre>';
 }
 ?>
 <div class="block-flat">

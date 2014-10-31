@@ -60,7 +60,7 @@
                 </div>
               </div>
               <ul class="cl-vnavigation">
-                <?php foreach($this->sidebarMainMenu as $sidebarMenu) { ?>
+                <?php foreach($this->grupoMenu as $sidebarMenu) { ?>
                 <li>
                   <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => $sidebarMenu['menuController'], 'action' => $sidebarMenu['menuAction']), null, true); ?>"><i class="<?php echo $sidebarMenu['menuIcone'] ?>"></i><span><?php echo $sidebarMenu['menuTitulo'] ?></span></a>
                 </li>

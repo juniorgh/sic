@@ -11,6 +11,9 @@ class Admin_IndexController extends Zend_Controller_Action
     public function indexAction()
     {
       $usuario = Zend_Auth::getInstance()->getIdentity();
+     
+      $this->view->assign('usuarioMenu',$usuario);
+      
     }
 
 

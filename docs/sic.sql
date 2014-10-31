@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 23-Out-2014 às 15:15
+-- Generation Time: 31-Out-2014 às 21:08
 -- Versão do servidor: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -150,6 +150,26 @@ INSERT INTO `grupo` (`grupoId`, `grupoNome`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `grupomenu`
+--
+
+CREATE TABLE IF NOT EXISTS `grupomenu` (
+`grupoMenuId` int(11) NOT NULL,
+  `grupoMenuGrupoId` int(11) NOT NULL,
+  `grupoMenuMenuId` int(11) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Extraindo dados da tabela `grupomenu`
+--
+
+INSERT INTO `grupomenu` (`grupoMenuId`, `grupoMenuGrupoId`, `grupoMenuMenuId`) VALUES
+(4, 5, 8),
+(5, 5, 10);
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `menu`
 --
 
@@ -221,7 +241,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 --
 
 INSERT INTO `usuario` (`usuarioId`, `usuarioCursoId`, `usuarioNome`, `usuarioEmail`, `usuarioFone`, `usuarioSenha`, `usuarioLogin`, `usuarioPeriodo`, `usuarioStatus`, `usuarioFotoCaminho`) VALUES
-(1, 17, 'Gilson', 'jr_juk@hotmail.com', '882500jr_', '078f40fa23e0672777adc7c05d4773dd', 'super', '7', 1, '1413989741.jpg'),
+(1, 17, 'Gilson', 'jr_juk@hotmail.com', '882500jr_', '078f40fa23e0672777adc7c05d4773dd', 'super', '7', 1, '1414785430.jpg'),
 (8, 2, 'Gonçalves', 'juninho8579@gmail.com', '88250055', '078f40fa23e0672777adc7c05d4773dd', 'tester', '9', 1, NULL),
 (9, 2, 'junior', 'teste1@gmail.com', '88250055', '078f40fa23e0672777adc7c05d4773dd', 'tester1', '9', 1, '1414064954.jpg'),
 (10, 2, 'Whalter', 'teste2@gmail.com', '88250055', '078f40fa23e0672777adc7c05d4773dd', 'tester2', '9', 1, NULL),
@@ -250,34 +270,14 @@ CREATE TABLE IF NOT EXISTS `usuariogrupo` (
 `usuarioGrupoId` int(11) NOT NULL,
   `usuarioGrupoUsuarioId` int(11) NOT NULL,
   `usuarioGrupoGrupoId` int(11) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Extraindo dados da tabela `usuariogrupo`
 --
 
 INSERT INTO `usuariogrupo` (`usuarioGrupoId`, `usuarioGrupoUsuarioId`, `usuarioGrupoGrupoId`) VALUES
-(19, 1, 3),
-(20, 8, 3),
-(21, 9, 3),
-(22, 10, 3),
-(23, 11, 3),
-(24, 12, 3),
-(25, 1, 5),
-(26, 8, 5),
-(27, 12, 5);
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `usuariomenu`
---
-
-CREATE TABLE IF NOT EXISTS `usuariomenu` (
-`usuarioMenuId` int(11) NOT NULL,
-  `usuarioMenuUsuarioId` int(11) NOT NULL,
-  `usuarioMenuMenuId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+(1, 1, 5);
 
 --
 -- Indexes for dumped tables
@@ -320,6 +320,12 @@ ALTER TABLE `grupo`
  ADD PRIMARY KEY (`grupoId`);
 
 --
+-- Indexes for table `grupomenu`
+--
+ALTER TABLE `grupomenu`
+ ADD PRIMARY KEY (`grupoMenuId`), ADD KEY `fkGrupoMenuGrupo` (`grupoMenuGrupoId`), ADD KEY `fkGrupoMenuMenu` (`grupoMenuMenuId`);
+
+--
 -- Indexes for table `menu`
 --
 ALTER TABLE `menu`
@@ -348,12 +354,6 @@ ALTER TABLE `usuarioequipe`
 --
 ALTER TABLE `usuariogrupo`
  ADD PRIMARY KEY (`usuarioGrupoId`), ADD KEY `fkUsuarioGrupoUsuario` (`usuarioGrupoUsuarioId`), ADD KEY `fkUsuarioGrupoGrupoId` (`usuarioGrupoGrupoId`);
-
---
--- Indexes for table `usuariomenu`
---
-ALTER TABLE `usuariomenu`
- ADD PRIMARY KEY (`usuarioMenuId`), ADD KEY `fkUsuarioMenuUsuario` (`usuarioMenuUsuarioId`), ADD KEY `fkUsuarioMenuMenu` (`usuarioMenuMenuId`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -390,6 +390,11 @@ MODIFY `equipeId` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `grupo`
 MODIFY `grupoId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
+-- AUTO_INCREMENT for table `grupomenu`
+--
+ALTER TABLE `grupomenu`
+MODIFY `grupoMenuId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
@@ -413,12 +418,7 @@ MODIFY `usuarioEquipeId` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `usuariogrupo`
 --
 ALTER TABLE `usuariogrupo`
-MODIFY `usuarioGrupoId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=28;
---
--- AUTO_INCREMENT for table `usuariomenu`
---
-ALTER TABLE `usuariomenu`
-MODIFY `usuarioMenuId` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `usuarioGrupoId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- Constraints for dumped tables
 --
@@ -436,6 +436,13 @@ ADD CONSTRAINT `fkComentarioUsuario` FOREIGN KEY (`comentarioUsuarioId`) REFEREN
 ALTER TABLE `curtir`
 ADD CONSTRAINT `fkCurtirPostagem` FOREIGN KEY (`curtirPostagemId`) REFERENCES `postagem` (`postagemId`),
 ADD CONSTRAINT `fkCurtirUsuario` FOREIGN KEY (`curtirUsuarioId`) REFERENCES `usuario` (`usuarioId`);
+
+--
+-- Limitadores para a tabela `grupomenu`
+--
+ALTER TABLE `grupomenu`
+ADD CONSTRAINT `fkGrupoMenuGrupo` FOREIGN KEY (`grupoMenuGrupoId`) REFERENCES `grupo` (`grupoId`),
+ADD CONSTRAINT `fkGrupoMenuMenu` FOREIGN KEY (`grupoMenuMenuId`) REFERENCES `menu` (`menuId`);
 
 --
 -- Limitadores para a tabela `usuario`
@@ -456,13 +463,6 @@ ADD CONSTRAINT `fkUsuarioEquipeUsuario` FOREIGN KEY (`usuarioEquipeUsuarioId`) R
 ALTER TABLE `usuariogrupo`
 ADD CONSTRAINT `fkUsuarioGrupoGrupoId` FOREIGN KEY (`usuarioGrupoGrupoId`) REFERENCES `grupo` (`grupoId`),
 ADD CONSTRAINT `fkUsuarioGrupoUsuario` FOREIGN KEY (`usuarioGrupoUsuarioId`) REFERENCES `usuario` (`usuarioId`);
-
---
--- Limitadores para a tabela `usuariomenu`
---
-ALTER TABLE `usuariomenu`
-ADD CONSTRAINT `fkUsuarioMenuMenu` FOREIGN KEY (`usuarioMenuMenuId`) REFERENCES `menu` (`menuId`),
-ADD CONSTRAINT `fkUsuarioMenuUsuario` FOREIGN KEY (`usuarioMenuUsuarioId`) REFERENCES `usuario` (`usuarioId`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -28,10 +28,22 @@ class Application_Plugin_LayoutPlugin extends Zend_Controller_Plugin_Abstract {
     ->appendHttpEquiv('viewport', 'width=device-width, initial-scale=1.0');
 
     // Escolhendo em qual layout a página irá renderizar a view
+    
     if ($request->getModuleName() == 'admin') {
-      $layout->setLayout('admin');
-      $menu = Admin_Model_Menu::find(null, null, null, array('menuOrdem ASC'));
-      $view->assign('sidebarMainMenu', $menu);
+        $layout->setLayout('admin');
+      if(!is_null(Zend_Auth::getInstance()->getIdentity())){
+       $usuario = Zend_Auth::getInstance()->getIdentity();
+      
+      $id = $usuario->usuarioId;
+      
+      $grupoMenu = new Admin_Model_Grupomenu();
+      
+      
+      
+      $dados = $grupoMenu->findMenusDinamicos($id);
+      
+      $view->assign('grupoMenu', $dados);   
+      }
     }
   }
 }
