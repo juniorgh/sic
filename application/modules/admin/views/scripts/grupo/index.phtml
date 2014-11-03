@@ -1,6 +1,6 @@
 <div class="block-flat">
     <div class="header">              
-        <h3>Cadastro de Grupos</h3>
+        <h3><i class="fa fa-group"></i> Grupos</h3>
         <div class="text-center">
             <a class="btn btn-primary " href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'grupo', 'action' => 'form'), null, true); ?>"><i class="fa fa-plus"></i> Novo grupo</a>
         </div>
@@ -27,7 +27,7 @@
                         ?>  
                         <tr>
                             <td>
-        <?php echo utf8_encode($grupos['grupoNome']); ?>
+                                <?php echo utf8_encode($grupos['grupoNome']); ?>
                             </td>
                             <td class="text-right">
                                 <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'grupo', 'action' => 'view', 'id' => $grupos['grupoId']), null, true); ?>" class="btn btn-primary">
@@ -53,6 +53,6 @@
                     ?>
                 </tbody>
             </table>            
-<?php } ?>
+        <?php } ?>
     </div>
 </div>

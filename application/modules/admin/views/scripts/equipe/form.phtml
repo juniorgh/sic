@@ -1,0 +1,65 @@
+<?php
+if ($this->id) {
+    $ids = null;
+    $idFiltrado = null;
+
+    foreach ($this->usuario as $id) {
+        $ids[] = $id['usuarioId'];
+    }
+
+    foreach ($this->usuarioEquipes as $idFiltrado) {
+        $idsFiltrados[] = $idFiltrado['usuarioId'];
+    }
+}
+?>
+<div class="row">
+    <div class="col-md-12">
+        <div class="block-flat">
+            <div class="header">
+                <h4><i class="fa fa-suitcase"></i> Equipes </h4>
+            </div>
+            <div class="content">
+                <form enctype="multipart/form-data" action="" class="form-horizontal group-border-dashed" style="border-radius: 0px;" method="post">
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Nome</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="equipeNome" value="">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Nome</label>
+                        <div class="col-sm-6">
+                            <?php if ($this->id == null) { ?>
+                                <?php foreach ($this->usuario as $usuarios) { ?>
+                                    <input name="integrantes[]" type="checkbox"> <?php echo utf8_encode($usuarios['usuarioNome']); ?><br/>
+                                <?php } ?>
+                            <?php } else { ?>
+                                <?php foreach ($this->usuario as $usuarios) { ?> 
+                                    <?php
+                                    $usuIds = $usuarios['usuarioId'];
+                                    if (in_array($usuIds, $idsFiltrados)) {
+                                        ?>
+                                        <input checked type="checkbox" value="<?php $usuarios['usuarioId']; ?>" name="integrantes[]"> <?php echo utf8_encode($usuarios['usuarioNome']); ?>
+                                    <?php } else { ?>
+                                        <input  type="checkbox" value="<?php $usuarios['usuarioId']; ?>" name="integrantes[]"> <?php echo utf8_encode($usuarios['usuarioNome']); ?>
+                                    <?php } ?>
+                                    <?php
+                                    echo '<br/>';
+                                }
+                            }
+                            ?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label"></label>
+                        <div class="col-sm-6">
+                            <input type="submit" class="btn btn-primary" value="Confirmar"/>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

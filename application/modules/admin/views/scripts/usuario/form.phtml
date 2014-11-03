@@ -2,13 +2,13 @@
 $ids = null;
 $id = null;
 
-if (!is_null($this->usuarioGrupoFiltrado)) {
+if (!is_null($this->usuario['usuarioId'])) {
     foreach ($this->usuarioGrupoFiltrado as $id) {
         $ids[] = $id['usuarioGrupoUsuarioId'];
     }
-    
     echo '<pre>';
-    print_r($ids);
+    print_r($this->usuarioGrupoAll);
+    //print_r($ids);
     echo '</pre>';
 }
 ?>
@@ -102,6 +102,16 @@ if (!is_null($this->usuarioGrupoFiltrado)) {
                     </div>
                 </div>
             </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Grupos</label>
+                <div class="col-sm-3">
+                    <?php if ($this->usuarioGrupoAll) { ?>
+                        <??>
+                    <?php } ?>
+                </div>
+            </div>
+
             <div class="form-group">
                 <label class="col-sm-3 control-label"></label>
                 <div class="col-sm-6">

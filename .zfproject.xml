@@ -26,6 +26,7 @@
           <dbTableFile dbTableName="Usuariogrupo"/>
           <dbTableFile dbTableName="Usuariomenu"/>
           <dbTableFile dbTableName="UsuarioMenu"/>
+          <dbTableFile dbTableName="UsuarioEquipe"/>
         </dbTableDirectory>
       </modelsDirectory>
       <modulesDirectory>
@@ -132,6 +133,13 @@
             <controllerFile controllerName="Grupomenu">
               <actionMethod actionName="index"/>
             </controllerFile>
+            <controllerFile controllerName="UsuarioEquipe">
+              <actionMethod actionName="index"/>
+            </controllerFile>
+            <controllerFile controllerName="Equipe">
+              <actionMethod actionName="index"/>
+              <actionMethod actionName="form"/>
+            </controllerFile>
           </controllersDirectory>
           <formsDirectory enabled="false"/>
           <layoutsDirectory enabled="false"/>
@@ -152,6 +160,8 @@
               <dbTableFile dbTableName="UsuarioMenu"/>
               <dbTableFile dbTableName="UsuarioGrupo"/>
               <dbTableFile dbTableName="Grupomenu"/>
+              <dbTableFile dbTableName="UsuarioEquipe"/>
+              <dbTableFile dbTableName="Equipe"/>
             </dbTableDirectory>
             <modelFile modelName="Usuario"/>
             <modelFile modelName="Curso"/>
@@ -159,6 +169,8 @@
             <modelFile modelName="Menu"/>
             <modelFile modelName="UsuarioGrupo"/>
             <modelFile modelName="Grupomenu"/>
+            <modelFile modelName="UsuarioEquipe"/>
+            <modelFile modelName="Equipe"/>
           </modelsDirectory>
           <servicesDirectory enabled="false"/>
           <viewsDirectory>
@@ -225,6 +237,15 @@
               </viewControllerScriptsDirectory>
               <viewControllerScriptsDirectory forControllerName="Grupomenu">
                 <viewScriptFile forActionName="index"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="UsuarioEquipe">
+                <viewScriptFile forActionName="index"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Equipe">
+                <viewScriptFile forActionName="index"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Equipe">
+                <viewScriptFile forActionName="form"/>
               </viewControllerScriptsDirectory>
             </viewScriptsDirectory>
             <viewHelpersDirectory/>
@@ -326,6 +347,13 @@
               </testApplicationControllerFile>
               <testApplicationControllerFile forControllerName="Grupomenu">
                 <testApplicationActionMethod forActionName="index"/>
+              </testApplicationControllerFile>
+              <testApplicationControllerFile forControllerName="UsuarioEquipe">
+                <testApplicationActionMethod forActionName="index"/>
+              </testApplicationControllerFile>
+              <testApplicationControllerFile forControllerName="Equipe">
+                <testApplicationActionMethod forActionName="index"/>
+                <testApplicationActionMethod forActionName="form"/>
               </testApplicationControllerFile>
             </testApplicationControllerDirectory>
           </testApplicationModuleDirectory>

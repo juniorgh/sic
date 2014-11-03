@@ -36,30 +36,30 @@ class Admin_Model_Grupomenu {
                 ->join(array('g' => 'grupo'), 'g.grupoId = gm.grupoMenuGrupoId')
                 ->join(array('m' => 'menu'), 'm.menuId = gm.grupoMenuMenuId')
                 ->where('g.grupoId = ?', $id);
-        
+
         return $grupoMenu->fetchAll($query);
     }
-    
+
     public function findMenusDinamicos($id) {
         $grupoMenu = new Admin_Model_DbTable_Grupomenu();
         $query = $grupoMenu->select()->distinct()
-                            ->setIntegrityCheck(false)
-                            ->from(array('ug' => 'usuariogrupo'))
-                            ->join(array('gm' => 'grupomenu'), 'gm.grupoMenuGrupoId = ug.usuarioGrupoGrupoId')
-                            ->join(array('m' => 'menu'), 'm.menuId = gm.grupoMenuMenuId')
-                            ->where('ug.usuarioGrupoUsuarioId = ?', $id);
+                                     ->setIntegrityCheck(false)
+                                     ->from(array('ug' => 'usuariogrupo'))
+                                     ->join(array('gm' => 'grupomenu'), 'gm.grupoMenuGrupoId = ug.usuarioGrupoGrupoId')
+                                     ->join(array('m' => 'menu'), 'm.menuId = gm.grupoMenuMenuId')
+                                     ->where('ug.usuarioGrupoUsuarioId = ?', $id);
         return $grupoMenu->fetchAll($query);
     }
-    
+
     public function drop($id) {
         $grupoMenu = new Admin_Model_DbTable_Grupomenu();
         $where = $grupoMenu->getAdapter()->quoteInto("grupoMenuGrupoId = ?", $id);
         $grupoMenu->delete($where);
     }
-    
+
     public function save($data = array()) {
-    $grupoMenu = new Admin_Model_DbTable_Grupomenu();
-    return $grupoMenu->insert($data);
-  }
+        $grupoMenu = new Admin_Model_DbTable_Grupomenu();
+        return $grupoMenu->insert($data);
+    }
 
 }

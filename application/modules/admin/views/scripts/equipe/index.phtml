@@ -1,0 +1,54 @@
+<pre>
+    <?php
+print_r($this->id);
+?>
+</pre>
+<div class="block-flat">
+    <div class="header">              
+        <h3><i class="fa fa-suitcase"></i> Equipes</h3>
+        <div class="text-center">
+            <a class="btn btn-primary " href="<?php echo $this->url(array('admin' => 'equipe', 'controller' => 'equipe', 'action' => 'form')); ?>"><i class="fa fa-plus"></i> Nova equipe</a>
+        </div>
+    </div>
+
+    <div class="content">
+
+        <table class="no-border hover">
+            <thead class="no-border">
+                <tr>
+                    <th>Nome</th>
+                    <th class="text-right"></th>
+                </tr>
+            </thead>
+
+            <tbody class="no-border-y">
+                <?php foreach ($this->equipe as $equipes) { ?>
+                    <tr>
+                        <td>
+                            <?php echo utf8_encode($equipes['equipeNome']); ?>
+                        </td>
+                        <td class="text-right">
+                            <a href="" class="btn btn-primary">
+                                <i class="fa fa-search">
+                                </i>
+                            </a>
+
+
+                            <a class="btn btn-danger" href="">
+                                <i class="fa fa-trash">
+                                </i>
+                            </a>
+
+
+                            <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'equipe', 'action' => 'form', 'id' => $equipes['equipeId']), null, true); ?>" class="btn btn-success">
+                                <i class="fa fa-edit">
+
+                                </i>
+                            </a>
+                        </td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
+</div>
