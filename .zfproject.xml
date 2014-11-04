@@ -129,6 +129,7 @@
               <actionMethod actionName="login"/>
               <actionMethod actionName="falha"/>
               <actionMethod actionName="logout"/>
+              <actionMethod actionName="erro"/>
             </controllerFile>
             <controllerFile controllerName="Grupomenu">
               <actionMethod actionName="index"/>
@@ -247,6 +248,9 @@
               <viewControllerScriptsDirectory forControllerName="Equipe">
                 <viewScriptFile forActionName="form"/>
               </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Auth">
+                <viewScriptFile forActionName="erro"/>
+              </viewControllerScriptsDirectory>
             </viewScriptsDirectory>
             <viewHelpersDirectory/>
             <viewFiltersDirectory/>
@@ -344,6 +348,7 @@
                 <testApplicationActionMethod forActionName="login"/>
                 <testApplicationActionMethod forActionName="falha"/>
                 <testApplicationActionMethod forActionName="logout"/>
+                <testApplicationActionMethod forActionName="erro"/>
               </testApplicationControllerFile>
               <testApplicationControllerFile forControllerName="Grupomenu">
                 <testApplicationActionMethod forActionName="index"/>

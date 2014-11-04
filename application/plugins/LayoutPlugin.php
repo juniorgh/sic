@@ -37,9 +37,6 @@ class Application_Plugin_LayoutPlugin extends Zend_Controller_Plugin_Abstract {
       $id = $usuario->usuarioId;
       
       $grupoMenu = new Admin_Model_Grupomenu();
-      
-      
-      
       $dados = $grupoMenu->findMenusDinamicos($id);
       
       $view->assign('grupoMenu', $dados);   

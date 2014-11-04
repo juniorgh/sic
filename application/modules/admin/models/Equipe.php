@@ -1,7 +1,9 @@
 <?php
 
 class Admin_Model_Equipe {
-
+    /*
+     * Método Select da tabela Equipe
+     */
     public function find($id = null, $pager = false, array $where = null, array $order = null) {
         $curso = new Admin_Model_DbTable_Equipe();
         if (!is_null($id)) {
@@ -27,18 +29,29 @@ class Admin_Model_Equipe {
             }
         }
     }
-
+    
+    /*
+     * Método Delete da tabela Equipe
+     */
     public function drop($id) {
         $curso = new Admin_Model_DbTable_Equipe();
         $where = $curso->getAdapter()->quoteInto("equipeId = ?", $id);
         $curso->delete($where);
     }
-
+    
+    /*
+     * Método Insert da tabela Equipe
+     */
+    
     public function save($data = array()) {
         $curso = new Admin_Model_DbTable_Equipe();
         return $curso->insert($data);
     }
-
+    
+    /*
+     * Método Update da tabela Equipe
+     */
+    
     public static function update(array $data) {
         $curso = new Admin_Model_DbTable_Equipe();
         $where = $curso->getAdapter()->quoteInto('equipeId = ?', $data['equipeId']);

@@ -1,17 +1,13 @@
 <?php
-$ids = null;
-$id = null;
+if ($this->id) {
+    $ids = array();
 
-if (!is_null($this->usuario['usuarioId'])) {
     foreach ($this->usuarioGrupoFiltrado as $id) {
-        $ids[] = $id['usuarioGrupoUsuarioId'];
+        $ids[] = $id['usuarioGrupoGrupoId'];
     }
-    echo '<pre>';
-    print_r($this->usuarioGrupoAll);
-    //print_r($ids);
-    echo '</pre>';
 }
 ?>
+
 <div class="block-flat">
     <div class="header">							
         <h4>Cadastro de Usuários</h4>
@@ -106,8 +102,22 @@ if (!is_null($this->usuario['usuarioId'])) {
             <div class="form-group">
                 <label class="col-sm-3 control-label">Grupos</label>
                 <div class="col-sm-3">
-                    <?php if ($this->usuarioGrupoAll) { ?>
-                        <??>
+                    <?php if (is_null($this->id)) { ?>
+                        <?php foreach ($this->grupos as $grupos) { ?>
+                            <input type='checkbox' name="grupoIds[]" value="<?php echo $grupos['grupoId']; ?>"><?php echo ' ' . $grupos['grupoNome']; ?>
+                            <br/>
+                        <?php } ?>
+                    <?php } else { ?>
+                        <?php
+                        foreach ($this->grupos as $grupos) {
+                            $grupoId = $grupos['grupoId'];
+                            ?>
+                            <?php if (in_array($grupoId, $ids)) { ?>
+                                <input checked type="checkbox" name="gruposId[]"><?php echo ' ' . $grupos['grupoNome']; ?><br/>
+                            <?php } else { ?>
+                                <input type='checkbox' name="grupoIds[]" value="<?php echo $grupos['grupoId']; ?>"><?php echo ' ' . $grupos['grupoNome']; ?><br/>
+                            <?php } ?>
+                        <?php } ?>
                     <?php } ?>
                 </div>
             </div>
