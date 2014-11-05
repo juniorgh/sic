@@ -140,6 +140,8 @@
             <controllerFile controllerName="Equipe">
               <actionMethod actionName="index"/>
               <actionMethod actionName="form"/>
+              <actionMethod actionName="save"/>
+              <actionMethod actionName="drop"/>
             </controllerFile>
           </controllersDirectory>
           <formsDirectory enabled="false"/>
@@ -251,6 +253,12 @@
               <viewControllerScriptsDirectory forControllerName="Auth">
                 <viewScriptFile forActionName="erro"/>
               </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Equipe">
+                <viewScriptFile forActionName="save"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Equipe">
+                <viewScriptFile forActionName="drop"/>
+              </viewControllerScriptsDirectory>
             </viewScriptsDirectory>
             <viewHelpersDirectory/>
             <viewFiltersDirectory/>
@@ -359,6 +367,8 @@
               <testApplicationControllerFile forControllerName="Equipe">
                 <testApplicationActionMethod forActionName="index"/>
                 <testApplicationActionMethod forActionName="form"/>
+                <testApplicationActionMethod forActionName="save"/>
+                <testApplicationActionMethod forActionName="drop"/>
               </testApplicationControllerFile>
             </testApplicationControllerDirectory>
           </testApplicationModuleDirectory>

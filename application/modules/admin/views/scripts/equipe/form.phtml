@@ -1,15 +1,18 @@
 <?php
+$ids = array();
+$idsFiltrados = array();
 if ($this->id) {
-    $ids = null;
-    $idFiltrado = null;
-
     foreach ($this->usuario as $id) {
         $ids[] = $id['usuarioId'];
     }
-
+    
     foreach ($this->usuarioEquipes as $idFiltrado) {
         $idsFiltrados[] = $idFiltrado['usuarioId'];
     }
+    
+    echo '<pre>';
+    print_r($idsFiltrados);
+    echo '</pre>';
 }
 ?>
 <div class="row">
@@ -19,12 +22,16 @@ if ($this->id) {
                 <h4><i class="fa fa-suitcase"></i> Equipes </h4>
             </div>
             <div class="content">
-                <form enctype="multipart/form-data" action="" class="form-horizontal group-border-dashed" style="border-radius: 0px;" method="post">
+                <form method="post" action="<?php echo $this->url(array('module' => 'admin', 'controller' => 'equipe', 'action' => 'save'), null, true); ?>" class="form-horizontal group-border-dashed" style="border-radius: 0px;">
+
+                    <?php if ($this->id) { ?>
+                        <input type="hidden" name="equipeId" value="<?php echo $this->id; ?>">
+                    <?php } ?>
 
                     <div class="form-group">
                         <label class="col-sm-3 control-label">Nome</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" name="equipeNome" value="">
+                            <input type="text" class="form-control" name="equipeNome" value="<?php echo empty($this->equipeFiltro['equipeNome']) ? '' : utf8_encode($this->equipeFiltro['equipeNome']) ?>">
                         </div>
                     </div>
 
@@ -33,17 +40,16 @@ if ($this->id) {
                         <div class="col-sm-6">
                             <?php if ($this->id == null) { ?>
                                 <?php foreach ($this->usuario as $usuarios) { ?>
-                                    <input name="integrantes[]" type="checkbox"> <?php echo utf8_encode($usuarios['usuarioNome']); ?><br/>
+                                    <input name="integrantes[]" type="checkbox" value="<?php echo $usuarios['usuarioId']; ?>"> <?php echo utf8_encode($usuarios['usuarioNome']); ?><br/>
                                 <?php } ?>
                             <?php } else { ?>
                                 <?php foreach ($this->usuario as $usuarios) { ?> 
                                     <?php
                                     $usuIds = $usuarios['usuarioId'];
-                                    if (in_array($usuIds, $idsFiltrados)) {
-                                        ?>
-                                        <input checked type="checkbox" value="<?php $usuarios['usuarioId']; ?>" name="integrantes[]"> <?php echo utf8_encode($usuarios['usuarioNome']); ?>
+                                    if (in_array($usuIds, $idsFiltrados)) {?>
+                                        <input checked type="checkbox" value="<?php echo $usuarios['uusuarioId']; ?>" name="integrantes[]"> <?php echo utf8_encode($usuarios['usuarioNome']); ?>
                                     <?php } else { ?>
-                                        <input  type="checkbox" value="<?php $usuarios['usuarioId']; ?>" name="integrantes[]"> <?php echo utf8_encode($usuarios['usuarioNome']); ?>
+                                        <input  type="checkbox" value="<?php echo $usuarios['usuarioId']; ?>" name="integrantes[]"> <?php echo utf8_encode($usuarios['usuarioNome']); ?>
                                     <?php } ?>
                                     <?php
                                     echo '<br/>';

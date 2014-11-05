@@ -1,7 +1,7 @@
 <pre>
     <?php
-print_r($this->id);
-?>
+    print_r($this->id);
+    ?>
 </pre>
 <div class="block-flat">
     <div class="header">              
@@ -34,7 +34,7 @@ print_r($this->id);
                             </a>
 
 
-                            <a class="btn btn-danger" href="">
+                            <a class="btn btn-danger" href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'equipe', 'action' => 'drop', 'id' => $equipes['equipeId']),null,true);?>">
                                 <i class="fa fa-trash">
                                 </i>
                             </a>
@@ -42,7 +42,6 @@ print_r($this->id);
 
                             <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'equipe', 'action' => 'form', 'id' => $equipes['equipeId']), null, true); ?>" class="btn btn-success">
                                 <i class="fa fa-edit">
-
                                 </i>
                             </a>
                         </td>

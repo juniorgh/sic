@@ -58,7 +58,7 @@ class Admin_UsuarioController extends Zend_Controller_Action {
         if (!is_null($id)) {    
             try {
                 $dadosUsuario = $usuario->find($id);
-                $usuarioGrupoFiltrados = $usuarioGrupo->findUsuarioGrupoUsuarioIds($id);
+                $usuarioGrupoFiltrados = $usuarioGrupo->findUsuarioGrupo($id);
 
                 $this->view->assign('usuario', $dadosUsuario);
                 $this->view->assign('usuarioGrupoFiltrado', $usuarioGrupoFiltrados);

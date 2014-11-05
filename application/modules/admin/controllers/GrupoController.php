@@ -34,9 +34,15 @@ class Admin_GrupoController extends Zend_Controller_Action {
 
     public function dropAction() {
         $grupo = new Admin_Model_Grupo();
+        $grupoMenu = new Admin_Model_Grupomenu();
+        $usuarioGrupo = new Admin_Model_UsuarioGrupo();
+        
         $id = $this->_request->getParam('id');
+        
+        $grupoMenu->drop($id);
+        $usuarioGrupo->drop($id);
         $grupo->drop($id);
-
+        
         $this->_redirect('admin/grupo/');
     }
 
