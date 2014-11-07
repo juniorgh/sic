@@ -47,7 +47,18 @@
                     <li><a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'sobre', 'action' => 'index'), null, true); ?>">Sobre</a></li>
                     <li><a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'curso', 'action' => 'index'), null, true); ?>">Cursos</a></li>
                     <li><a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'desenvolvedor', 'action' => 'index'), null, true); ?>">Desenvolvedores</a></li>
-                    <li><a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'auth', 'action' => 'index'), null, true); ?>"> login</a></li>
+                    <?php if(!Zend_Auth::getInstance()->hasIdentity()){ ?> 
+                        <li>
+                            <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'auth', 'action' => 'index'), null, true); ?>"> login</a>
+                        </li>
+                    <?php } else {?>
+                        <li>
+                            <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'index'), null, true); ?>">Administrador</a>                            
+                        </li>
+                        <li>
+                            <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'auth', 'action' => 'logout'), null, true); ?>"> Sair</a>                            
+                        </li>
+                    <?php } ?>
                 </ul>
             </div>
 

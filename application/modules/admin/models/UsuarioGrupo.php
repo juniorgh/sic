@@ -65,8 +65,15 @@ class Admin_Model_UsuarioGrupo {
         $where = $usuarioGrupo->getAdapter()->quoteInto("usuarioGrupoGrupoId = ?", $id);
         $usuarioGrupo->delete($where);
     }
+    
+    public static function dropUsuarios($id) {
+        $usuarioGrupo = new Admin_Model_DbTable_UsuarioGrupo();
+        $where = $usuarioGrupo->getAdapter()->quoteInto("usuarioGrupoUsuarioId = ?", $id);
+        $usuarioGrupo->delete($where);
+    }
     public function save($data = array()) {
-        $equipe = new Admin_Model_DbTable_Equipe();
+        $equipe = new Admin_Model_DbTable_UsuarioGrupo();
         return $equipe->insert($data);
     }
+    
 }

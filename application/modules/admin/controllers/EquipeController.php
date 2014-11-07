@@ -1,12 +1,15 @@
 <?php
 
-class Admin_EquipeController extends Zend_Controller_Action {
+class Admin_EquipeController extends Zend_Controller_Action
+{
 
-    public function init() {
+    public function init()
+    {
         /* Initialize action controller here */
     }
 
-    public function indexAction() {
+    public function indexAction()
+    {
         $usuario = new Admin_Model_Usuario();
 
         $equipe = new Admin_Model_Equipe();
@@ -17,72 +20,80 @@ class Admin_EquipeController extends Zend_Controller_Action {
         $this->view->assign('equipe', $dados);
         $this->view->assign('usuario', $usuarioDados);
     }
-    
-    public function formAction() {
+
+    public function formAction()
+    {
         $usuario = new Admin_Model_Usuario();
         $equipe = new Admin_Model_Equipe();
-        $id = $this->_request->getParam('id', null);
-        $usuarioEquipe = new Admin_Model_UsuarioEquipe();
+        $integrantesEquipe = new Admin_Model_UsuarioEquipe();
+
+        $id = $this->_request->getParam('id');
+
+        $equipeAll = $equipe->find();
+        $usuarioAll = $usuario->find();
+
+
         if (!is_null($id)) {
-            try {
-                $idUsuarioEquipe = $usuarioEquipe->findEquipeUsuario($id);
-                $equipeFiltro = $equipe->find($id);
-                
-                $this->view->assign('id', $id);
-                $this->view->assign('usuarioEquipes', $idUsuarioEquipe);
-                $this->view->assign('equipeFiltro', $equipeFiltro);
-            } catch (Exception $exc) {
-                echo $exc->getMessage();
-            }
+            $equipeFiltro = $equipe->find($id);
+            $integrantesEquipeFiltro = $integrantesEquipe->find($id);
+
+            $this->view->assign('equipeFiltro', $equipeFiltro);
+            $this->view->assign('integrantesEquipeFiltro', $integrantesEquipeFiltro);
+            $this->view->assign('id', $id);
         }
 
-        $usuarioDados = $usuario->find();
-
-        $dados = $equipe->find();
-
-        $this->view->assign('equipe', $dados);
-        $this->view->assign('usuario', $usuarioDados);
+        $this->view->assign('usuarioAll', $usuarioAll);
+        $this->view->assign('equipeAll', $equipeAll);
     }
 
-    public function saveAction() {
+    public function saveAction()
+    {
         try {
             $equipe = new Admin_Model_Equipe();
-            $request = $this->getRequest();
-            $params = $request->getPost();
             $usuarioEquipe = new Admin_Model_UsuarioEquipe();
             
+            $request = $this->getRequest();
+            $params = $request->getPost();
+
+            $id = $params['equipeId'];
+
             $integrantes = $params['integrantes'];
-            
+
             if (array_key_exists('equipeId', $params)) {
-                $id = $params['id'];
-                unset($params['id']);
                 unset($params['integrantes']);
-                $params['equipeId'] = $id;
+
                 $equipe->update($params);
+                
+                $usuarioEquipe->drop($id);
+                
+                unset($params['equipeId']);
+                unset($params['equipeNome']);
+
+                $params['usuarioEquipeEquipeId'] = $id;
             } else {
+                $integrantes = $params['integrantes'];
                 unset($params['integrantes']);
                 $params['usuarioEquipeEquipeId'] = $equipe->save($params);
             }
 
-            unset($params['equipeNome']);
+            if($params['equipeNome']){
+                unset($params['equipeNome']);
+            }
+
             foreach ($integrantes as $integrarEquipe) {
-                unset($params['equipeId']);
                 $params['usuarioEquipeEquipeId'];
                 $params['usuarioEquipeUsuarioId'] = $integrarEquipe;
 
                 $usuarioEquipe->save($params);
             }
-            echo '<pre>';
-            print_r($params);
-            echo '</pre>';
-            
             $this->_redirect('admin/equipe');
         } catch (Exception $e) {
             echo $e->getMessage();
         }
     }
 
-    public function dropAction() {
+    public function dropAction()
+    {
         $usuarioEquipe = new Admin_Model_UsuarioEquipe();
         $equipe = new Admin_Model_Equipe();
 
@@ -92,4 +103,12 @@ class Admin_EquipeController extends Zend_Controller_Action {
         $this->_redirect('admin/equipe/');
     }
 
+    public function viewAction()
+    {
+        // action body
+    }
+
+
 }
+
+

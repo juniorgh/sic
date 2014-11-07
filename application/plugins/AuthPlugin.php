@@ -16,11 +16,12 @@ class Application_Plugin_AuthPlugin extends Zend_Controller_Plugin_Abstract {
             $rota = new Admin_Model_Grupomenu();
             $dados = $rota->findMenusDinamicos($id);
             
+            
             foreach ($dados as $d) {
                 $acessos[] = $_SERVER['SERVER_NAME'] . '/sic/public/' . $request->getModuleName() . '/' . $d['menuController'] . '/' . $request->getActionName();
             }
             
-            if (!empty(Zend_Auth::getInstance()->getIdentity()) && $request->getActionName() != "logout" && $request->getControllerName() != "index" && $request->getModuleName() == 'admin') {
+            if (!empty(Zend_Auth::getInstance()->getIdentity()) && $request->getActionName() != "logout" && $request->getControllerName() != "menu" && $request->getControllerName() != "index" && $request->getModuleName() == 'admin') {
                 if (!in_array($urlAtual, $acessos)) {
                     $redirector = new Zend_Controller_Action_Helper_Redirector;
                     $redirector->gotoUrl('admin/')->redirectAndExit();

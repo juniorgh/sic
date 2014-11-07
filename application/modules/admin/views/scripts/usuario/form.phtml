@@ -1,13 +1,12 @@
 <?php
-if ($this->id) {
-    $ids = array();
+$ids = null;
 
-    foreach ($this->usuarioGrupoFiltrado as $id) {
-        $ids[] = $id['usuarioGrupoGrupoId'];
+if (!$this->usuario['usuarioId'] == null) {
+    foreach ($this->usuarioGrupoFiltrado as $idg) {
+        $ids[] = $idg['usuarioGrupoGrupoId'];
     }
 }
 ?>
-
 <div class="block-flat">
     <div class="header">							
         <h4>Cadastro de Usuários</h4>
@@ -36,15 +35,16 @@ if ($this->id) {
                     <input type="text"  placeholder="Digite aqui seu nome" class="form-control" name="usuarioNome" value="<?php echo utf8_encode($this->usuario['usuarioNome']); ?>"/>
                 </div>
             </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label">Password</label>
-                <div class="col-sm-3">
-                    <input type="password" name="usuarioSenha" placeholder="Digite aqui sua senha" class="form-control" value="<?php $this->usuario['usuarioSenha']; ?>">
+            <?php if (empty($this->usuario['usuarioId'])) { ?>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Password</label>
+                    <div class="col-sm-6">
+                        <input type="password" name="usuarioSenha" placeholder="Digite aqui sua senha" class="form-control">
+                    </div>
                 </div>
-                <div class="col-sm-3">
-                    <input type="password" placeholder="Confirme sua senha" class="form-control" value="<?php $this->usuario['usuarioSenha']; ?>">
-                </div>
-            </div>
+            <?php } else {?>
+            <input type="hidden" value="<?php echo $this->usuario['usuarioSenha'];?>" name="usuarioSenha" placeholder="Digite aqui sua senha" class="form-control">
+            <?php } ?>
             <div class="form-group">
                 <label class="col-sm-3 control-label">Email</label>
                 <div class="col-sm-6">
@@ -88,11 +88,11 @@ if ($this->id) {
                 <div class="col-sm-6">
                     <div class="fileinput fileinput-new" data-provides="fileinput">
                         <div class="fileinput-new thumbnail" style="height: 150px;">
-                            <img src="<?php echo!empty($this->usuario['usuarioFotoCaminho']) ? 'imagens/' . $this->usuario['usuarioFotoCaminho'] : 'http://placehold.it/190x140/7761A7/ffffff' ?>" alt="...">
+                            <img src="<?php echo !empty($this->usuario['usuarioFotoCaminho']) ? 'imagens/' . $this->usuario['usuarioFotoCaminho'] : 'http://placehold.it/190x140/7761A7/ffffff' ?>" alt="...">
                         </div>
                         <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
                         <div>
-                            <span class="btn btn-primary btn-file"><span class="fileinput-new">Selecione</span><span class="fileinput-exists">Change</span><input type="file" name="usuarioFotoCaminho"></span>
+                            <span class="btn btn-primary btn-file"><span class="fileinput-new">Selecione</span><span class="fileinput-exists">Change</span><input type="file" name="usuarioFotoCaminho" value="<?php echo empty($this->usuario['usuarioFotoCaminho'] ? '' : $this->usuario['usuarioFotoCaminho  '] );?>"></span>
                             <a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">Remove</a>
                         </div>
                     </div>
@@ -102,21 +102,11 @@ if ($this->id) {
             <div class="form-group">
                 <label class="col-sm-3 control-label">Grupos</label>
                 <div class="col-sm-3">
-                    <?php if (is_null($this->id)) { ?>
-                        <?php foreach ($this->grupos as $grupos) { ?>
-                            <input type='checkbox' name="grupoIds[]" value="<?php echo $grupos['grupoId']; ?>"><?php echo ' ' . $grupos['grupoNome']; ?>
-                            <br/>
-                        <?php } ?>
-                    <?php } else { ?>
-                        <?php
-                        foreach ($this->grupos as $grupos) {
-                            $grupoId = $grupos['grupoId'];
-                            ?>
-                            <?php if (in_array($grupoId, $ids)) { ?>
-                                <input checked type="checkbox" name="gruposId[]"><?php echo ' ' . $grupos['grupoNome']; ?><br/>
-                            <?php } else { ?>
-                                <input type='checkbox' name="grupoIds[]" value="<?php echo $grupos['grupoId']; ?>"><?php echo ' ' . $grupos['grupoNome']; ?><br/>
-                            <?php } ?>
+                    <?php foreach ($this->grupos as $listaGrupos) { $id = $listaGrupos['grupoId'];?>
+                        <?php if ($ids != null && in_array($id, $ids)) { ?> 
+                            <input type="checkbox" name="grupos[]" checked value="<?php echo $listaGrupos['grupoId']; ?>"/><?php echo utf8_encode($listaGrupos['grupoNome']); ?><br/>
+                        <?php } else { ?>
+                            <input type="checkbox" name="grupos[]" value="<?php echo $listaGrupos['grupoId']; ?>"/><?php echo utf8_encode($listaGrupos['grupoNome']); ?><br/>
                         <?php } ?>
                     <?php } ?>
                 </div>

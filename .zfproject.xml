@@ -142,6 +142,13 @@
               <actionMethod actionName="form"/>
               <actionMethod actionName="save"/>
               <actionMethod actionName="drop"/>
+              <actionMethod actionName="view"/>
+            </controllerFile>
+            <controllerFile controllerName="EquipeUpload">
+              <actionMethod actionName="index"/>
+            </controllerFile>
+            <controllerFile controllerName="UsuarioAluno">
+              <actionMethod actionName="index"/>
             </controllerFile>
           </controllersDirectory>
           <formsDirectory enabled="false"/>
@@ -165,6 +172,7 @@
               <dbTableFile dbTableName="Grupomenu"/>
               <dbTableFile dbTableName="UsuarioEquipe"/>
               <dbTableFile dbTableName="Equipe"/>
+              <dbTableFile dbTableName="EquipeUpload"/>
             </dbTableDirectory>
             <modelFile modelName="Usuario"/>
             <modelFile modelName="Curso"/>
@@ -174,6 +182,7 @@
             <modelFile modelName="Grupomenu"/>
             <modelFile modelName="UsuarioEquipe"/>
             <modelFile modelName="Equipe"/>
+            <modelFile modelName="EquipeUpload"/>
           </modelsDirectory>
           <servicesDirectory enabled="false"/>
           <viewsDirectory>
@@ -258,6 +267,15 @@
               </viewControllerScriptsDirectory>
               <viewControllerScriptsDirectory forControllerName="Equipe">
                 <viewScriptFile forActionName="drop"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Equipe">
+                <viewScriptFile forActionName="view"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="EquipeUpload">
+                <viewScriptFile forActionName="index"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="UsuarioAluno">
+                <viewScriptFile forActionName="index"/>
               </viewControllerScriptsDirectory>
             </viewScriptsDirectory>
             <viewHelpersDirectory/>
@@ -369,6 +387,13 @@
                 <testApplicationActionMethod forActionName="form"/>
                 <testApplicationActionMethod forActionName="save"/>
                 <testApplicationActionMethod forActionName="drop"/>
+                <testApplicationActionMethod forActionName="view"/>
+              </testApplicationControllerFile>
+              <testApplicationControllerFile forControllerName="EquipeUpload">
+                <testApplicationActionMethod forActionName="index"/>
+              </testApplicationControllerFile>
+              <testApplicationControllerFile forControllerName="UsuarioAluno">
+                <testApplicationActionMethod forActionName="index"/>
               </testApplicationControllerFile>
             </testApplicationControllerDirectory>
           </testApplicationModuleDirectory>

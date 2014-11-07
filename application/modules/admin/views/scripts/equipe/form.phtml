@@ -1,18 +1,10 @@
 <?php
 $ids = array();
-$idsFiltrados = array();
-if ($this->id) {
-    foreach ($this->usuario as $id) {
-        $ids[] = $id['usuarioId'];
-    }
-    
-    foreach ($this->usuarioEquipes as $idFiltrado) {
-        $idsFiltrados[] = $idFiltrado['usuarioId'];
-    }
-    
-    echo '<pre>';
-    print_r($idsFiltrados);
-    echo '</pre>';
+if(!$this->id == null){
+
+foreach ($this->integrantesEquipeFiltro as $integrantes) {
+$ids[] = $integrantes['usuarioEquipeUsuarioId'];
+}
 }
 ?>
 <div class="row">
@@ -31,31 +23,23 @@ if ($this->id) {
                     <div class="form-group">
                         <label class="col-sm-3 control-label">Nome</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" name="equipeNome" value="<?php echo empty($this->equipeFiltro['equipeNome']) ? '' : utf8_encode($this->equipeFiltro['equipeNome']) ?>">
+                            <input type="text" class="form-control" name="equipeNome" value="<?php echo!empty($this->equipeFiltro['equipeNome']) ? $this->equipeFiltro['equipeNome'] : '' ?>">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">Nome</label>
+                        <label class="col-sm-3 control-label">Integrantes</label>
                         <div class="col-sm-6">
-                            <?php if ($this->id == null) { ?>
-                                <?php foreach ($this->usuario as $usuarios) { ?>
-                                    <input name="integrantes[]" type="checkbox" value="<?php echo $usuarios['usuarioId']; ?>"> <?php echo utf8_encode($usuarios['usuarioNome']); ?><br/>
+                            <?php
+                            
+                            foreach ($this->usuarioAll as $usuarios) { ?>
+                                <?php $idsUsuarioAll = $usuarios['usuarioId']; ?>
+                                <?php if (in_array($idsUsuarioAll, $ids)) { ?>
+                                    <input name="integrantes[]" type="checkbox" checked value="<?php echo $usuarios['usuarioId'] ?>"> <?php echo utf8_encode($usuarios['usuarioNome']); ?><br/>
+                                <?php } else { ?>
+                                    <input name="integrantes[]" type="checkbox" value="<?php echo $usuarios['usuarioId'] ?>"> <?php echo utf8_encode($usuarios['usuarioNome']); ?><br/>
                                 <?php } ?>
-                            <?php } else { ?>
-                                <?php foreach ($this->usuario as $usuarios) { ?> 
-                                    <?php
-                                    $usuIds = $usuarios['usuarioId'];
-                                    if (in_array($usuIds, $idsFiltrados)) {?>
-                                        <input checked type="checkbox" value="<?php echo $usuarios['uusuarioId']; ?>" name="integrantes[]"> <?php echo utf8_encode($usuarios['usuarioNome']); ?>
-                                    <?php } else { ?>
-                                        <input  type="checkbox" value="<?php echo $usuarios['usuarioId']; ?>" name="integrantes[]"> <?php echo utf8_encode($usuarios['usuarioNome']); ?>
-                                    <?php } ?>
-                                    <?php
-                                    echo '<br/>';
-                                }
-                            }
-                            ?>
+                            <?php } ?>
                         </div>
                     </div>
                     <div class="form-group">
