@@ -1,0 +1,85 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="block-flat">
+            <div class="header">
+                <h4><i class="fa fa-suitcase"></i> Criar projetos</h4>
+            </div>
+            <div class="content">
+                <form enctype="multipart/form-data" action="<?php echo $this->url(array('module' => 'admin', 'controller' => 'equipeUpload', 'action' => 'save'), null, true); ?>" class="form-horizontal group-border-dashed" style="border-radius: 0px;" method="post">
+                    
+                    <input type="hidden" name="equipePostagemEquipeId" value="<?php echo $this->id; ?>">
+                    
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Titulo</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="equipePostagemTitulo" value="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Data</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="equipePostagemData" value="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Descrição</label>
+                        <div class="col-sm-6">
+                            <textarea class="form-control" name="equipePostagemDescricao" value="" rows="6"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Imagem 1</label>
+                        <div class="col-sm-6">
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                                    <img src="">
+                                </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                                <div>
+                                    <span class="btn btn-primary btn-file"><span class="fileinput-new">Selecione</span><span class="fileinput-exists">Change</span><input type="file" name="imagem1"></span>
+                                    <a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">Remove</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Imagem 2</label>
+                        <div class="col-sm-6">
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                                    <img src="">
+                                </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                                <div>
+                                    <span class="btn btn-primary btn-file"><span class="fileinput-new">Selecione</span><span class="fileinput-exists">Change</span><input type="file" name="imagem2"></span>
+                                    <a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">Remove</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Imagem 3</label>
+                        <div class="col-sm-6">
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                                    <img src="">
+                                </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                                <div>
+                                    <span class="btn btn-primary btn-file"><span class="fileinput-new">Selecione</span><span class="fileinput-exists">Change</span><input type="file" name="imagem3"></span>
+                                    <a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">Remove</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label"></label>
+                        <div class="col-sm-6">
+                            <input type="submit" class="btn btn-primary" value="Confirmar"/>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

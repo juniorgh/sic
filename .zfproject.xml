@@ -146,6 +146,8 @@
             </controllerFile>
             <controllerFile controllerName="EquipeUpload">
               <actionMethod actionName="index"/>
+              <actionMethod actionName="form"/>
+              <actionMethod actionName="save"/>
             </controllerFile>
             <controllerFile controllerName="UsuarioAluno">
               <actionMethod actionName="index"/>
@@ -173,6 +175,7 @@
               <dbTableFile dbTableName="UsuarioEquipe"/>
               <dbTableFile dbTableName="Equipe"/>
               <dbTableFile dbTableName="EquipeUpload"/>
+              <dbTableFile dbTableName="EquipePostagem"/>
             </dbTableDirectory>
             <modelFile modelName="Usuario"/>
             <modelFile modelName="Curso"/>
@@ -183,6 +186,7 @@
             <modelFile modelName="UsuarioEquipe"/>
             <modelFile modelName="Equipe"/>
             <modelFile modelName="EquipeUpload"/>
+            <modelFile modelName="EquipePostagem"/>
           </modelsDirectory>
           <servicesDirectory enabled="false"/>
           <viewsDirectory>
@@ -276,6 +280,12 @@
               </viewControllerScriptsDirectory>
               <viewControllerScriptsDirectory forControllerName="UsuarioAluno">
                 <viewScriptFile forActionName="index"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="EquipeUpload">
+                <viewScriptFile forActionName="form"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="EquipeUpload">
+                <viewScriptFile forActionName="save"/>
               </viewControllerScriptsDirectory>
             </viewScriptsDirectory>
             <viewHelpersDirectory/>
@@ -391,6 +401,8 @@
               </testApplicationControllerFile>
               <testApplicationControllerFile forControllerName="EquipeUpload">
                 <testApplicationActionMethod forActionName="index"/>
+                <testApplicationActionMethod forActionName="form"/>
+                <testApplicationActionMethod forActionName="save"/>
               </testApplicationControllerFile>
               <testApplicationControllerFile forControllerName="UsuarioAluno">
                 <testApplicationActionMethod forActionName="index"/>

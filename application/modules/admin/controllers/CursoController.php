@@ -66,13 +66,12 @@ class Admin_CursoController extends Zend_Controller_Action {
     $request = $this->getRequest();
     if ($request->isPost()) {
       $params = $request->getPost();
-
       $curso = new Admin_Model_Curso();
       $upload = new Zend_File_Transfer();
       $files = $upload->getFileInfo('cursoBanner');
       $ext = pathinfo($files['cursoBanner']['name'])['extension'];
       $fotoNome = time() . '.' . $ext;
-
+      
       $upload->addFilter('Rename', APPLICATION_PATH . '/../public/imagens/' . $fotoNome);
       $upload->receive('cursoBanner');
 
