@@ -1,3 +1,11 @@
+<?php if(count($this->messages) == 1){ ?>
+    <?php foreach($this->messages as $msg) {?>
+        <div class="alert alert-primary">
+            <?php echo $msg; ?>
+        </div>
+    <?php } ?>
+<?php } ?>
+
 <div class="block-flat">
     <div class="header">              
         <h3><i class="fa fa-suitcase"></i> Equipes</h3>

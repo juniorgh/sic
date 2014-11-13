@@ -3,9 +3,12 @@
 class Admin_AuthController extends Zend_Controller_Action
 {
 
-    public function init()
-    {
+    protected $_flashMessenger = null;   
     
+    public function init() {
+        $this->_flashMessenger =
+        $this->_helper->getHelper('FlashMessenger');
+        $this->initView();
     }
 
     public function indexAction()
@@ -17,6 +20,9 @@ class Admin_AuthController extends Zend_Controller_Action
        */
       
     $this->_helper->layout->disableLayout();
+    
+    $this->view->messages = $this->_flashMessenger->getMessages();
+    $this->render();
     }
 
     public function loginAction()
@@ -40,7 +46,6 @@ class Admin_AuthController extends Zend_Controller_Action
       $authAdapter->setTableName('usuario')
           ->setIdentityColumn('usuarioLogin')
           ->setCredentialColumn('usuarioSenha');
-
       
       /*
        * recupera os parametros de autenticidade do formulario
@@ -60,9 +65,11 @@ class Admin_AuthController extends Zend_Controller_Action
         $storage->write($usuario);
         $this->_redirect('admin/');
       } else {
+        $this->_flashMessenger->addMessage('Credenciais invalidas!');
         $this->_redirect('admin/auth');
       }
     } catch (Exception $e) {
+      $this->_flashMessenger->addMessage('Credenciais invalidas!');
       $this->_redirect('admin/auth');
     }
     }
@@ -71,6 +78,7 @@ class Admin_AuthController extends Zend_Controller_Action
     {
     //Limpa dados da Sessão
     Zend_Auth::getInstance()->clearIdentity();
+    $this->_flashMessenger->addMessage('Credenciais inválidas!');
     $this->_redirect('admin/auth/index');
     }
 

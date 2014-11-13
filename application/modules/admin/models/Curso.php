@@ -39,7 +39,7 @@ class Admin_Model_Curso {
     public function drop($id) {
         $curso = new Admin_Model_DbTable_Curso();
         $where = $curso->getAdapter()->quoteInto("cursoId = ?", $id);
-        $curso->delete($where);
+        return $curso->delete($where);
     }
     
     /*
@@ -61,5 +61,4 @@ class Admin_Model_Curso {
         unset($data['cursoId']);
         return $curso->update($data, $where);
     }
-
 }

@@ -31,7 +31,14 @@
 
   </head>
   <body class="texture">
-
+    <?php
+    
+    if(!empty($this->messages)){
+        foreach ($this->messages as $msgs) {
+            $mensagem = $msgs;
+        }   
+    }
+    ?>  
     <div id="cl-wrapper" class="login-container">
 
       <div class="middle-login">
@@ -42,7 +49,8 @@
           <div>
             <form style="margin-bottom: 0px !important;" class="form-horizontal" method="post" action="<?php echo $this->url(array('module' => 'admin', 'controller' => 'auth', 'action' => 'login'), null, true); ?>">
               <div class="content">
-                <h4 class="title">Acesse sua conta</h4>
+                  
+                  <h4 class="title"><?php echo count($this->messages) == 0 ? 'acesse sua conta' : "<div class='text-center'>" . $mensagem. '</div>';?></h4>
                 <div class="form-group">
                   <div class="col-sm-12">
                     <div class="input-group">

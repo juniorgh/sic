@@ -36,7 +36,7 @@ class Admin_Model_Equipe {
     public function drop($id) {
         $curso = new Admin_Model_DbTable_Equipe();
         $where = $curso->getAdapter()->quoteInto("equipeId = ?", $id);
-        $curso->delete($where);
+        return $curso->delete($where);
     }
     
     /*

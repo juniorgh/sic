@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 31-Out-2014 às 21:08
+-- Generation Time: 13-Nov-2014 às 20:46
 -- Versão do servidor: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -19,18 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `sic`
 --
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `arquivo`
---
-
-CREATE TABLE IF NOT EXISTS `arquivo` (
-`arquivoId` int(11) NOT NULL,
-  `arquivoPostagemId` int(11) NOT NULL,
-  `arquivoCaminho` varchar(600) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -63,46 +51,26 @@ CREATE TABLE IF NOT EXISTS `curso` (
 --
 
 INSERT INTO `curso` (`cursoId`, `cursoNome`, `cursoBanner`) VALUES
-(2, 'Ciências Biologicas- Licenciatura', ''),
-(3, 'Biomedicina - Bacharelado', ''),
-(4, 'Ciência da Computação - Bacharelado', ''),
-(5, 'Ciências Contábeis - Bacharelado', ''),
-(6, 'Design de Moda - Bacharelado', ''),
-(7, 'Direito - Bacharelado', ''),
-(8, 'Educação Física - Bacharelado', ''),
-(9, 'Educação Física - Licenciatura', ''),
-(10, 'Enfermagem - Bacharelado', ''),
-(11, 'Engenharia de Produção- Bacharelado', ''),
-(12, 'Engenharia Civil- Bacharelado', ''),
-(13, 'Engenharia Ambiental- Bacharelado', ''),
 (14, 'Engenharia Elétrica- Bacharelado', ''),
-(15, 'Engenharia Mecânica- Bacharelado', ''),
-(16, 'Engenharia de Controle e automação- Bacharelado', ''),
 (17, 'Farmácia - Bacharelado', ''),
-(18, 'Filosofia - Licenciatura', ''),
-(19, 'Física - Licenciatura', ''),
 (20, 'Fisioterapia - Bacharelado', ''),
-(21, 'Geografia - Licenciatura', ''),
+(21, 'Geografia - Licenciatura', '1415902259.jpg'),
 (22, 'História - Licenciatura', ''),
 (23, 'Letras - Português/Inglês - Licenciatura', ''),
-(24, 'Matemática - Licenciatura', ''),
 (25, 'Nutrição - Bacharelado', ''),
 (26, 'Pedagogia - Licenciatura', ''),
 (27, 'Psicologia - Bacharelado', ''),
 (28, 'Secretariado Executivo', ''),
 (29, 'Publicidade e Propaganda', ''),
-(30, 'Análise e Desenvolvimento de Sistemas', ''),
-(31, 'Design de Interiores', ''),
 (32, 'Estética e Cosmética', ''),
-(33, 'Gestão de Recursos Humanos', ''),
 (34, 'Gestão Financeira', ''),
-(35, 'Gestão Ambiental', ''),
+(35, 'GestÃ£o Ambiental', '1415902204.jpg'),
 (36, 'Gestão de Empresas de Serviços', ''),
 (37, 'Gestão Hospitalar', ''),
 (38, 'Logística', ''),
 (39, 'Marketing', ''),
 (40, 'Segurança no Trabalho', ''),
-(41, 'Administracao - Bacharelado', '1413892668.jpg');
+(41, 'teste', '1415902280.jpg');
 
 -- --------------------------------------------------------
 
@@ -126,7 +94,67 @@ CREATE TABLE IF NOT EXISTS `curtir` (
 CREATE TABLE IF NOT EXISTS `equipe` (
 `equipeId` int(11) NOT NULL,
   `equipeNome` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
+
+--
+-- Extraindo dados da tabela `equipe`
+--
+
+INSERT INTO `equipe` (`equipeId`, `equipeNome`) VALUES
+(22, 'abacate');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `equipepostagem`
+--
+
+CREATE TABLE IF NOT EXISTS `equipepostagem` (
+`equipePostagemId` int(11) NOT NULL,
+  `equipePostagemTitulo` varchar(100) NOT NULL,
+  `equipePostagemData` date NOT NULL,
+  `equipePostagemDescricao` varchar(1000) NOT NULL,
+  `equipePostagemEquipeId` int(11) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+--
+-- Extraindo dados da tabela `equipepostagem`
+--
+
+INSERT INTO `equipepostagem` (`equipePostagemId`, `equipePostagemTitulo`, `equipePostagemData`, `equipePostagemDescricao`, `equipePostagemEquipeId`) VALUES
+(1, 'teste', '0000-00-00', 'teste ', 22),
+(2, 'teste', '0000-00-00', 'teste ', 22),
+(3, 'teste', '0000-00-00', 'teste ', 22),
+(4, 'teste', '0000-00-00', 'teste ', 22),
+(5, 'teste', '0000-00-00', 'teste ', 22),
+(6, 'asda', '0000-00-00', 'asdasd', 22),
+(7, 'asda', '0000-00-00', 'asdasd', 22),
+(8, 'teste', '0000-00-00', 'teste', 22);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `equipeupload`
+--
+
+CREATE TABLE IF NOT EXISTS `equipeupload` (
+`equipeUploadId` int(11) NOT NULL,
+  `equipeUploadEquipeId` int(11) NOT NULL,
+  `equipeUploadCaminho` varchar(1000) NOT NULL,
+  `equipeUploadEquipePostagemId` int(11) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Extraindo dados da tabela `equipeupload`
+--
+
+INSERT INTO `equipeupload` (`equipeUploadId`, `equipeUploadEquipeId`, `equipeUploadCaminho`, `equipeUploadEquipePostagemId`) VALUES
+(1, 22, '1415649787.jpg', 0),
+(2, 22, '21415649787.jpg', 0),
+(3, 22, '31415649787.jpg', 0),
+(4, 22, '1415897981.jpg', 0),
+(5, 22, '21415897981.jpg', 0),
+(6, 22, '31415897981.jpg', 0);
 
 -- --------------------------------------------------------
 
@@ -137,15 +165,16 @@ CREATE TABLE IF NOT EXISTS `equipe` (
 CREATE TABLE IF NOT EXISTS `grupo` (
 `grupoId` int(11) NOT NULL,
   `grupoNome` varchar(50) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Extraindo dados da tabela `grupo`
 --
 
 INSERT INTO `grupo` (`grupoId`, `grupoNome`) VALUES
-(3, 'Aluno'),
-(5, 'Coordenadores');
+(9, 'desenvolvedor'),
+(10, 'alunos'),
+(11, 'Coordenadores');
 
 -- --------------------------------------------------------
 
@@ -157,15 +186,23 @@ CREATE TABLE IF NOT EXISTS `grupomenu` (
 `grupoMenuId` int(11) NOT NULL,
   `grupoMenuGrupoId` int(11) NOT NULL,
   `grupoMenuMenuId` int(11) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=35 ;
 
 --
 -- Extraindo dados da tabela `grupomenu`
 --
 
 INSERT INTO `grupomenu` (`grupoMenuId`, `grupoMenuGrupoId`, `grupoMenuMenuId`) VALUES
-(4, 5, 8),
-(5, 5, 10);
+(25, 11, 8),
+(26, 11, 11),
+(27, 11, 10),
+(28, 11, 9),
+(29, 9, 8),
+(30, 9, 11),
+(31, 9, 10),
+(32, 9, 12),
+(33, 9, 13),
+(34, 9, 9);
 
 -- --------------------------------------------------------
 
@@ -181,41 +218,19 @@ CREATE TABLE IF NOT EXISTS `menu` (
   `menuIcone` varchar(255) DEFAULT NULL,
   `menuSuperior` varchar(255) DEFAULT NULL,
   `menuOrdem` int(11) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
 -- Extraindo dados da tabela `menu`
 --
 
 INSERT INTO `menu` (`menuId`, `menuTitulo`, `menuController`, `menuAction`, `menuIcone`, `menuSuperior`, `menuOrdem`) VALUES
-(7, 'InÃ­cio', 'index', 'index', 'fa fa-home', '0', 1),
-(8, 'Cursos', 'curso', 'index', 'fa fa-graduation-cap', '0', 2),
-(9, 'UsuÃ¡rios', 'usuario', 'index', 'fa fa-user', '0', 3),
-(10, 'Grupos', 'grupo', 'index', 'fa fa-users', '0', 4);
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `postagem`
---
-
-CREATE TABLE IF NOT EXISTS `postagem` (
-`postagemId` int(11) NOT NULL,
-  `postagemAutorUsuarioId` int(11) NOT NULL,
-  `postagemTitulo` varchar(255) NOT NULL,
-  `postagemData` date NOT NULL,
-  `postagemDescricao` longtext NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
-
---
--- Extraindo dados da tabela `postagem`
---
-
-INSERT INTO `postagem` (`postagemId`, `postagemAutorUsuarioId`, `postagemTitulo`, `postagemData`, `postagemDescricao`) VALUES
-(1, 1, 'titulo', '2014-05-05', 'Este é um teste para descrição da postagem, testando acentos ãçaáçaãÂ Este é um teste para descrição da postagem, testando acentos ãçaáçaãÂ Este é um teste para descrição da postagem, testando acentos ãçaáçaãÂ Este é um teste para descrição da postagem, testando acentos ãçaáçaãÂ Este é um teste para descrição da postagem, testando acentos ãçaáçaãÂ Este é um teste para descrição da postagem, testando acentos ãçaáçaãÂ Este é um teste para descrição da postagem, testando acentos ãçaáçaãÂ Este é um teste para descrição da postagem, testando acentos ãçaáçaãÂ Este é um teste para descrição da postagem, testando acentos ãçaáçaãÂ Este é um teste para descrição da postagem, testando acentos ãçaáçaãÂ Este é um teste para descrição da postagem, testando acentos ãçaáçaãÂ Este é um teste para descrição da postagem, testando acentos ãçaáçaãÂ Este é um teste para descrição da postagem, testando acentos ãçaáçaãÂ Este é um teste para descrição da postagem, testando acentos ãçaáçaãÂ Este é um teste para descrição da postagem, testando acentos ãçaáçaãÂ Este é um teste para descrição da postagem, testando acentos ãçaáçaãÂ Este é um teste para descrição da postagem, testando acentos ãçaáçaãÂ Este é um teste para descrição da postagem, testando acentos ãçaáçaãÂ Este é um teste para descrição da postagem, testando acentos ãçaáçaãÂ Este é um teste para descrição da postagem, testando acentos ãçaáçaãÂ Este é um teste para descrição da postagem, testando acentos ãçaáçaãÂ Este é um teste para descrição da postagem, testando acentos ãçaáçaãÂ Este é um teste para descrição da postagem, testando acentos ãçaáçaãÂ Este é um teste para descrição da postagem, testando acentos ãçaáçaãÂ Este é um teste para descrição da postagem, testando acentos ãçaáçaãÂ Este é um teste para descrição da postagem, testando acentos ãçaáçaãÂ Este é um teste para descrição da postagem, testando acentos ãçaáçaãÂ Este é um teste para descrição da postagem, testando acentos ãçaáçaãÂ Este é um teste para descrição da postagem, testando acentos ãçaáçaãÂ Este é um teste para descrição da postagem, testando acentos ãçaáçaãÂ Este é um teste para descrição da postagem, testando acentos ãçaáçaãÂ '),
-(2, 2, 'titulo2', '2014-05-05', 'ááaããççaaaaa ááaããççaaaaa ááaããççaaaaa ááaããççaaaaa ááaããççaaaaa ááaããççaaaaa ááaããççaaaaa ááaããççaaaaa '),
-(3, 3, 'Isso e um teste', '0000-00-00', 'ááaããççaaaaa ááaããççaaaaa ááaããççaaaaa ááaããççaaaaa ááaããççaaaaa ááaããççaaaaa ááaããççaaaaa ááaããççaaaaa '),
-(4, 4, 'Outro Teste', '0000-00-00', 'ááaããççaaaaa ááaããççaaaaa ááaããççaaaaa ááaããççaaaaa ááaããççaaaaa ááaããççaaaaa ááaããççaaaaa ááaããççaaaaa ');
+(8, 'Cursos', 'curso', 'index', 'fa fa-graduation-cap', '0', 1),
+(9, 'UsuÃ¡rio', 'usuario', 'index', 'fa fa-user', '9', 2),
+(10, 'Grupos', 'grupo', 'index', 'fa fa-users', '0', 3),
+(11, 'Equipe', 'equipe', 'index', 'fa fa-suitcase', '0', 4),
+(12, 'meus projetos', 'equipeUpload', 'index', 'fa fa-book', '12', 5),
+(13, 'Minha conta', 'usuarioAluno', 'index', 'fa fa-user', '0', 6);
 
 -- --------------------------------------------------------
 
@@ -234,19 +249,15 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `usuarioPeriodo` varchar(10) NOT NULL,
   `usuarioStatus` tinyint(1) DEFAULT '1',
   `usuarioFotoCaminho` varchar(600) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
 
 --
 -- Extraindo dados da tabela `usuario`
 --
 
 INSERT INTO `usuario` (`usuarioId`, `usuarioCursoId`, `usuarioNome`, `usuarioEmail`, `usuarioFone`, `usuarioSenha`, `usuarioLogin`, `usuarioPeriodo`, `usuarioStatus`, `usuarioFotoCaminho`) VALUES
-(1, 17, 'Gilson', 'jr_juk@hotmail.com', '882500jr_', '078f40fa23e0672777adc7c05d4773dd', 'super', '7', 1, '1414785430.jpg'),
-(8, 2, 'Gonçalves', 'juninho8579@gmail.com', '88250055', '078f40fa23e0672777adc7c05d4773dd', 'tester', '9', 1, NULL),
-(9, 2, 'junior', 'teste1@gmail.com', '88250055', '078f40fa23e0672777adc7c05d4773dd', 'tester1', '9', 1, '1414064954.jpg'),
-(10, 2, 'Whalter', 'teste2@gmail.com', '88250055', '078f40fa23e0672777adc7c05d4773dd', 'tester2', '9', 1, NULL),
-(11, 2, 'White', 'teste3@gmail.com', '88250055', '078f40fa23e0672777adc7c05d4773dd', 'tester3', '9', 1, '1413982799.'),
-(12, 2, 'Gus Fring', 'teste4@gmail.com', '88250055', '078f40fa23e0672777adc7c05d4773dd', 'tester4', '9', 1, NULL);
+(1, 17, 'Gilson', 'jr_juk@hotmail.com', '(41) 9788-1329', '078f40fa23e0672777adc7c05d4773dd', 'super', '7', 1, '1415387293.jpg'),
+(21, 17, 'Junior', 'juninhoInst@hotmail.com', '(41) 8825 - 0055', '078f40fa23e0672777adc7c05d4773dd', 'tester1', '7', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -270,24 +281,18 @@ CREATE TABLE IF NOT EXISTS `usuariogrupo` (
 `usuarioGrupoId` int(11) NOT NULL,
   `usuarioGrupoUsuarioId` int(11) NOT NULL,
   `usuarioGrupoGrupoId` int(11) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
 
 --
 -- Extraindo dados da tabela `usuariogrupo`
 --
 
 INSERT INTO `usuariogrupo` (`usuarioGrupoId`, `usuarioGrupoUsuarioId`, `usuarioGrupoGrupoId`) VALUES
-(1, 1, 5);
+(24, 1, 9);
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `arquivo`
---
-ALTER TABLE `arquivo`
- ADD PRIMARY KEY (`arquivoId`);
 
 --
 -- Indexes for table `comentario`
@@ -314,6 +319,18 @@ ALTER TABLE `equipe`
  ADD PRIMARY KEY (`equipeId`);
 
 --
+-- Indexes for table `equipepostagem`
+--
+ALTER TABLE `equipepostagem`
+ ADD PRIMARY KEY (`equipePostagemId`), ADD KEY `fkEquipePostagemEquipe` (`equipePostagemEquipeId`);
+
+--
+-- Indexes for table `equipeupload`
+--
+ALTER TABLE `equipeupload`
+ ADD PRIMARY KEY (`equipeUploadId`), ADD KEY `fkEquipeUploadEquipe` (`equipeUploadEquipeId`);
+
+--
 -- Indexes for table `grupo`
 --
 ALTER TABLE `grupo`
@@ -330,12 +347,6 @@ ALTER TABLE `grupomenu`
 --
 ALTER TABLE `menu`
  ADD PRIMARY KEY (`menuId`);
-
---
--- Indexes for table `postagem`
---
-ALTER TABLE `postagem`
- ADD PRIMARY KEY (`postagemId`);
 
 --
 -- Indexes for table `usuario`
@@ -360,11 +371,6 @@ ALTER TABLE `usuariogrupo`
 --
 
 --
--- AUTO_INCREMENT for table `arquivo`
---
-ALTER TABLE `arquivo`
-MODIFY `arquivoId` int(11) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT for table `comentario`
 --
 ALTER TABLE `comentario`
@@ -383,32 +389,37 @@ MODIFY `curtirId` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `equipe`
 --
 ALTER TABLE `equipe`
-MODIFY `equipeId` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `equipeId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
+--
+-- AUTO_INCREMENT for table `equipepostagem`
+--
+ALTER TABLE `equipepostagem`
+MODIFY `equipePostagemId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `equipeupload`
+--
+ALTER TABLE `equipeupload`
+MODIFY `equipeUploadId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `grupo`
 --
 ALTER TABLE `grupo`
-MODIFY `grupoId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+MODIFY `grupoId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `grupomenu`
 --
 ALTER TABLE `grupomenu`
-MODIFY `grupoMenuId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+MODIFY `grupoMenuId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=35;
 --
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
-MODIFY `menuId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
---
--- AUTO_INCREMENT for table `postagem`
---
-ALTER TABLE `postagem`
-MODIFY `postagemId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `menuId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-MODIFY `usuarioId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+MODIFY `usuarioId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `usuarioequipe`
 --
@@ -418,7 +429,7 @@ MODIFY `usuarioEquipeId` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `usuariogrupo`
 --
 ALTER TABLE `usuariogrupo`
-MODIFY `usuarioGrupoId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `usuarioGrupoId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
 --
 -- Constraints for dumped tables
 --
@@ -427,15 +438,25 @@ MODIFY `usuarioGrupoId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 -- Limitadores para a tabela `comentario`
 --
 ALTER TABLE `comentario`
-ADD CONSTRAINT `fkComentarioPostagem` FOREIGN KEY (`comentarioPostagemId`) REFERENCES `postagem` (`postagemId`),
 ADD CONSTRAINT `fkComentarioUsuario` FOREIGN KEY (`comentarioUsuarioId`) REFERENCES `usuario` (`usuarioId`);
 
 --
 -- Limitadores para a tabela `curtir`
 --
 ALTER TABLE `curtir`
-ADD CONSTRAINT `fkCurtirPostagem` FOREIGN KEY (`curtirPostagemId`) REFERENCES `postagem` (`postagemId`),
 ADD CONSTRAINT `fkCurtirUsuario` FOREIGN KEY (`curtirUsuarioId`) REFERENCES `usuario` (`usuarioId`);
+
+--
+-- Limitadores para a tabela `equipepostagem`
+--
+ALTER TABLE `equipepostagem`
+ADD CONSTRAINT `fkEquipePostagemEquipe` FOREIGN KEY (`equipePostagemEquipeId`) REFERENCES `equipe` (`equipeId`);
+
+--
+-- Limitadores para a tabela `equipeupload`
+--
+ALTER TABLE `equipeupload`
+ADD CONSTRAINT `fkEquipeUploadEquipe` FOREIGN KEY (`equipeUploadEquipeId`) REFERENCES `equipe` (`equipeId`);
 
 --
 -- Limitadores para a tabela `grupomenu`

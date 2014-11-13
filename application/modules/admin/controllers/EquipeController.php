@@ -3,9 +3,10 @@
 class Admin_EquipeController extends Zend_Controller_Action
 {
 
-    public function init()
-    {
-        /* Initialize action controller here */
+    public function init() {
+        $this->_flashMessenger =
+        $this->_helper->getHelper('FlashMessenger');
+        $this->initView();
     }
 
     public function indexAction()
@@ -16,9 +17,11 @@ class Admin_EquipeController extends Zend_Controller_Action
         $usuarioDados = $usuario->find();
 
         $dados = $equipe->find();
-
         $this->view->assign('equipe', $dados);
         $this->view->assign('usuario', $usuarioDados);
+        
+        $this->view->messages = $this->_flashMessenger->getMessages();
+        $this->render();
     }
 
     public function formAction()
@@ -94,14 +97,22 @@ class Admin_EquipeController extends Zend_Controller_Action
 
     public function dropAction()
     {
+        try {
         $usuarioEquipe = new Admin_Model_UsuarioEquipe();
         $equipe = new Admin_Model_Equipe();
-
+        
         $id = $this->_request->getParam('id');
         $usuarioEquipe->drop($id);
-        $equipe->drop($id);
+        $status = $equipe->drop($id);
+        
+        if($status == true){
+            $this->_flashMessenger->addMessage('Equipe excluido com sucesso!');
+        }
         $this->_redirect('admin/equipe/');
-    }
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        }
+        }
 
     public function viewAction()
     {

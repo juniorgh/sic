@@ -2,17 +2,25 @@
 
 class Admin_CursoController extends Zend_Controller_Action {  
     
+  protected $_flashMessenger = null;   
+    
   public function init() {
+      $this->_flashMessenger =
+      $this->_helper->getHelper('FlashMessenger');
+      $this->initView();
   }
   
   /*
    * Manda todos os dados da tabela CURSO, para a view index, para listagem dos cursos
    */
-  public function indexAction() {
+  public function indexAction() { 
+      
     $curso = new Admin_Model_Curso();
     $dados = $curso->find();
 
     $this->view->assign('curso', $dados);
+    $this->view->messages = $this->_flashMessenger->getMessages();
+    $this->render();
   }
 
   /*
@@ -23,11 +31,16 @@ class Admin_CursoController extends Zend_Controller_Action {
       try {
           $curso = new Admin_Model_Curso();
           $id = $this->_request->getParam('id');
-          $curso->drop($id);
-
+          $status = $curso->drop($id);
+          
+          if($status == true){
+            $this->_flashMessenger->addMessage('Curso excluido com sucesso!!!');
+          }
+            
           $this->_redirect('admin/curso/');
+          
       } catch (Exception $exc) {
-          echo "<div class='alert alert-primary'> Não foi possível excluir esse curso, Existem usuarios que fazem parte desse curso, </div>";
+          $this->_flashMessenger->addMessage('Erro!!!!!!');
       }
     }
 
@@ -79,13 +92,16 @@ class Admin_CursoController extends Zend_Controller_Action {
 
       if (!array_key_exists('cursoId', $params)) {
         $curso->save($params);
+        $this->_flashMessenger->addMessage('Curso salvo com sucesso!!!');
       } else {
         $dados = $curso->find($params['cursoId']);
         
         unlink(APPLICATION_PATH . '/../public/imagens/' . $dados['cursoBanner']);
         
-        if($curso->update($params)){
-            $this->_flashMessenger->addMessage('Record Saved!');
+        $status = $curso->update($params);
+       
+        if($status == true){
+            $this->_flashMessenger->addMessage('Curso atualizado com sucesso!!!');
         }
       }
       $this->_redirect('admin/curso/');
