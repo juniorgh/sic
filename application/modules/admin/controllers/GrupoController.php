@@ -2,8 +2,12 @@
 
 class Admin_GrupoController extends Zend_Controller_Action {
 
+    protected $_flashMessenger = null;   
+    
     public function init() {
-        /* Initialize action controller here */
+        $this->_flashMessenger =
+        $this->_helper->getHelper('FlashMessenger');
+        $this->initView();
     }
     
   /*
@@ -14,6 +18,9 @@ class Admin_GrupoController extends Zend_Controller_Action {
         $grupo = new Admin_Model_Grupo();
         $dados = $grupo->find();
         $this->view->assign('grupo', $dados);
+        
+        $this->view->messages = $this->_flashMessenger->getMessages();
+        $this->render();
     }
 
     public function viewAction() {
@@ -41,8 +48,11 @@ class Admin_GrupoController extends Zend_Controller_Action {
         
         $grupoMenu->drop($id);
         $usuarioGrupo->drop($id);
-        $grupo->drop($id);
+        $status = $grupo->drop($id);
         
+        if($status == true){
+            $this->_flashMessenger->addMessage('Grupo excluido com sucesso!');
+        }
         $this->_redirect('admin/grupo/');
     }
 
@@ -80,8 +90,10 @@ class Admin_GrupoController extends Zend_Controller_Action {
 
                 if (!array_key_exists('grupoId', $params)) {
                     $params['grupoId'] = $grupo->save($params);
+                    $this->_flashMessenger->addMessage('Grupo salvo com sucesso!');
                 } else {
                     $grupo->update($params);
+                    $this->_flashMessenger->addMessage('Grupo atualizado com sucesso!');
                 }
 
                 $grupoMenu->drop($params['grupoId']);
@@ -96,7 +108,7 @@ class Admin_GrupoController extends Zend_Controller_Action {
                 $this->_redirect('admin/grupo/index');
             }
         } catch (Exception $exc) {
-            echo $exc->getMessage();
+            $this->_redirect('admin/grupo/index');
         }
     }
 

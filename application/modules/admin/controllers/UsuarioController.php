@@ -49,7 +49,15 @@ class Admin_UsuarioController extends Zend_Controller_Action {
 
         $usuario = new Admin_Model_Usuario();
         $usuarioGrupo = new Admin_Model_UsuarioGrupo();
-        $usuarioGrupoAll = $usuarioGrupo->find();
+        
+        $usuarioGrupoAll = $usuarioGrupo->findUsuarioGrupoId($id);
+        
+        $ids = array();
+        
+        foreach($usuarioGrupoAll as $id){
+            $ids[] = $id['usuarioGrupoGrupoId'];
+        }
+        
         $dadosGrupo = $grupo->find();
 
         $curso = new Admin_Model_Curso();
@@ -68,7 +76,7 @@ class Admin_UsuarioController extends Zend_Controller_Action {
             }
         }
         $this->view->assign('cursoAll', $dadosCursoAll);
-        $this->view->assign('usuarioGrupoAll', $usuarioGrupoAll);
+        $this->view->assign('usuarioGrupoAll', $ids);
         $this->view->assign('periodo', $periodo);
         $this->view->assign('grupos', $dadosGrupo);
     }
@@ -89,67 +97,54 @@ class Admin_UsuarioController extends Zend_Controller_Action {
 
     public function saveAction() {
         try {
+            $usuario = new Admin_Model_Usuario();
             $usuarioGrupo = new Admin_Model_UsuarioGrupo();
             $request = $this->getRequest();
 
             if ($request->isPost()) {
-                $usuario = new Admin_Model_Usuario();
                 $params = $request->getPost();
-
-                $id = null;
-
+                
                 $grupos = $params['grupos'];
                 unset($params['grupos']);
                 
-                $upload = new Zend_File_Transfer();
-                $files = $upload->getFileInfo('usuarioFotoCaminho');
-
-
-
-                $ext = pathinfo($files['usuarioFotoCaminho']['name'])['extension'];
-
-                $fotoNome = time() . '.' . $ext;
-
-                $upload->addFilter('Rename', APPLICATION_PATH . '/../public/imagens/' . $fotoNome);
-                $upload->receive('usuarioFotoCaminho');
-                $params['usuarioFotoCaminho'] = $fotoNome;
+                if (array_key_exists('usuarioSenha', $params) && strlen($params['usuarioSenha']) > 0) {
+                    $params['usuarioSenha'] = Admin_Model_Usuario::md5($params['usuarioSenha']);
+                }
+//                    echo "<pre>";
+//                    print_r($params);
+//                    exit;
 
                 if (!array_key_exists('usuarioId', $params)) {
-                    unset($params['usuarioSenha']);
-                    $senhaMd5 = md5($request->getPost('usuarioSenha'));
-                    $params['usuarioSenha'] = $senhaMd5;
-                    
-                    $params['usuarioGrupoUsuarioId'] = $usuario->save($params);
-
-                    $id = $params['usuarioGrupoUsuarioId'];
-                } else {
-                    
-                    $id = $params['usuarioId'];
-                    $dados = $usuario->find($params['usuarioId']);
-                    $usuario->update($params);
-                    unlink(APPLICATION_PATH . '/../public/imagens/' . $dados['usuarioFotoCaminho']);
-                    unset($params['usuarioId']);
-                    
-                    $params['usuarioGrupoUsuarioId'] = $id;   
+                    $params['usuarioId'] = $usuario->save($params);
+//                } else {
+//                    $usuario->update($params);
                 }
                 
-                unset($params['usuarioCursoId']);
-                unset($params['usuarioNome']);
-                unset($params['usuarioEmail']);
-                unset($params['usuarioPeriodo']);
-                unset($params['usuarioFone']);
-                unset($params['usuarioLogin']);
-                unset($params['usuarioStatus']);
-                unset($params['usuarioFotoCaminho']);
-                unset($params['usuarioSenha']);
+                $dados = $usuario->find($params['usuarioId']);
                 
-                $usuarioGrupo->dropUsuarios($id);
+                $upload = new Zend_File_Transfer();
+                if ($upload->isUploaded('usuarioFotoCaminho')) {
+                    $files = $upload->getFileInfo('usuarioFotoCaminho');
+                    $ext = pathinfo($files['usuarioFotoCaminho']['name'])['extension'];
+                    $fotoNome = time() . '.' . $ext;
+                    $upload->addFilter('Rename', APPLICATION_PATH . '/../public/imagens/' . $fotoNome);
+                    $upload->receive('usuarioFotoCaminho');
+                    $params['usuarioFotoCaminho'] = $fotoNome;
+                    
+                    @unlink(APPLICATION_PATH . '/../public/imagens/' . $dados['usuarioFotoCaminho']);
+                                        
+                    $params['usuarioFotoCaminho'] = $fotoNome;
+                }
+                
+                $usuario->update($params);
+                
+                $usuarioGrupo->dropUsuarios($dados['usuarioId']);
 
-                foreach ($grupos as $integrarGrupo) {
-                    $params['usuarioGrupoUsuarioId'];
-                    $params['usuarioGrupoGrupoId'] = $integrarGrupo;
-
-                    $usuarioGrupo->save($params);
+                foreach ($grupos as $grupoId) {
+                    $usuarioGrupo->save(array(
+                        'usuarioGrupoUsuarioId' => $dados['usuarioId'],
+                        'usuarioGrupoGrupoId' => $grupoId
+                    ));
                 }
             }
             $this->_redirect('admin/usuario/index');

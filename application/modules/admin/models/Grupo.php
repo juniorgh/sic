@@ -31,7 +31,7 @@ class Admin_Model_Grupo {
     public function drop($id) {
         $grupo = new Admin_Model_DbTable_Grupo();
         $where = $grupo->getAdapter()->quoteInto("grupoId = ?", $id);
-        $grupo->delete($where);
+        return $grupo->delete($where);
     }
 
     public function save($data = array()) {

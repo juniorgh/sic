@@ -5,7 +5,7 @@
  * 
  * @package Plugins
  * @category Controller Plugin
- * @author William D. Urbano <contato@williamurbano.com.br>
+ * @author Gilson G. Junior <jr_juk@hotmail.com>
  */
 class Application_Plugin_LayoutPlugin extends Zend_Controller_Plugin_Abstract {
 

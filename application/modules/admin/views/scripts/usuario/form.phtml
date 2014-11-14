@@ -1,13 +1,4 @@
-<?php
-$ids = null;
-
-if (!$this->usuario['usuarioId'] == null) {
-    foreach ($this->usuarioGrupoFiltrado as $idg) {
-        $ids[] = $idg['usuarioGrupoGrupoId'];
-    }
-}
-?>
-<div class="block-flat">
+    <div class="block-flat">
     <div class="header">							
         <h4>Cadastro de Usuários</h4>
     </div>
@@ -42,8 +33,6 @@ if (!$this->usuario['usuarioId'] == null) {
                         <input type="password" name="usuarioSenha" placeholder="Digite aqui sua senha" class="form-control">
                     </div>
                 </div>
-            <?php } else {?>
-            <input type="hidden" value="<?php echo $this->usuario['usuarioSenha'];?>" name="usuarioSenha" placeholder="Digite aqui sua senha" class="form-control">
             <?php } ?>
             <div class="form-group">
                 <label class="col-sm-3 control-label">Email</label>
@@ -102,13 +91,16 @@ if (!$this->usuario['usuarioId'] == null) {
             <div class="form-group">
                 <label class="col-sm-3 control-label">Grupos</label>
                 <div class="col-sm-3">
-                    <?php foreach ($this->grupos as $listaGrupos) { $id = $listaGrupos['grupoId'];?>
-                        <?php if ($ids != null && in_array($id, $ids)) { ?> 
-                            <input type="checkbox" name="grupos[]" checked value="<?php echo $listaGrupos['grupoId']; ?>"/><?php echo utf8_encode($listaGrupos['grupoNome']); ?><br/>
+                    <?php foreach($this->grupos as $grp){?>
+                        <?php 
+                        $id = $grp['grupoId']; 
+                        ?>
+                        <?php if(in_array($id, $this->usuarioGrupoIds)){?>
+                            <input type="checkbox" name="integrantes[]" checked value="<?php echo $grp['grupoId'];?>"> <?php echo utf8_encode($grp['grupoNome']);?>
                         <?php } else { ?>
-                            <input type="checkbox" name="grupos[]" value="<?php echo $listaGrupos['grupoId']; ?>"/><?php echo utf8_encode($listaGrupos['grupoNome']); ?><br/>
-                        <?php } ?>
-                    <?php } ?>
+                            <input type="checkbox" name="integrantes[]" value="<?php echo $grp['grupoId'];?>"> <?php echo utf8_encode($grp['grupoNome']);?>
+                        <?php }?>
+                    <?php }?>
                 </div>
             </div>
 

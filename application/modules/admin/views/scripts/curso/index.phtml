@@ -1,8 +1,10 @@
-<?php if(count($this->messages) == 1){ ?>
-    <?php foreach($this->messages as $msg) {?>
-        <div class="alert alert-primary">
+<?php if (count($this->messages) == 1) { ?>
+    <?php foreach ($this->messages as $msg) { ?>
+        <div class="alert alert-primary alert-white rounded">
+            <div class="icon"><i class="fa fa-check"></i></div>
             <?php echo $msg; ?>
         </div>
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
     <?php } ?>
 <?php } ?>
 
@@ -40,15 +42,7 @@
                                         </i>
                                     </a>
 
-
-                                    <a class="btn btn-danger" href="<?php
-                                    echo $this->
-                                            url(array('module' => 'admin', 'controller' => 'curso', 'action' => 'drop', 'id' => $cursos['cursoId']), null, true);
-                                    ?>">
-                                        <i class="fa fa-trash">
-                                        </i>
-                                    </a>
-
+                                    <button data-toggle="modal"  data-target="#mod-error" type="button" class="btn btn-danger btn-flat"><i class="fa fa-trash"></i></button>
 
                                     <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'curso', 'action' => 'form', 'id' => $cursos['cursoId'])); ?>" class="btn btn-success">
                                         <i class="fa fa-edit">    
@@ -63,3 +57,28 @@
         </div>            
     </div>
 </div>
+<div class="modal fade" id="mod-error" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <div class="i-circle danger"><i class="fa fa-times"></i></div>
+                    <h4>Atenção!</h4>
+                    <p>Deseja realmente excluir esse curso?</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-default btn-flat" href="<?php
+                echo $this->
+                        url(array('module' => 'admin', 'controller' => 'curso', 'action' => 'drop', 'id' => $cursos['cursoId']), null, true);
+                ?>">
+                    Confirmar
+                </a>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

@@ -1,7 +1,16 @@
 <?php
 
 class Admin_Model_UsuarioGrupo {
-
+    
+    
+    public function findUsuarioGrupoId($id){
+        $usuarioGrupo = new Admin_Model_DbTable_UsuarioGrupo();
+        
+        $query = $usuarioGrupo->select()->where('usuarioGrupoUsuarioId = ?', $id);
+        
+        return $usuarioGrupo->fetchAll()->toArray($query);
+    }
+    
     public function find($id = null, $pager = false, array $where = null, array $order = null) {
         $usuarioGrupo = new Admin_Model_DbTable_UsuarioGrupo();
         if (!is_null($id)) {

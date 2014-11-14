@@ -1,16 +1,15 @@
 <?php
 
-class Admin_EquipeController extends Zend_Controller_Action
-{
+class Admin_EquipeController extends Zend_Controller_Action {
+
+    protected $_flashMessenger = null;
 
     public function init() {
-        $this->_flashMessenger =
-        $this->_helper->getHelper('FlashMessenger');
+        $this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
         $this->initView();
     }
 
-    public function indexAction()
-    {
+    public function indexAction() {
         $usuario = new Admin_Model_Usuario();
 
         $equipe = new Admin_Model_Equipe();
@@ -19,13 +18,12 @@ class Admin_EquipeController extends Zend_Controller_Action
         $dados = $equipe->find();
         $this->view->assign('equipe', $dados);
         $this->view->assign('usuario', $usuarioDados);
-        
+
         $this->view->messages = $this->_flashMessenger->getMessages();
         $this->render();
     }
 
-    public function formAction()
-    {
+    public function formAction() {
         $usuario = new Admin_Model_Usuario();
         $equipe = new Admin_Model_Equipe();
         $integrantesEquipe = new Admin_Model_UsuarioEquipe();
@@ -49,12 +47,11 @@ class Admin_EquipeController extends Zend_Controller_Action
         $this->view->assign('equipeAll', $equipeAll);
     }
 
-    public function saveAction()
-    {
+    public function saveAction() {
         try {
             $equipe = new Admin_Model_Equipe();
             $usuarioEquipe = new Admin_Model_UsuarioEquipe();
-            
+
             $request = $this->getRequest();
             $params = $request->getPost();
 
@@ -66,9 +63,9 @@ class Admin_EquipeController extends Zend_Controller_Action
                 unset($params['integrantes']);
 
                 $equipe->update($params);
-                
+
                 $usuarioEquipe->drop($id);
-                
+                $this->_flashMessenger->addMessage('Equipe atualizada com sucesso!');
                 unset($params['equipeId']);
                 unset($params['equipeNome']);
 
@@ -77,9 +74,10 @@ class Admin_EquipeController extends Zend_Controller_Action
                 $integrantes = $params['integrantes'];
                 unset($params['integrantes']);
                 $params['usuarioEquipeEquipeId'] = $equipe->save($params);
+                $this->_flashMessenger->addMessage('Equipe criada com sucesso!');
             }
 
-            if($params['equipeNome']){
+            if ($params['equipeNome']) {
                 unset($params['equipeNome']);
             }
 
@@ -95,31 +93,28 @@ class Admin_EquipeController extends Zend_Controller_Action
         }
     }
 
-    public function dropAction()
-    {
+    public function dropAction() {
         try {
-        $usuarioEquipe = new Admin_Model_UsuarioEquipe();
-        $equipe = new Admin_Model_Equipe();
-        
-        $id = $this->_request->getParam('id');
-        $usuarioEquipe->drop($id);
-        $status = $equipe->drop($id);
-        
-        if($status == true){
-            $this->_flashMessenger->addMessage('Equipe excluido com sucesso!');
-        }
-        $this->_redirect('admin/equipe/');
-        } catch (Exception $exc) {
-            echo $exc->getMessage();
-        }
-        }
+            $usuarioEquipe = new Admin_Model_UsuarioEquipe();
+            $equipe = new Admin_Model_Equipe();
 
-    public function viewAction()
-    {
+            $id = $this->_request->getParam('id');
+            $usuarioEquipe->drop($id);
+            $status = $equipe->drop($id);
+
+            if ($status == true) {
+                $this->_flashMessenger->addMessage('Equipe excluido com sucesso!');
+            }
+
+            $this->_redirect('admin/equipe/');
+        } catch (Exception $exc) {
+            $this->_flashMessenger->addMessage('Impossivel excluir equipe, existem integrantes ou postagem dela no sistema!');
+            $this->_redirect('admin/equipe/');
+        }
+    }
+
+    public function viewAction() {
         // action body
     }
 
-
 }
-
-

@@ -11,30 +11,30 @@
 
                 <tbody class="no-border-y"> 
                     <?php foreach ($this->equipes as $value) { ?>
-                    <tr>
-                        <td class="text-left">
-                            <?php echo utf8_encode($value['equipeNome']); ?>
-                        </td>
-                        <td class="text-right">
-                            <a class="btn btn-primary" href="">
-                                <i class="fa fa-search">
-                                </i>
-                                Integrantes 
-                            </a>
-                            
-                            <a href="" class="btn btn-success">
-                                <i class="fa fa-suitcase">    
-                                </i>
-                                Ver Projetos
-                            </a>
-                            
-                            <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'equipeUpload', 'action' => 'form', 'id' => $value['equipeId']), null, true);?>" class="btn btn-success">
-                                <i class="fa fa-suitcase">    
-                                </i>
-                                Criar projetos
-                            </a>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td class="text-left">
+                                <?php echo utf8_encode($value['equipeNome']); ?>
+                            </td>
+                            <td class="text-right">
+                                <a class="btn btn-primary" href="">
+                                    <i class="fa fa-search">
+                                    </i>
+                                    Integrantes 
+                                </a>
+
+                                <a href="" class="btn btn-success">
+                                    <i class="fa fa-suitcase">    
+                                    </i>
+                                    Ver Projetos
+                                </a>
+
+                                <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'equipeUpload', 'action' => 'form', 'id' => $value['equipeId']), null, true); ?>" class="btn btn-success">
+                                    <i class="fa fa-suitcase">    
+                                    </i>
+                                    Criar projetos
+                                </a>
+                            </td>
+                        </tr>
                     <?php } ?>
                 </tbody>
             </table>

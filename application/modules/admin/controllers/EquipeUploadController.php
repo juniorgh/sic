@@ -2,8 +2,11 @@
 
 class Admin_EquipeUploadController extends Zend_Controller_Action {
 
+    protected $_flashMessenger = null;
+
     public function init() {
-        /* Initialize action controller here */
+        $this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
+        $this->initView();
     }
 
     public function indexAction() {
@@ -27,7 +30,7 @@ class Admin_EquipeUploadController extends Zend_Controller_Action {
             $imgUploads = array();
             $equipePostagem = new Admin_Model_EquipePostagem();
             $equipeUpload = new Admin_Model_EquipeUpload();
-            
+
             $ext1 = null;
             $ext2 = null;
             $ext3 = null;
@@ -35,14 +38,14 @@ class Admin_EquipeUploadController extends Zend_Controller_Action {
             $request = $this->getRequest();
             if ($request->isPost()) {
                 $params = $request->getPost();
-                
+
                 $statusSave = $equipePostagem->save($params);
-               
+
                 $id = $params['equipePostagemEquipeId'];
                 $upload = new Zend_File_Transfer();
-                
+
                 $file1 = $upload->getFileInfo('imagem1');
-                
+
                 if (!empty($file1['imagem1']['name'])) {
                     $ext1 = pathinfo($file1['imagem1']['name'])['extension'];
                     $fotoNome1 = time() . '.' . $ext1;
@@ -60,7 +63,7 @@ class Admin_EquipeUploadController extends Zend_Controller_Action {
 
                     $upload->addFilter('Rename', APPLICATION_PATH . '/../public/imagens/' . $fotoNome2);
                     $upload->receive('imagem2');
-                    
+
                     $imgUploads[] = $fotoNome2;
                 }
 
@@ -71,20 +74,20 @@ class Admin_EquipeUploadController extends Zend_Controller_Action {
 
                     $upload->addFilter('Rename', APPLICATION_PATH . '/../public/imagens/' . $fotoNome3);
                     $upload->receive('imagem3');
-                    
+
                     $imgUploads[] = $fotoNome3;
                 }
                 foreach ($imgUploads as $value) {
                     $equipUloadInset['equipeUploadCaminho'] = $value;
                     $equipUloadInset['equipeUploadEquipeId'] = $id;
-                    
+
                     echo '<pre>';
                     print_r($equipUloadInset);
                     echo '</pre>';
-                    
-                    
-                    if($statusSave){
-                       $equipeUpload->save($equipUloadInset); 
+
+
+                    if ($statusSave) {
+                        $equipeUpload->save($equipUloadInset);
                     }
                 }
             }
