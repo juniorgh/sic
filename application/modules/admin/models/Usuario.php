@@ -30,7 +30,6 @@ class Admin_Model_Usuario {
     }
 
     public function drop($id) {
-
         $usuario = new Admin_Model_DbTable_Usuario();
         $where = $usuario->getAdapter()->quoteInto("usuarioId = ?", $id);
         $usuario->delete($where);
@@ -53,5 +52,15 @@ class Admin_Model_Usuario {
         $usuario = new Admin_Model_DbTable_Usuario();
         return new Zend_Db_Expr($usuario->getAdapter()->quoteInto('MD5(?)', $senha));
     }
+    
+    
+    public function findUsuarioCurso() {
+        $usuario = new Admin_Model_DbTable_Usuario();
+        $query = $usuario->select()
+                ->setIntegrityCheck(false)
+                ->from(array('u' => 'usuario'))
+                ->join(array('c' => 'curso'), 'u.usuarioCursoId = c.cursoId');
 
+        return $usuario->fetchAll($query);
+    }
 }
