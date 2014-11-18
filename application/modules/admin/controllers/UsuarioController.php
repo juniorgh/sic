@@ -2,8 +2,11 @@
 
 class Admin_UsuarioController extends Zend_Controller_Action {
 
+    protected $_flashMessenger = null;
+
     public function init() {
-        /* Initialize action controller here */
+        $this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
+        $this->initView();
     }
 
     /*
@@ -15,6 +18,8 @@ class Admin_UsuarioController extends Zend_Controller_Action {
             $usuario = new Admin_Model_Usuario();
             $dadosUsuario = $usuario->findUsuarioCurso();
             $this->view->assign('usuario', $dadosUsuario);
+            $this->view->messages = $this->_flashMessenger->getMessages();
+            $this->render();
         } catch (Exception $exc) {
             echo $exc->getMessage();
         }
@@ -25,13 +30,24 @@ class Admin_UsuarioController extends Zend_Controller_Action {
      */
 
     public function dropAction() {
+
         $usuario = new Admin_Model_Usuario();
         $id = $this->_request->getParam('id');
-
         $dados = $usuario->find($id);
 
-        unlink(APPLICATION_PATH . '/../public/imagens/' . $dados['usuarioFotoCaminho']);
-        $usuario->drop($id);
+
+        try {
+            $status = $usuario->drop($id);
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        }
+        
+        if ($status == true) {
+            unlink(APPLICATION_PATH . '/../public/imagens/' . $dados['usuarioFotoCaminho']);
+            $this->_flashMessenger->addMessage('Usuário excluido com sucesso!!!');
+        } else {
+            $this->_flashMessenger->addMessage('Usuário está participando de atividades, ou faz parte de algum grupo, não pode ser removido');
+        }
         $this->_redirect('admin/usuario/');
     }
 
@@ -44,20 +60,20 @@ class Admin_UsuarioController extends Zend_Controller_Action {
         $grupo = new Admin_Model_Grupo();
 
         $periodo = array(
-            1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20
+            1, 2, 3, 4, 5, 6, 7, 8, 9, 10
         );
 
         $id = $this->_request->getParam('id');
 
         $usuario = new Admin_Model_Usuario();
         $usuarioGrupo = new Admin_Model_UsuarioGrupo();
-        
+
         $usuarioGrupoAll = $usuarioGrupo->findUsuarioGrupoId($id);
-        
+
         $ids = array();
 
-        foreach ($usuarioGrupoAll as $id) {
-            $ids[] = $id['usuarioGrupoGrupoId'];
+        foreach ($usuarioGrupoAll as $idt) {
+            $ids[] = $idt['usuarioGrupoGrupoId'];
         }
 
         $dadosGrupo = $grupo->find();
@@ -106,33 +122,28 @@ class Admin_UsuarioController extends Zend_Controller_Action {
 
             if ($request->isPost()) {
                 $params = $request->getPost();
-                
-                echo '<pre>';
-                print_r($params);
-                echo '</pre>';
-                exit;
                 $integrantes = array();
-                
-                if ($params['integrantes']) {
+
+                if (!empty($params['integrantes'])) {
                     $integrantes = $params['integrantes'];
+                    unset($params['integrantes']);
                 }
-                
+
                 $adm = null;
-                
-                if(!empty($params['adm'])){
+
+                if (!empty($params['adm'])) {
                     $adm = $params['adm'];
                     unset($params['adm']);
                 }
-                
-                unset($params['grupos']);
+
+//                unset($params['grupos']);
 
                 if (array_key_exists('usuarioSenha', $params) && strlen($params['usuarioSenha']) > 0) {
                     $params['usuarioSenha'] = Admin_Model_Usuario::md5($params['usuarioSenha']);
                 }
 
                 if (!array_key_exists('usuarioId', $params)) {
-                    unset($params['integrantes']);
-                    
+
                     $params['usuarioId'] = $usuario->save($params);
                 }
 
@@ -146,7 +157,7 @@ class Admin_UsuarioController extends Zend_Controller_Action {
                     $upload->addFilter('Rename', APPLICATION_PATH . '/../public/imagens/' . $fotoNome);
                     $upload->receive('usuarioFotoCaminho');
                     $params['usuarioFotoCaminho'] = $fotoNome;
-                    
+
                     @unlink(APPLICATION_PATH . '/../public/imagens/' . $dados['usuarioFotoCaminho']);
 
                     $params['usuarioFotoCaminho'] = $fotoNome;
@@ -155,7 +166,7 @@ class Admin_UsuarioController extends Zend_Controller_Action {
                 $usuario->update($params);
 
                 $usuarioGrupo->dropUsuarios($dados['usuarioId']);
-                
+
                 foreach ($integrantes as $ids) {
                     $usuarioGrupo->save(array(
                         'usuarioGrupoUsuarioId' => $dados['usuarioId'],
@@ -168,4 +179,5 @@ class Admin_UsuarioController extends Zend_Controller_Action {
             echo $exc->getMessage();
         }
     }
+
 }

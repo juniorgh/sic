@@ -37,7 +37,7 @@ $ids[] = $integrantes['usuarioEquipeUsuarioId'];
                                 <?php if (in_array($idsUsuarioAll, $ids)) { ?>
                                     <input name="integrantes[]" type="checkbox" checked value="<?php echo $usuarios['usuarioId'] ?>"> <?php echo utf8_encode($usuarios['usuarioNome']); ?><br/>
                                 <?php } else { ?>
-                                    <input name="integrantes[]" type="checkbox" value="<?php echo $usuarios['usuarioId'] ?>"> <?php echo utf8_encode($usuarios['usuarioNome']); ?><br/>
+                                    <input name="integrantes[]" type="checkbox" value="<?php echo $usuarios['usuarioId']?>"> <?php echo utf8_encode($usuarios['usuarioNome']); ?><br/>
                                 <?php } ?>
                             <?php } ?>
                         </div>

@@ -1,3 +1,13 @@
+<?php if (count($this->messages) == 1) { ?>
+    <?php foreach ($this->messages as $msg) { ?>
+        <div class="alert alert-primary alert-white rounded">
+            <div class="icon"><i class="fa fa-check"></i></div>
+            <?php echo $msg; ?>
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        </div>
+
+    <?php } ?>
+<?php } ?>
 <div class="block-flat">
     <div class="header">              
         <h4>

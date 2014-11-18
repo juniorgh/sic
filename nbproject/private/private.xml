@@ -5,6 +5,7 @@
         <group>
             <file>file:/C:/xampp/htdocs/sic/application/modules/admin/views/scripts/usuario/form.phtml</file>
             <file>file:/C:/xampp/htdocs/sic/application/modules/admin/models/Usuario.php</file>
+            <file>file:/C:/xampp/htdocs/sic/application/modules/admin/views/scripts/usuario/index.phtml</file>
             <file>file:/C:/xampp/htdocs/sic/application/modules/admin/controllers/UsuarioController.php</file>
         </group>
     </open-files>
