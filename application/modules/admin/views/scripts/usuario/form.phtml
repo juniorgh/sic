@@ -148,9 +148,9 @@
                             <?php foreach ($this->grupos as $g) { ?>
                                 <?php $idG = $g['grupoId']; ?>
                                 <?php if (!empty($this->usuario['usuarioId']) && in_array($idG, $this->usuarioGrupoAll)) { ?>
-                                    <input value="<?php echo $idG;?>" name="integrantes[]" checked type="checkbox"> <?php echo utf8_encode($g['grupoNome']); ?> 
+                                    <input value="<?php echo $idG;?>" name="integrantes[]" checked type="checkbox"> <?php echo utf8_encode($g['grupoNome']); ?> <br/>
                                 <?php } else { ?>
-                                    <input value="<?php echo $idG;?>" name="integrantes[]" type="checkbox"> <?php echo utf8_encode($g['grupoNome']); ?> 
+                                    <input value="<?php echo $idG;?>" name="integrantes[]" type="checkbox"> <?php echo utf8_encode($g['grupoNome']); ?> <br/>
                                 <?php } ?>
                             <?php } ?>
 

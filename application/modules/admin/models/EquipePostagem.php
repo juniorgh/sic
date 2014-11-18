@@ -39,5 +39,24 @@ class Admin_Model_EquipePostagem
         $equipePostagem = new Admin_Model_DbTable_EquipePostagem();
         return $equipePostagem->insert($data);
     }
+    
+    public function findEquipeId($id){
+        $equipePostagem = new Admin_Model_DbTable_EquipePostagem();
+        
+        $query = $equipePostagem->select()->where("equipePostagemId = ?", $id);
+        return $equipePostagem->fetchAll($query)->current()->toArray();
+    }
+    
+    public function listaEquipeProjeto($id) {
+        $equipePostagem = new Admin_Model_DbTable_EquipePostagem();
+        $query = $equipePostagem->select()
+                ->setIntegrityCheck(false)
+                ->from(array('ep' => 'equipePostagem'))
+                ->join(array('e' => 'equipe'), 'e.equipeId = ep.equipePostagemEquipeId')
+                ->where('e.equipeId = ?', $id);
+
+        return $equipePostagem->fetchAll($query);
+    }
 }
 
+    

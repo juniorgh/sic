@@ -152,6 +152,12 @@
             <controllerFile controllerName="UsuarioAluno">
               <actionMethod actionName="index"/>
             </controllerFile>
+            <controllerFile controllerName="EquipePostagem">
+              <actionMethod actionName="index"/>
+              <actionMethod actionName="form"/>
+              <actionMethod actionName="save"/>
+              <actionMethod actionName="listarProjeto"/>
+            </controllerFile>
           </controllersDirectory>
           <formsDirectory enabled="false"/>
           <layoutsDirectory enabled="false"/>
@@ -287,6 +293,21 @@
               <viewControllerScriptsDirectory forControllerName="EquipeUpload">
                 <viewScriptFile forActionName="save"/>
               </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="listarProjeto">
+                <viewScriptFile forActionName="listarProjeto"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="EquipePostagem">
+                <viewScriptFile forActionName="index"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="EquipePostagem">
+                <viewScriptFile forActionName="form"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="EquipePostagem">
+                <viewScriptFile forActionName="save"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="EquipePostagem">
+                <viewScriptFile forActionName="listarProjeto"/>
+              </viewControllerScriptsDirectory>
             </viewScriptsDirectory>
             <viewHelpersDirectory/>
             <viewFiltersDirectory/>
@@ -406,6 +427,12 @@
               </testApplicationControllerFile>
               <testApplicationControllerFile forControllerName="UsuarioAluno">
                 <testApplicationActionMethod forActionName="index"/>
+              </testApplicationControllerFile>
+              <testApplicationControllerFile forControllerName="EquipePostagem">
+                <testApplicationActionMethod forActionName="index"/>
+                <testApplicationActionMethod forActionName="form"/>
+                <testApplicationActionMethod forActionName="save"/>
+                <testApplicationActionMethod forActionName="listarProjeto"/>
               </testApplicationControllerFile>
             </testApplicationControllerDirectory>
           </testApplicationModuleDirectory>

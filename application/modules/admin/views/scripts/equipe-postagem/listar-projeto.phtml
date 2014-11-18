@@ -1,0 +1,37 @@
+<div class="block-flat">
+    <div class="content">
+        <div class="table table-responsive">
+            <table class="no-border hover">
+                <thead class="no-border">
+                    <tr>
+                        <th class="text-left">Meus projetos</th>
+                        <th class="text-right"></th>
+                    </tr>
+                </thead>
+
+                <tbody class="no-border-y"> 
+
+                    <?php foreach ($this->projetos as $value) { ?>
+                        <tr>
+                            <td class="text-left">
+                                <?php echo utf8_encode($value['equipePostagemTitulo']);?>
+                            </td>
+                            <td class="text-right">
+                                <a class="btn btn-primary" href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'equipePostagem','action' => 'form', 'idPost' => $value['equipePostagemId']),null,true)?>">
+                                    <i class="fa fa-edit">
+                                    </i>
+                                    Editar Trabalho
+                                </a>
+                                <a class="btn btn-success" href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'equipePostagem','action' => 'form', 'idPost' => $value['equipePostagemId']),null,true)?>">
+                                    <i class="fa fa-upload">
+                                    </i>
+                                    Cadastrar imagens
+                                </a>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>            
+    </div>
+</div>

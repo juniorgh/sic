@@ -5,26 +5,25 @@
                 <h4><i class="fa fa-suitcase"></i> Criar projetos</h4>
             </div>
             <div class="content">
-                <form enctype="multipart/form-data" action="<?php echo $this->url(array('module' => 'admin', 'controller' => 'equipeUpload', 'action' => 'save'), null, true); ?>" class="form-horizontal group-border-dashed" style="border-radius: 0px;" method="post">
-                    
+                <form enctype="multipart/form-data" action="<?php echo $this->url(array('module' => 'admin', 'controller' => 'equipeUpload', 'action' => 'save'), null, true); ?>" class="form-horizontal group-border-dashed" style="border-radius: 0px;" method="post">    
                     <input type="hidden" name="equipePostagemEquipeId" value="<?php echo $this->id; ?>">
                     
                     <div class="form-group">
                         <label class="col-sm-3 control-label">Titulo</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" name="equipePostagemTitulo" value="">
+                            <input type="text" class="form-control" name="equipePostagemTitulo" value="<?php echo !empty($this->EquipePostagem['equipePostagemTitulo']) ? utf8_encode($this->EquipePostagem['equipePostagemTitulo']) : "" ?>">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">Data</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" name="equipePostagemData" value="">
+                            <input type="text" class="form-control" name="equipePostagemData" value="<?php echo !empty($this->EquipePostagem['equipePostagemData']) ? utf8_encode($this->EquipePostagem['equipePostagemData']) : "" ?>">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">Descrição</label>
                         <div class="col-sm-6">
-                            <textarea class="form-control" name="equipePostagemDescricao" value="" rows="6"></textarea>
+                            <textarea rows="10" class="form-control" name="equipePostagemDescricao"><?php echo !empty($this->EquipePostagem['equipePostagemDescricao']) ? utf8_encode($this->EquipePostagem['equipePostagemDescricao']) : "" ?></textarea>
                         </div>
                     </div>
                     <div class="form-group">
