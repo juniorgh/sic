@@ -5,8 +5,11 @@
                 <h4><i class="fa fa-suitcase"></i> Criar projetos</h4>
             </div>
             <div class="content">
-                <form enctype="multipart/form-data" action="<?php echo $this->url(array('module' => 'admin', 'controller' => 'equipeUpload', 'action' => 'save'), null, true); ?>" class="form-horizontal group-border-dashed" style="border-radius: 0px;" method="post">    
-                    <input type="hidden" name="equipePostagemEquipeId" value="<?php echo $this->id; ?>">
+                <form enctype="multipart/form-data" action="<?php echo $this->url(array('module' => 'admin', 'controller' => 'equipePostagem', 'action' => 'save'), null, true); ?>" class="form-horizontal group-border-dashed" style="border-radius: 0px;" method="post">    
+
+                    <?php if(count($this->EquipePostagem) > 0) {?>
+                        <input name="equipePostagemId" type="hidden" value="<?php echo $this->EquipePostagem['equipePostagemId'];?>">
+                    <?php }?>
                     
                     <div class="form-group">
                         <label class="col-sm-3 control-label">Titulo</label>

@@ -1,0 +1,88 @@
+<?php
+$x = 1;
+if ($this->equipeUploadDados != null) {
+    foreach ($this->equipeUploadDados as $value) {
+        if ($x == 1) {
+            $nome1 = $value['equipeUploadCaminho'];
+        }
+        if ($x == 2) {
+            $nome2 = $value['equipeUploadCaminho'];
+        }
+        if ($x == 3) {
+            $nome3 = $value['equipeUploadCaminho'];
+        }
+        $x++;
+    }
+}
+?>
+<div class="row">
+    <div class="col-md-12">
+        <div class="block-flat">
+            <div class="header">
+                <h4><i class="fa fa-suitcase"></i> Cadastrar imagens do trabalho TAL</h4>
+            </div>
+            <div class="content">
+                <form enctype="multipart/form-data" action="<?php echo $this->url(array('module' => 'admin', 'controller' => 'equipePostagem', 'action' => 'save-upload'), null, true); ?>" class="form-horizontal group-border-dashed" style="border-radius: 0px;" method="post">
+                    <?php if ($this->idPost) { ?>
+                        <input name="equipeUploadEquipePostagemId" type="hidden" value="<?php echo $this->idPost; ?>">
+                    <?php } ?>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Selecione a Imagem 1</label>
+                        <div class="col-sm-6">
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                <div class="fileinput-new thumbnail" style="height: 150px;">
+                                    <img src="<?php echo!empty($this->usuario['usuarioFotoCaminho']) ? 'imagens/' . $this->usuario['usuarioFotoCaminho'] : 'http://placehold.it/190x140/7761A7/ffffff' ?>" alt="...">
+                                </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                                <div>
+                                    <span class="btn btn-primary btn-file"><span class="fileinput-new">Selecione</span><span class="fileinput-exists">Change</span><input type="file" name="equipeUploadCaminho" value="<?php echo $nome1 == null ? '' : $nome1;?>"/></span>
+                                    <a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">Remove</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Selecione a Imagem 1</label>
+                        <div class="col-sm-6">
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                <div class="fileinput-new thumbnail" style="height: 150px;">
+                                    <img src="<?php echo!empty($this->usuario['usuarioFotoCaminho']) ? 'imagens/' . $this->usuario['usuarioFotoCaminho'] : 'http://placehold.it/190x140/7761A7/ffffff' ?>" alt="...">
+                                </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                                <div>
+                                    <span class="btn btn-primary btn-file"><span class="fileinput-new">Selecione</span><span class="fileinput-exists">Change</span><input type="file" name="equipeUploadCaminho2" value="<?php echo $nome2 == null ? '' : $nome2;?>"></span>
+                                    <a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">Remove</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Selecione a Imagem 1</label>
+                        <div class="col-sm-6">
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                <div class="fileinput-new thumbnail" style="height: 150px;">
+                                    <img src="<?php echo!empty($this->usuario['usuarioFotoCaminho']) ? 'imagens/' . $this->usuario['usuarioFotoCaminho'] : 'http://placehold.it/190x140/7761A7/ffffff' ?>" alt="...">
+                                </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                                <div>
+                                    <span class="btn btn-primary btn-file"><span class="fileinput-new">Selecione</span><span class="fileinput-exists">Change</span><input type="file" name="equipeUploadCaminho3" value="<?php echo $nome3 == null ? '' : $nome3;?>"></span>
+                                    <a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">Remove</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label"></label>
+                        <div class="col-sm-6">
+                            <a href="#" class="btn btn-success"> Voltar</a>
+                            <input type="submit" class="btn btn-primary" value="Confirmar"/>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

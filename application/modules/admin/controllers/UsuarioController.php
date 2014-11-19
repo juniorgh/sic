@@ -30,7 +30,6 @@ class Admin_UsuarioController extends Zend_Controller_Action {
      */
 
     public function dropAction() {
-
         $usuario = new Admin_Model_Usuario();
         $id = $this->_request->getParam('id');
         $dados = $usuario->find($id);
@@ -99,10 +98,10 @@ class Admin_UsuarioController extends Zend_Controller_Action {
         $this->view->assign('grupos', $dadosGrupo);
     }
 
-    /*
-     * visualizar informações sobre cada usuário
-     */
-
+   /*
+    * visualizar informações sobre cada usuário
+    */
+    
     public function viewAction() {
         $usuario = new Admin_Model_Usuario();
         $dados = $usuario->find($id = $this->_request->getParam('id'));
@@ -115,22 +114,33 @@ class Admin_UsuarioController extends Zend_Controller_Action {
 
     public function saveAction() {
         try {
+            /*
+             * Montando as variáveis
+             */
             $integrantes = array();
             $usuario = new Admin_Model_Usuario();
             $usuarioGrupo = new Admin_Model_UsuarioGrupo();
             $request = $this->getRequest();
-
+            
+            // verifica se há dados vindo por methodo POST
             if ($request->isPost()) {
                 $params = $request->getPost();
                 $integrantes = array();
-
+                
+                /*
+                 * destroi os ids dos usuários de dentro do array, e salva em outra variável para atualização da tabela USUÁRIO
+                 */
                 if (!empty($params['integrantes'])) {
                     $integrantes = $params['integrantes'];
                     unset($params['integrantes']);
                 }
 
                 $adm = null;
-
+                
+                /*
+                 * Destroi senha do administrador de dentro do array vindo do formulário, e à salva em outra variável
+                 */
+                
                 if (!empty($params['adm'])) {
                     $adm = $params['adm'];
                     unset($params['adm']);
@@ -162,7 +172,6 @@ class Admin_UsuarioController extends Zend_Controller_Action {
 
                     $params['usuarioFotoCaminho'] = $fotoNome;
                 }
-
                 $usuario->update($params);
 
                 $usuarioGrupo->dropUsuarios($dados['usuarioId']);
