@@ -1,14 +1,20 @@
 <?php
 $x = 1;
+$id = null;
+
+
 if ($this->equipeUploadDados != null) {
     foreach ($this->equipeUploadDados as $value) {
         if ($x == 1) {
+            $idEqUp1 = $value['equipeUploadId'];
             $nome1 = $value['equipeUploadCaminho'];
         }
         if ($x == 2) {
+            $idEqUp2 = $value['equipeUploadId'];
             $nome2 = $value['equipeUploadCaminho'];
         }
         if ($x == 3) {
+            $idEqUp3 = $value['equipeUploadId'];
             $nome3 = $value['equipeUploadCaminho'];
         }
         $x++;
@@ -23,20 +29,25 @@ if ($this->equipeUploadDados != null) {
             </div>
             <div class="content">
                 <form enctype="multipart/form-data" action="<?php echo $this->url(array('module' => 'admin', 'controller' => 'equipePostagem', 'action' => 'save-upload'), null, true); ?>" class="form-horizontal group-border-dashed" style="border-radius: 0px;" method="post">
-                    <?php if ($this->idPost) { ?>
-                        <input name="equipeUploadEquipePostagemId" type="hidden" value="<?php echo $this->idPost; ?>">
+                    <input name="equipeUploadEquipePostagemId" type="hidden" value="<?php echo $this->idPost; ?>">
+                    
+                    <?php if($this->equipeUploadDados != null){?>
+                    <input type="hidden" name="equipeUploadId[]" value="<?php echo $idEqUp1 ;?>"> 
+                    <input type="hidden" name="equipeUploadId[]" value="<?php echo $idEqUp2;?>"> 
+                    <input type="hidden" name="equipeUploadId[]" value="<?php echo $idEqUp3 ;?>"> 
                     <?php } ?>
+                    
                     <div class="form-group">
                         <label class="col-sm-3 control-label">Selecione a Imagem 1</label>
                         <div class="col-sm-6">
                             <div class="fileinput fileinput-new" data-provides="fileinput">
                                 <div class="fileinput-new thumbnail" style="height: 150px;">
-                                    <img src="<?php echo!empty($this->usuario['usuarioFotoCaminho']) ? 'imagens/' . $this->usuario['usuarioFotoCaminho'] : 'http://placehold.it/190x140/7761A7/ffffff' ?>" alt="...">
+                                    <img src="<?php echo!empty($nome1) ? 'imagens/' . $nome1 : 'http://placehold.it/190x140/7761A7/ffffff' ?>" alt="...">
                                 </div>
                                 <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
                                 <div>
                                     <span class="btn btn-primary btn-file"><span class="fileinput-new">Selecione</span><span class="fileinput-exists">Change</span><input type="file" name="equipeUploadCaminho" value="<?php echo $nome1 == null ? '' : $nome1;?>"/></span>
-                                    <a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">Remove</a>
+                                    <a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">Remove</a> 
                                 </div>
                             </div>
                         </div>
@@ -47,7 +58,7 @@ if ($this->equipeUploadDados != null) {
                         <div class="col-sm-6">
                             <div class="fileinput fileinput-new" data-provides="fileinput">
                                 <div class="fileinput-new thumbnail" style="height: 150px;">
-                                    <img src="<?php echo!empty($this->usuario['usuarioFotoCaminho']) ? 'imagens/' . $this->usuario['usuarioFotoCaminho'] : 'http://placehold.it/190x140/7761A7/ffffff' ?>" alt="...">
+                                    <img src="<?php echo!empty($nome2) ? 'imagens/' . $nome2 : 'http://placehold.it/190x140/7761A7/ffffff' ?>" alt="...">
                                 </div>
                                 <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
                                 <div>
@@ -63,7 +74,7 @@ if ($this->equipeUploadDados != null) {
                         <div class="col-sm-6">
                             <div class="fileinput fileinput-new" data-provides="fileinput">
                                 <div class="fileinput-new thumbnail" style="height: 150px;">
-                                    <img src="<?php echo!empty($this->usuario['usuarioFotoCaminho']) ? 'imagens/' . $this->usuario['usuarioFotoCaminho'] : 'http://placehold.it/190x140/7761A7/ffffff' ?>" alt="...">
+                                    <img src="<?php echo!empty($nome3) ? 'imagens/' . $nome3 : 'http://placehold.it/190x140/7761A7/ffffff' ?>" alt="...">
                                 </div>
                                 <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
                                 <div>

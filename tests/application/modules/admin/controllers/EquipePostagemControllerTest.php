@@ -111,8 +111,27 @@ class Admin_EquipePostagemControllerTest extends Zend_Test_PHPUnit_ControllerTes
             );
     }
 
+    public function testViewAction()
+    {
+        $params = array('action' => 'view', 'controller' => 'EquipePostagem', 'module' => 'admin');
+        $urlParams = $this->urlizeOptions($params);
+        $url = $this->url($urlParams);
+        $this->dispatch($url);
+        
+        // assertions
+        $this->assertModule($urlParams['module']);
+        $this->assertController($urlParams['controller']);
+        $this->assertAction($urlParams['action']);
+        $this->assertQueryContentContains(
+            'div#view-content p',
+            'View script for controller <b>' . $params['controller'] . '</b> and script/action name <b>' . $params['action'] . '</b>'
+            );
+    }
+
 
 }
+
+
 
 
 

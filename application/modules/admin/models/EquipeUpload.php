@@ -40,5 +40,12 @@ class Admin_Model_EquipeUpload
         $equipeUpload = new Admin_Model_DbTable_EquipeUpload();
         return $equipeUpload->insert($data);
     }
+    
+    public static function update(array $data) {
+        $equipeUpload = new Admin_Model_DbTable_EquipeUpload();
+        $where = $equipeUpload->getAdapter()->quoteInto('equipeUploadId = ?', $data['equipeUploadId']);
+        unset($data['menuId']);
+        return $equipeUpload->update($data, $where);
+    }
 }
 

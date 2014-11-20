@@ -1,5 +1,20 @@
 <div class="block-flat">
     <div class="content">
+        
+        <?php if(count($this->projetos) == 0) {?>
+        <div class="alert alert-white-alt alert-primary text-center">
+            Não existem trabalhos feitos pela equipe selecionada!
+        </div>
+        <div class="text-center">
+            <a href="" class="btn btn-primary">
+                <i class="fa fa-plus"> Novo projeto</i>
+            </a>
+            <a href="" class="btn btn-primary">
+            Voltar</i>
+            </a>
+        </div>
+        
+        <?php } else {?>
         <div class="table table-responsive">
             <table class="no-border hover">
                 <thead class="no-border">
@@ -31,6 +46,7 @@
                     <?php } ?>
                 </tbody>
             </table>
-        </div>            
+        </div>
+        <?php } ?>
     </div>
 </div>

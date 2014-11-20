@@ -16,7 +16,7 @@
                                 <?php echo utf8_encode($value['equipeNome']); ?>
                             </td>
                             <td class="text-right">
-                                <a class="btn btn-primary" href="">
+                                <a class="btn btn-primary" href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'equipePostagem', 'action' => 'view', 'id' => $value['equipeId']),null,true);?>">
                                     <i class="fa fa-search">
                                     </i>
                                     Integrantes 

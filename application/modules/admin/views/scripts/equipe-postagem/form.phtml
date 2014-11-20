@@ -7,7 +7,11 @@
             <div class="content">
                 <form enctype="multipart/form-data" action="<?php echo $this->url(array('module' => 'admin', 'controller' => 'equipePostagem', 'action' => 'save'), null, true); ?>" class="form-horizontal group-border-dashed" style="border-radius: 0px;" method="post">    
 
-                    <?php if(count($this->EquipePostagem) > 0) {?>
+                    <?php if(!empty($this->id)) {?>
+                        <input name="equipePostagemEquipeId" type="hidden" value="<?php echo $this->id;?>">
+                    <?php }?>
+                    
+                    <?php if(!empty($this->EquipePostagem['equipePostagemId'])) {?>
                         <input name="equipePostagemId" type="hidden" value="<?php echo $this->EquipePostagem['equipePostagemId'];?>">
                     <?php }?>
                     
