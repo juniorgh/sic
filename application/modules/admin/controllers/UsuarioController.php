@@ -141,10 +141,8 @@ class Admin_UsuarioController extends Zend_Controller_Action {
                  * Destroi senha do administrador de dentro do array vindo do formulário, e à salva em outra variável
                  */
                 
-                if (!empty($params['adm'])) {
-                    $adm = $params['adm'];
-                    unset($params['adm']);
-                }
+                $adm = $params['adm'];
+                unset($params['adm']);
 
 //                unset($params['grupos']);
 

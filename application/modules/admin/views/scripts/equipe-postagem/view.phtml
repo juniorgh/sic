@@ -1,1 +1,38 @@
-chegou na view que eu quero aeee
+<div class="row">
+    <div class="col-md-12">
+        <div class="block-flat">
+            <div class="header">							
+                <h3>
+                    <i class="fa fa-users">            
+                    </i>
+                    Integrantes
+                </h3>
+            </div>
+            <div class="content">
+                <div class="container">
+
+                    <?php foreach ($this->equipeIntegrantes as $integrar) { ?>
+                        <div class="row">
+                            <div class="col-sm-2 col-md-2">
+                                <img src="imagens/<?php echo $integrar['usuarioFotoCaminho'];?>" width="100" height="105"/>
+                            </div>
+                            <div class="col-sm-4 col-md-4">
+                                <p> <i class="fa fa-user"></i>  <?php echo $integrar['usuarioNome']; ?> 
+                                    <br/> <cite title="Source Title"> <i class="glyphicon glyphicon-envelope"></i><?php echo 'Email:  ' . $integrar['usuarioEmail']; ?></cite>
+                                </p>
+                            </div>
+                        </div>
+                        <br/>
+                    <?php } ?>
+                                                
+                    <a  class="btn btn-danger" href="">
+                        Voltar 
+                    </a>
+                    <a  class="btn btn-primary" href="">
+                        Editar 
+                    </a>
+                </div>
+            </div>
+        </div>				
+    </div>
+</div>

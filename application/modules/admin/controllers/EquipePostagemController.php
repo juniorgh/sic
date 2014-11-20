@@ -138,7 +138,7 @@ class Admin_EquipePostagemController extends Zend_Controller_Action
                     'equipeUploadEquipePostagemId' => $params['equipeUploadEquipePostagemId'],
                     'equipeUploadCaminho' => $params['equipeUploadCaminho']
                 );
-
+                
                 $img2 = array(
                     'equipeUploadEquipePostagemId' => $params['equipeUploadEquipePostagemId'],
                     'equipeUploadCaminho' => $params['equipeUploadCaminho2']
@@ -152,6 +152,8 @@ class Admin_EquipePostagemController extends Zend_Controller_Action
                     $equipeUpload->save($img1);
                     $equipeUpload->save($img2);
                     $equipeUpload->save($img3);
+                    
+                    $this->_flashMessenger->addMessage('Imagens salvas com sucesso!!!');
                 } else {
                     
                     $dadoGerais = $equipeUpload->findEquipeUploadEquipePostagemId($params['equipeUploadEquipePostagemId']);
@@ -179,7 +181,11 @@ class Admin_EquipePostagemController extends Zend_Controller_Action
                     $equipeUpload->update(array('equipeUploadId' => $id1, 'equipeUploadCaminho' => $params['equipeUploadCaminho']));
                     $equipeUpload->update(array('equipeUploadId' => $id2, 'equipeUploadCaminho' => $params['equipeUploadCaminho2']));
                     $equipeUpload->update(array('equipeUploadId' => $id3, 'equipeUploadCaminho' => $params['equipeUploadCaminho3']));
+                    
+                    $this->_flashMessenger->addMessage('Imagens atualizadas com sucesso!!!');
                 }
+                
+                $this->_redirect('admin/equipePostagem/');
             }
         } catch (Exception $ex) {
             echo $ex->getMessage();
@@ -188,10 +194,14 @@ class Admin_EquipePostagemController extends Zend_Controller_Action
 
     public function viewAction()
     {
-        // action body
+        $id = $this->_request->getParam('id');
+        
+        $usuarioEquipe  =  new Admin_Model_UsuarioEquipe();
+        
+        $integrantes = $usuarioEquipe->findIntegrantesUsuarioEquipe($id); 
+        
+        $this->view->assign('equipeIntegrantes',$integrantes);
     }
-
-
 }
 
 
