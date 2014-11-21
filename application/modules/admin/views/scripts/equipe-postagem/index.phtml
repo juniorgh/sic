@@ -3,8 +3,13 @@
         <div class="table table-responsive">
             <table class="no-border hover">
                 <thead class="no-border">
+                <caption>
+                    <h4>
+                        Veja os trabalhos das equipes que você está cadastrado!
+                    </h4>
+                </caption>
                     <tr>
-                        <th class="text-left">Minhas equipes</th>
+                        <th class="text-left">Minhas Equipes!</th>
                         <th class="text-right"></th>
                     </tr>
                 </thead>
@@ -13,7 +18,7 @@
                     <?php foreach ($this->equipes as $value) { ?>
                         <tr>
                             <td class="text-left">
-                                <?php echo utf8_encode($value['equipeNome']); ?>
+                                <?php echo $value['equipeNome']; ?>
                             </td>
                             <td class="text-right">
                                 <a class="btn btn-primary" href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'equipePostagem', 'action' => 'view', 'id' => $value['equipeId']),null,true);?>">

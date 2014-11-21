@@ -6,7 +6,7 @@ class Application_Plugin_AuthPlugin extends Zend_Controller_Plugin_Abstract {
         
         $redirector = new Zend_Controller_Action_Helper_Redirector;
         
-        if (!Zend_Auth::getInstance()->hasIdentity() && $request->getControllerName() != "auth" && $request->getModuleName() == 'admin') {
+        if (!Zend_Auth::getInstance()->hasIdentity() && $request->getControllerName() != "auth" && $request->getModuleName() === 'admin') {
             $redirector->gotoUrl('admin/auth/index')->redirectAndExit();
         } else {
             $acessos = array();

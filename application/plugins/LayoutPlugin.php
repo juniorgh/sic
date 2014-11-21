@@ -53,5 +53,4 @@ class Application_Plugin_LayoutPlugin extends Zend_Controller_Plugin_Abstract {
             }
         }
     }
-
 }

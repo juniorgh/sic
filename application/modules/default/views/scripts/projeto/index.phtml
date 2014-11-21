@@ -1,41 +1,23 @@
-<div class="projetos">
-    <i> <b>Autor: </b> Gilson Gonçalves Junior</i><br/>
-    <i> <b>Data:</b> 27/10/2014 13:30 hrs </i>
-    <div class="centralizar">
-        <div>   
-            <img src="http://placehold.it/330x220">
-            <img src="http://placehold.it/330x220">
-            <img src="http://placehold.it/330x220">
+<?php foreach ($this->postagens as $posts) { ?>
+    <div class="projetos">
+        <i> <b>Autor: </b> Gilson Gonçalves Junior</i><br/>
+        <i> <b>Titulo: </b> <?php echo  utf8_encode($posts['equipePostagemTitulo']);?></i><br/>
+        <i> <b>Data:</b> <?php echo  utf8_encode($posts['equipePostagemData']);?> </i>
+        <div class="centralizar">
+            <div>   
+                <img src="http://placehold.it/330x220">
+                <img src="http://placehold.it/330x220">
+                <img src="http://placehold.it/330x220">
+            </div>
+            <p>
+                <?php
+                echo utf8_encode($posts['equipePostagemDescricao']);
+                ?>
+            </p>
+            <a href="#" class="btn btn-danger">
+                Ver Postagem
+            </a>
         </div>
-        <p>
-            Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos
-            Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos
-            Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos
-        </p>
-        <a href="#" class="btn btn-danger">
-            Ver Postagem
-        </a>
+        <hr>
     </div>
-    <hr>
-</div>
-
-<div class="projetos">
-    <i> <b>Autor: </b> Gilson Gonçalves Junior</i><br/>
-    <i> <b>Data:</b></i> 27/10/2014 13:30 hrs
-    <div class="centralizar">
-        <div>   
-            <img src="http://placehold.it/330x220">
-            <img src="http://placehold.it/330x220">
-            <img src="http://placehold.it/330x220">
-        </div>
-        <p>
-            Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos
-            Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos
-            Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos
-        </p>
-        <a href="#" class="btn btn-danger">
-            Ver Postagem
-        </a>
-    </div>
-    <hr>
-</div>
+<?php } ?>

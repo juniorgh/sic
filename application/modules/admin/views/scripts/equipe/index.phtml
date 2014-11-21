@@ -30,7 +30,7 @@
                 <?php foreach ($this->equipe as $equipes) { ?>
                     <tr>
                         <td>
-                            <?php echo utf8_encode($equipes['equipeNome']); ?>
+                            <?php echo $equipes['equipeNome']; ?>
                         </td>
                         <td class="text-right">
                             <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'equipe', 'action' => 'view', 'id' => $equipes['equipeId']), null, true); ?>" class="btn btn-primary">

@@ -61,13 +61,9 @@
                                     <i class="fa fa-search">
                                     </i>
                                 </a>   
-
-                                <a class="btn btn-danger" href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'usuario', 'action' => 'drop', 'id' => $value['usuarioId']), null, true); ?>">
-                                    <i class="fa fa-trash">
-                                    </i>
-                                </a>
-
-
+                                
+                                <button data-toggle="modal"  data-target="#mod-error" type="button" class="btn btn-danger btn-flat"><i class="fa fa-trash"></i></button>
+                                
                                 <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'usuario', 'action' => 'form', 'id' => $value['usuarioId']), null, true); ?>" class="btn btn-success">
                                     <i class="fa fa-edit">    
                                     </i>
@@ -82,3 +78,25 @@
         <?php } ?>            
     </div>
 </div>
+<div class="modal fade" id="mod-error" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <div class="i-circle danger"><i class="fa fa-times"></i></div>
+                    <h4>Atenção!</h4>
+                    <p>Deseja realmente excluir esse usuário?</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-default btn-flat" href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'usuario', 'action' => 'drop', 'id' => $value['usuarioId']), null, true); ?>">        
+                    Confirmar
+                </a>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

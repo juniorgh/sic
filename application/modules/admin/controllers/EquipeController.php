@@ -114,7 +114,13 @@ class Admin_EquipeController extends Zend_Controller_Action {
     }
 
     public function viewAction() {
-        // action body
+        $id = $this->_request->getParam('id');
+        
+        $usuarioEquipe  =  new Admin_Model_UsuarioEquipe();
+        
+        $integrantes = $usuarioEquipe->findIntegrantesUsuarioEquipe($id);
+        
+        $this->view->assign('equipeIntegrantes',$integrantes);
     }
 
 }
