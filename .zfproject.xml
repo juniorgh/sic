@@ -160,6 +160,7 @@
               <actionMethod actionName="upload"/>
               <actionMethod actionName="saveUpload"/>
               <actionMethod actionName="view"/>
+              <actionMethod actionName="post"/>
             </controllerFile>
           </controllersDirectory>
           <formsDirectory enabled="false"/>
@@ -320,6 +321,9 @@
               <viewControllerScriptsDirectory forControllerName="EquipePostagem">
                 <viewScriptFile forActionName="view"/>
               </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="EquipePostagem">
+                <viewScriptFile forActionName="post"/>
+              </viewControllerScriptsDirectory>
             </viewScriptsDirectory>
             <viewHelpersDirectory/>
             <viewFiltersDirectory/>
@@ -448,6 +452,7 @@
                 <testApplicationActionMethod forActionName="upload"/>
                 <testApplicationActionMethod forActionName="saveUpload"/>
                 <testApplicationActionMethod forActionName="view"/>
+                <testApplicationActionMethod forActionName="post"/>
               </testApplicationControllerFile>
             </testApplicationControllerDirectory>
           </testApplicationModuleDirectory>

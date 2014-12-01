@@ -154,10 +154,11 @@ class Admin_UsuarioController extends Zend_Controller_Action {
 
                     $params['usuarioId'] = $usuario->save($params);
                 }
-
+                
                 $dados = $usuario->find($params['usuarioId']);
 
                 $upload = new Zend_File_Transfer();
+                
                 if ($upload->isUploaded('usuarioFotoCaminho')) {
                     $files = $upload->getFileInfo('usuarioFotoCaminho');
                     $ext = pathinfo($files['usuarioFotoCaminho']['name'])['extension'];
@@ -167,9 +168,9 @@ class Admin_UsuarioController extends Zend_Controller_Action {
                     $params['usuarioFotoCaminho'] = $fotoNome;
 
                     @unlink(APPLICATION_PATH . '/../public/imagens/' . $dados['usuarioFotoCaminho']);
-
                     $params['usuarioFotoCaminho'] = $fotoNome;
                 }
+                
                 $usuario->update($params);
 
                 $usuarioGrupo->dropUsuarios($dados['usuarioId']);

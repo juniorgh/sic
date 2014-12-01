@@ -57,6 +57,18 @@ class Admin_Model_EquipePostagem
 
         return $equipePostagem->fetchAll($query);
     }
+    
+    
+    public function listaEquipeImagens() {
+        $equipePostagem = new Admin_Model_DbTable_EquipePostagem();
+        $query = $equipePostagem->select()
+                ->setIntegrityCheck(false)
+                ->from(array('ep' => 'equipePostagem'),'eu.equipeUploadCaminho')
+                ->join(array('eu' => 'equipeUpload'), 'ep.equipePostagemId = eu.equipeUploadEquipePostagemId');
+
+        return $equipePostagem->fetchAll($query);
+    }
+    
 }
 
     

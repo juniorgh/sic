@@ -7,32 +7,48 @@
             <div class="content">
                 <form enctype="multipart/form-data" action="<?php echo $this->url(array('module' => 'admin', 'controller' => 'equipePostagem', 'action' => 'save'), null, true); ?>" class="form-horizontal group-border-dashed" style="border-radius: 0px;" method="post">    
 
-                    <?php if(!empty($this->id)) {?>
-                        <input name="equipePostagemEquipeId" type="hidden" value="<?php echo $this->id;?>">
-                    <?php }?>
-                    
-                    <?php if(!empty($this->EquipePostagem['equipePostagemId'])) {?>
-                        <input name="equipePostagemId" type="hidden" value="<?php echo $this->EquipePostagem['equipePostagemId'];?>">
-                    <?php }?>
-                    
+                    <?php if (!empty($this->id)) { ?>
+                        <input name="equipePostagemEquipeId" type="hidden" value="<?php echo $this->id; ?>">
+                    <?php } ?>
+
+                    <?php if (!empty($this->EquipePostagem['equipePostagemId'])) { ?>
+                        <input name="equipePostagemId" type="hidden" value="<?php echo $this->EquipePostagem['equipePostagemId']; ?>">
+                    <?php } ?>
+
                     <div class="form-group">
                         <label class="col-sm-3 control-label">Titulo</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" name="equipePostagemTitulo" value="<?php echo !empty($this->EquipePostagem['equipePostagemTitulo']) ? utf8_encode($this->EquipePostagem['equipePostagemTitulo']) : "" ?>">
+                            <input type="text" class="form-control" name="equipePostagemTitulo" value="<?php echo!empty($this->EquipePostagem['equipePostagemTitulo']) ? utf8_encode($this->EquipePostagem['equipePostagemTitulo']) : "" ?>">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">Data</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" name="equipePostagemData" value="<?php echo !empty($this->EquipePostagem['equipePostagemData']) ? utf8_encode($this->EquipePostagem['equipePostagemData']) : "" ?>">
+                            <input type="text" class="form-control" name="equipePostagemData" value="<?php echo!empty($this->EquipePostagem['equipePostagemData']) ? utf8_encode($this->EquipePostagem['equipePostagemData']) : "" ?>">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">Descrição</label>
                         <div class="col-sm-6">
-                            <textarea rows="10" class="form-control" name="equipePostagemDescricao"><?php echo !empty($this->EquipePostagem['equipePostagemDescricao']) ? utf8_encode($this->EquipePostagem['equipePostagemDescricao']) : "" ?></textarea>
+                            <textarea rows="10" class="form-control" name="equipePostagemDescricao"><?php echo!empty($this->EquipePostagem['equipePostagemDescricao']) ? utf8_encode($this->EquipePostagem['equipePostagemDescricao']) : "" ?></textarea>
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Selecione a Imagem</label>
+                        <div class="col-sm-6">
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                <div class="fileinput-new thumbnail" style="height: 150px;">
+                                    <img src="<?php echo!empty($this->EquipePostagem['equipePostagemBanner']) ? 'imagens/' . $this->EquipePostagem['equipePostagemBanner'] : 'http://placehold.it/190x140/7761A7/ffffff' ?>" alt="...">
+                                </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                                <div>
+                                    <span class="btn btn-primary btn-file"><span class="fileinput-new">Selecione</span><span class="fileinput-exists">Change</span><input type="file" name="equipePostagemBanner" value="<?php echo empty($this->EquipePostagem['equipePostagemBanner'] ? '' : $this->EquipePostagem['equipePostagemBanner'] ); ?>"></span>
+                                    <a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">Remove</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>     
                     <div class="form-group">
                         <label class="col-sm-3 control-label"></label>
                         <div class="col-sm-6">

@@ -1,32 +1,44 @@
 <section id="galery">
+
     <div id="overlay"></div>
+
+    <div class="size150 pos9">
+        <?php foreach ($this->caminhos as $imagem) { ?>
+        <a href="imagens/<?php echo $imagem['equipeUploadCaminho'];?>" rel="shadowbox[mixed]"><img src="imagens/<?php echo $imagem['equipeUploadCaminho'];?>" /></a>
+        <?php } ?>
+    </div>
+
     <div class="size100 pos1">
         <a href="assets/site/images/galeria/1.jpg" rel="shadowbox[mixed]"><img src="assets/site/images/galeria/1.jpg" /></a>
     </div>
+
     <div class="size50 pos2">
         <a href="assets/site/images/galeria/2.jpg" rel="shadowbox[mixed]"><img src="assets/site/images/galeria/2.jpg" /></a>
     </div>
+
     <div class="size50 pos3">
         <a href="assets/site/images/galeria/3.jpg" rel="shadowbox[mixed]"><img src="assets/site/images/galeria/3.jpg" /></a>
     </div>
+
     <div class="size100 pos4">
         <a href="assets/site/images/galeria/4.jpg" rel="shadowbox[mixed]"><img src="assets/site/images/galeria/4.jpg" /></a>
     </div>
+
     <div class="size150 pos5">
         <a href="assets/site/images/galeria/5.jpg" rel="shadowbox[mixed]"><img src="assets/site/images/galeria/5.jpg" /></a>
     </div>
+
     <div class="size50 pos6">
         <a href="assets/site/images/galeria/6.jpg" rel="shadowbox[mixed]"><img src="assets/site/images/galeria/6.jpg" /></a>
     </div>
+
     <div class="size50 pos7">
         <a href="assets/site/images/galeria/7.jpg" rel="shadowbox[mixed]"><img src="assets/site/images/galeria/7.jpg" /></a>
     </div>
+
     <div class="size50 pos8">
         <a href="assets/site/images/galeria/8.jpg" rel="shadowbox[mixed]"><img src="assets/site/images/galeria/8.jpg" /></a>
-    </div>
-    <div class="size150 pos9">
-        <a href="assets/site/images/galeria/9.jpg" rel="shadowbox[mixed]"><img src="assets/site/images/galeria/9.jpg" /></a>
-    </div>
+    </div>    
     <div class="size50 pos10">
         <a href="assets/site/images/galeria/10.jpg" rel="shadowbox[mixed]"><img src="assets/site/images/galeria/10.jpg" /></a>
     </div>
@@ -107,60 +119,35 @@
 </section>
 
 <div class="postagens-recentes">
-    <div>
-        <h3 class="centralizar">
-            Postagens Recentes
-        </h3>
-    </div>
-    <div class="postagens" style="text-align: center;">
-        <h4>
-            Titulo da Postagem 
-        </h4>
-        Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, 
-        e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. 
-        Lorem Ipsum sobreviveu de tipos e os embaralhou para fazer um livro de modelos de tipos [...]
-        <div class="continuar-lendo" style="text-align: center;">
-            <br/>
-            <form>
-                <a class="btn btn-danger">
-                    ler mais
-                </a>
-            </form>
-        </div>
-    </div>
-    <div class="postagens" style="text-align: center;">
-        <h4>
-            Titulo da Postagem 
-        </h4>
-        Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, 
-        e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. 
-        Lorem Ipsum sobreviveu de tipos e os embaralhou para fazer um livro de modelos de tipos [...]
-        <div class="continuar-lendo" style="text-align: center;">
-            <br/>
-            <form>
-                <a class="btn btn-danger">
-                    ler mais
-                </a>
-            </form>
-        </div>
-    </div>
-    <div class="postagens" style="text-align: center;">
-        <h4>
-            Titulo da Postagem 
-        </h4>
-        Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, 
-        e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. 
-        Lorem Ipsum sobreviveu de tipos e os embaralhou para fazer um livro de modelos de tipos [...]
-        <div class="continuar-lendo" style="text-align: center;">
-            <br/>
-            <form>
-                <a class="btn btn-danger">
-                    ler mais
-                </a>
-            </form>
-        </div>
-        <div class="clearfix"></div>
-    </div>
-</div>
+    <?php
+    $x = 1;
+    foreach ($this->postagens as $posts) {
+        if (!$x < 3) {
+            ?>    
+            <div class="postagens" style="text-align: center;">
+                <h4>
+                    <?php echo utf8_encode($posts['equipePostagemTitulo']); ?>
+                </h4>
 
+                <?php
+                echo substr($posts['equipePostagemDescricao'], 1, 369) . ' [...]';
+                ?>
+
+                <div class="continuar-lendo" style="text-align: center;">
+                    <br/>
+                    <form>
+                        <a href="<?php echo $this->url(array('module' => 'default', 'controller' => '')); ?>" class="btn btn-danger">
+                            ler mais
+                        </a>
+                    </form>
+                </div>
+            </div>
+            <?php
+        } else {
+            break;
+        }
+        $x++;
+    }
+    ?>  
+</div>
 <br/>

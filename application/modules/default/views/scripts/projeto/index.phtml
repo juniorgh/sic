@@ -1,23 +1,27 @@
-<?php foreach ($this->postagens as $posts) { ?>
-    <div class="projetos">
-        <i> <b>Autor: </b> Gilson Gonçalves Junior</i><br/>
-        <i> <b>Titulo: </b> <?php echo  utf8_encode($posts['equipePostagemTitulo']);?></i><br/>
-        <i> <b>Data:</b> <?php echo  utf8_encode($posts['equipePostagemData']);?> </i>
+<div class="projetos">
+    <?php foreach ($this->postagens as $posts) { ?>
+
+        <div style="text-align: center;">
+            <i> <b>Titulo</b> <br/> <?php echo $posts['equipePostagemTitulo']; ?> </i>
+            <br>
+            <img src="<?php echo 'imagens/' . $posts['equipePostagemBanner']; ?>" style="width: 800px; height: 300px;"/>
+        </div>
+        <br/>
+        <div style="margin: auto; width: 800px;">
+            <i> <b>Data:</b> <?php echo $posts['equipePostagemData']; ?> </i><br/>
+            <i> <b>Descricao:</b> <?php echo substr($posts['equipePostagemDescricao'], 0, 400) . '[...] '; ?> </i><br/>
+        </div>
         <div class="centralizar">
-            <div>   
-                <img src="http://placehold.it/330x220">
-                <img src="http://placehold.it/330x220">
-                <img src="http://placehold.it/330x220">
-            </div>
+
             <p>
-                <?php
-                echo utf8_encode($posts['equipePostagemDescricao']);
-                ?>
             </p>
-            <a href="#" class="btn btn-danger">
+
+            <?php if(Zend_Auth::getInstance()->getIdentity()){ ?>
+            <a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'projeto', 'action' => 'post', 'id' => $posts['equipePostagemId'])); ?>" class="btn btn-danger">
                 Ver Postagem
             </a>
+            <?php }?>
         </div>
         <hr>
-    </div>
-<?php } ?>
+    <?php } ?>
+</div>

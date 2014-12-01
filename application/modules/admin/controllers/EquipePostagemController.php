@@ -40,12 +40,32 @@ class Admin_EquipePostagemController extends Zend_Controller_Action
 
     public function saveAction()
     {
-
         try {
             $equipePostagem = new Admin_Model_EquipePostagem();
+            
+            
             $request = $this->getRequest();
             if ($request->isPost()) {
+                
                 $params = $request->getPost();
+                
+                if($params['equipePostagemId']){
+                    $dados = $equipePostagem->find($params['equipePostagemId']);
+                }
+                
+                $upload = new Zend_File_Transfer();
+                
+                if ($upload->isUploaded('equipePostagemBanner')) {
+                    $files = $upload->getFileInfo('equipePostagemBanner');
+
+                    $ext = pathinfo($files['equipePostagemBanner']['name'])['extension'];
+                    $fotoNome = time() . '.' . $ext;
+                    $upload->addFilter('Rename', APPLICATION_PATH . '/../public/imagens/' . $fotoNome);
+                    $upload->receive('equipePostagemBanner');
+                    $params['equipePostagemBanner'] = $fotoNome;
+                    @unlink(APPLICATION_PATH . '/../public/imagens/' . $dados['equipePostagemBanner']);
+                }
+                
                 if (!array_key_exists('equipePostagemId', $params)) {
                     $status = $equipePostagem->save($params);
                     if ($status == true) {
@@ -202,6 +222,15 @@ class Admin_EquipePostagemController extends Zend_Controller_Action
         
         $this->view->assign('equipeIntegrantes',$integrantes);
     }
+
+    public function postAction()
+    {
+        // action body
+    }
+
+
 }
+
+
 
 
