@@ -1,42 +1,58 @@
 <html>
-    <head>
-        <title>
-            Postagens
-        </title>
-    </head>
-    <body style="background: #e0e0e0;">
-        <div style="width: 1000px; margin: auto; background: #f4f3f4; padding: 10px;">
-            <div style="text-align: center;">
+<head>
+    <title>
+        Postagens   
+    </title>
+</head>
+<body style="background: #e0e0e0;">
+    <div style="width: 1000px; margin: auto; background: #f4f3f4; padding: 10px;">
+        <div style="text-align: center;">
 
-                <label><b>Titulo</b> </label> <br/><i><?php echo $this->posts['equipePostagemTitulo']; ?></i>
-                <div style=" width: 800px; padding: 10px; margin: auto; ">
-                    <img src="<?php echo 'http://' . $_SERVER['SERVER_NAME'] . '/sic/public/imagens/' . $this->posts['equipePostagemBanner']; ?>" style="width: 800px; height: 300px;"/>
-                </div>
-                <div style="width: 1000px; margin: auto; text-align: center;">
-
-                    <?php foreach ($this->imagens as $value) { ?>
-                        <img src="<?php echo 'http://' . $_SERVER['SERVER_NAME'] . '/sic/public/imagens/' . $value['equipeUploadCaminho']; ?>" style="width: 263px;">
-                    <?php } ?>
-                </div>
-                <div style="background: #ecebec; border-radius: 10px;">
-                    <p>
-                        <i>
-                            <?php
-                            echo $this->posts['equipePostagemDescricao'];
-                            ?>
-                        </i>
-                    </p>
-                </div>
+            <label><b>Titulo</b> </label> <br/><i><?php echo $this->posts['equipePostagemTitulo']; ?></i>
+            <div style=" width: 800px; padding: 10px; margin: auto; ">
+                <img src="<?php echo 'http://' . $_SERVER['SERVER_NAME'] . '/sic/public/imagens/' . $this->posts['equipePostagemBanner']; ?>" style="width: 800px; height: 300px;"/>
             </div>
+            <div style="width: 1000px; margin: auto; text-align: center;">
+
+                <?php foreach ($this->imagens as $value) { ?>
+                <img src="<?php echo 'http://' . $_SERVER['SERVER_NAME'] . '/sic/public/imagens/' . $value['equipeUploadCaminho']; ?>" style="width: 263px;">
+                <?php } ?>
+            </div>
+            <div style="background: #ecebec; border-radius: 10px;">
+                <p>
+                    <i>
+                        <?php
+                        echo $this->posts['equipePostagemDescricao'];
+                        ?>
+                    </i>
+                </p>
+            </div>
+            <div id="">
+            </div>
+        </div>
+        <div style="text-align: center;">
+            <b>Postado por</b>: <i>Gilson Goncalves Junior</i><br/>
+            <b>data</b>: <i>01/12/2014</i><br/><br/>
+
             <div>
-                <b>Postado por</b>: <i>Gilson Goncalves Junior</i><br/>
-                <b>data</b>: <i>01/12/2014</i><br/>
+                <hr>
+                <?php
+                foreach ($this->comentario as $value) {
+                    echo $value['comentarDesc'].'<br/>';
+                } 
+                ?>
+                <hr>
             </div>
-            <br/>
-            <form method="post" action="#">
-                <label>Comentario</label><br/>
-                <textarea cols="80"></textarea>        
+
+            <form method="post" action="<?php echo $this->url(array('module' => 'default', 'controller' => 'projeto', 'action' => 'save-post'),null,true); ?>">
+                <input type="hidden" name='comentarEquipePostagemId' value="<?php echo $this->posts['equipePostagemId']; ?>">
+                <input name="comentarUsuarioId" type="hidden" value="<?php echo Zend_Auth::getInstance()->getIdentity()->usuarioId; ?>">
+                <label>Deixe seu comentario</label><br/>
+                <textarea cols="100" rows="6" name="comentarDesc"></textarea><br/><br/>
+                <input type="submit" value="enviar">        
             </form>
         </div>
-    </body>
+        <br/>
+    </div>
+</body>
 </html>

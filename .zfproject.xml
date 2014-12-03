@@ -186,6 +186,7 @@
               <dbTableFile dbTableName="Equipe"/>
               <dbTableFile dbTableName="EquipeUpload"/>
               <dbTableFile dbTableName="EquipePostagem"/>
+              <dbTableFile dbTableName="Comentar"/>
             </dbTableDirectory>
             <modelFile modelName="Usuario"/>
             <modelFile modelName="Curso"/>
@@ -197,6 +198,7 @@
             <modelFile modelName="Equipe"/>
             <modelFile modelName="EquipeUpload"/>
             <modelFile modelName="EquipePostagem"/>
+            <modelFile modelName="Comentar"/>
           </modelsDirectory>
           <servicesDirectory enabled="false"/>
           <viewsDirectory>
