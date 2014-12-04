@@ -1,227 +1,227 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
-        <meta name="author" content="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-        <base href="<?php echo $this->baseUrl('/') ?>">
+    <base href="<?php echo $this->baseUrl('/') ?>">
 
-        <link rel="shortcut icon" href="assets/admin/images/icon.png">
+    <link rel="shortcut icon" href="assets/admin/images/icon.png">
 
-        <title>SIC</title>
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800' rel='stylesheet' type='text/css'>
-        <link href='http://fonts.googleapis.com/css?family=Raleway:300,200,100' rel='stylesheet' type='text/css'>
+    <title>SIC</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:300,200,100' rel='stylesheet' type='text/css'>
 
-        <!-- Bootstrap core CSS -->
-        <link href="assets/admin/js/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="assets/admin/js/jquery.gritter/css/jquery.gritter.css" />
-        <link rel="stylesheet" href="assets/admin/fonts/font-awesome-4/css/font-awesome.min.css">
-        <link rel="stylesheet" href="assets/admin/js/jasny.bootstrap/extend/css/jasny-bootstrap.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="assets/admin/js/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="assets/admin/js/jquery.gritter/css/jquery.gritter.css" />
+    <link rel="stylesheet" href="assets/admin/fonts/font-awesome-4/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/admin/js/jasny.bootstrap/extend/css/jasny-bootstrap.min.css">
 
-        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
             <script src="../../assets/js/html5shiv.js"></script>
             <script src="../../assets/js/respond.min.js"></script>
             <![endif]-->
-        <link rel="stylesheet" type="text/css" href="assets/admin/js/jquery.nanoscroller/nanoscroller.css" />
-        <link href="assets/admin/css/style.css" rel="stylesheet" />
-        <script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
-    </head>
-    <body class="animated">
+            <link rel="stylesheet" type="text/css" href="assets/admin/js/jquery.nanoscroller/nanoscroller.css" />
+            <link href="assets/admin/css/style.css" rel="stylesheet" />
+            <script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
+        </head>
+        <body class="animated">
 
-        <?php
-        $usuario = Zend_Auth::getInstance()->getIdentity();
-        ?>
-        <div id="cl-wrapper">
+            <?php
+            $usuario = Zend_Auth::getInstance()->getIdentity();
+            ?>
+            <div id="cl-wrapper">
 
-            <div class="cl-sidebar">
-                <div class="cl-toggle"><i class="fa fa-bars"></i></div>
-                <div class="cl-navblock">
-                    <div class="menu-space">
-                        <div class="content">
-                            <div class="sidebar-logo">
-                                <div class="logo">
-                                    <a href="index2.html"></a>
+                <div class="cl-sidebar">
+                    <div class="cl-toggle"><i class="fa fa-bars"></i></div>
+                    <div class="cl-navblock">
+                        <div class="menu-space">
+                            <div class="content">
+                                <div class="sidebar-logo">
+                                    <div class="logo">
+                                        <a href="index2.html"></a>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="side-user">
-                                <div class="avatar"><img width="50" height="50" src="<?php echo empty($usuario->usuarioFotoCaminho) ? 'http://placehold.it/50x50' : 'imagens/' . $usuario->usuarioFotoCaminho ?>" alt="Avatar" /></div>
-                                <div class="info">
-                                    <p>40 <b>GB</b> / 100 <b>GB</b><span><a href="#"><i class="fa fa-plus"></i></a></span></p>
-                                    <div class="progress progress-user">
-                                        <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                                            <span class="sr-only">50% Complete (success)</span>
+                                <div class="side-user">
+                                    <div class="avatar"><img width="50" height="50" src="<?php echo empty($usuario->usuarioFotoCaminho) ? 'http://placehold.it/50x50' : 'imagens/' . $usuario->usuarioFotoCaminho ?>" alt="Avatar" /></div>
+                                    <div class="info">
+                                        <p> <b></b> <?php echo $usuario->usuarioNome;?>  <b></b><span><a href="#"><i class="fa fa-plus"></i></a></span></p>
+                                        <div class="progress progress-user">
+                                            <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                                <span class="sr-only"></span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <ul class="cl-vnavigation">
-                                <li>
-                                    <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'index'), null, true); ?>"><i class="fa fa-home"></i><span>Início</span></a>
-                                    <a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'index'), null, true); ?>"><i class="fa fa-globe"></i><span>Ver site</span></a>
-                                </li>  
-                                <?php foreach ($this->menus as $sidebarMenu) { ?>
+                                <ul class="cl-vnavigation">
+                                    <li>
+                                        <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'index'), null, true); ?>"><i class="fa fa-home"></i><span>Início</span></a>
+                                        <a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'index'), null, true); ?>"><i class="fa fa-globe"></i><span>Ver site</span></a>
+                                    </li>  
+                                    <?php foreach ($this->menus as $sidebarMenu) { ?>
                                     <?php $menuId = $sidebarMenu['menuId']; ?>
 
                                     <?php if (!empty($this->ids) && in_array($menuId, $this->ids)) { ?>
-                                        <li>
-                                            <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => $sidebarMenu['menuController'], 'action' => $sidebarMenu['menuAction']), null, true); ?>"><i class="<?php echo $sidebarMenu['menuIcone'] ?>"></i><span><?php echo $sidebarMenu['menuTitulo'] ?></span></a>
-                                        </li>
+                                    <li>
+                                        <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => $sidebarMenu['menuController'], 'action' => $sidebarMenu['menuAction']), null, true); ?>"><i class="<?php echo $sidebarMenu['menuIcone'] ?>"></i><span><?php echo $sidebarMenu['menuTitulo'] ?></span></a>
+                                    </li>
                                     <?php } ?>  
 
 
-                                <?php } ?>
-                            </ul>
+                                    <?php } ?>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="container-fluid" id="pcont">
-                <!-- TOP NAVBAR -->
-                <div id="head-nav" class="navbar navbar-default">
-                    <div class="container-fluid">
-                        <div class="navbar-collapse">
-                            <ul class="nav navbar-nav navbar-right user-nav">
-                                <li class="dropdown profile_menu">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img width="40" height="40" alt="Avatar" src="imagens/<?php echo $usuario->usuarioFotoCaminho == null ? 'sem_imagem.jpg' : $usuario->usuarioFotoCaminho; ?>" /><span><?php echo utf8_encode($usuario->usuarioNome); ?></span> <b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'usuario', 'action' => 'view', 'id' => $usuario->usuarioId), null, true); ?>">Minha Conta</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'auth', 'action' => 'logout'), null, true); ?>">Sair</a></li>
-                                    </ul>
-                                </li>
-                            </ul>			
-                        </div><!--/.nav-collapse animate-collapse -->
+                <div class="container-fluid" id="pcont">
+                    <!-- TOP NAVBAR -->
+                    <div id="head-nav" class="navbar navbar-default">
+                        <div class="container-fluid">
+                            <div class="navbar-collapse">
+                                <ul class="nav navbar-nav navbar-right user-nav">
+                                    <li class="dropdown profile_menu">
+                                        <a href="" class="dropdown-toggle" data-toggle="dropdown"><img width="40" height="40" alt="Avatar" src="imagens/<?php echo $usuario->usuarioFotoCaminho == null ? 'sem_imagem.jpg' : $usuario->usuarioFotoCaminho; ?>" /><span><?php echo utf8_encode($usuario->usuarioNome); ?></span> <b class="caret"></b></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'usuario', 'action' => 'view', 'id' => $usuario->usuarioId), null, true); ?>">Minha Conta</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'auth', 'action' => 'logout'), null, true); ?>">Sair</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>			
+                            </div><!--/.nav-collapse animate-collapse -->
+                        </div>
                     </div>
-                </div>
-                <div class="cl-mcont">
-                    <?php echo $this->layout()->content; ?>
-                </div>
+                    <div class="cl-mcont">
+                        <?php echo $this->layout()->content; ?>
+                    </div>
 
-            </div> 
-
-        </div>
-        <!-- Right Chat-->
-        <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right side-chat">
-            <div class="header">
-                <h3>Chat</h3>
-            </div>
-            <div class="sub-header">
-                <div class="icon"><i class="fa fa-user"></i></div> <p>Online (4)</p>
-            </div>
-            <div class="content">
-                <p class="title">Family</p>
-                <ul class="nav nav-pills nav-stacked contacts">
-                    <li class="online"><a href="#"><i class="fa fa-circle-o"></i> Michael Smith</a></li>
-                    <li class="online"><a href="#"><i class="fa fa-circle-o"></i> John Doe</a></li>
-                    <li class="online"><a href="#"><i class="fa fa-circle-o"></i> Richard Avedon</a></li>
-                    <li class="busy"><a href="#"><i class="fa fa-circle-o"></i> Allen Collins</a></li>
-                </ul>
-
-                <p class="title">Friends</p>
-                <ul class="nav nav-pills nav-stacked contacts">
-                    <li class="online"><a href="#"><i class="fa fa-circle-o"></i> Jaime Garzon</a></li>
-                    <li class="outside"><a href="#"><i class="fa fa-circle-o"></i> Dave Grohl</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Victor Jara</a></li>
-                </ul>   
-
-                <p class="title">Work</p>
-                <ul class="nav nav-pills nav-stacked contacts">
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Ansel Adams</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Gustavo Cerati</a></li>
-                </ul>
+                </div> 
 
             </div>
-            <div id="chat-box">
+            <!-- Right Chat-->
+            <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right side-chat">
                 <div class="header">
-                    <span>Richard Avedon</span>
-                    <a class="close"><i class="fa fa-times"></i></a>
+                    <h3>Chat</h3>
                 </div>
-                <div class="messages nano nscroller">
-                    <div class="content">
-                        <ul class="conversation">
-                            <li class="odd">
-                                <p>Hi Jane, how are you?</p>
-                            </li>
-                            <li class="text-right">
-                                <p>Hello I was looking for you</p>
-                            </li>
-                            <li class="odd">
-                                <p>Tell me what you need?</p>
-                            </li>
-                            <li class="text-right">
-                                <p>Sorry, I'm late... see you</p>
-                            </li>
-                            <li class="odd unread">
-                                <p>OK, call me later...</p>
-                            </li>
-                        </ul>
+                <div class="sub-header">
+                    <div class="icon"><i class="fa fa-user"></i></div> <p>Online (4)</p>
+                </div>
+                <div class="content">
+                    <p class="title">Family</p>
+                    <ul class="nav nav-pills nav-stacked contacts">
+                        <li class="online"><a href="#"><i class="fa fa-circle-o"></i> Michael Smith</a></li>
+                        <li class="online"><a href="#"><i class="fa fa-circle-o"></i> John Doe</a></li>
+                        <li class="online"><a href="#"><i class="fa fa-circle-o"></i> Richard Avedon</a></li>
+                        <li class="busy"><a href="#"><i class="fa fa-circle-o"></i> Allen Collins</a></li>
+                    </ul>
+
+                    <p class="title">Friends</p>
+                    <ul class="nav nav-pills nav-stacked contacts">
+                        <li class="online"><a href="#"><i class="fa fa-circle-o"></i> Jaime Garzon</a></li>
+                        <li class="outside"><a href="#"><i class="fa fa-circle-o"></i> Dave Grohl</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o"></i> Victor Jara</a></li>
+                    </ul>   
+
+                    <p class="title">Work</p>
+                    <ul class="nav nav-pills nav-stacked contacts">
+                        <li><a href="#"><i class="fa fa-circle-o"></i> Ansel Adams</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o"></i> Gustavo Cerati</a></li>
+                    </ul>
+
+                </div>
+                <div id="chat-box">
+                    <div class="header">
+                        <span>Richard Avedon</span>
+                        <a class="close"><i class="fa fa-times"></i></a>
+                    </div>
+                    <div class="messages nano nscroller">
+                        <div class="content">
+                            <ul class="conversation">
+                                <li class="odd">
+                                    <p>Hi Jane, how are you?</p>
+                                </li>
+                                <li class="text-right">
+                                    <p>Hello I was looking for you</p>
+                                </li>
+                                <li class="odd">
+                                    <p>Tell me what you need?</p>
+                                </li>
+                                <li class="text-right">
+                                    <p>Sorry, I'm late... see you</p>
+                                </li>
+                                <li class="odd unread">
+                                    <p>OK, call me later...</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="chat-input">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Enter a message...">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-primary">Send</button>
+                            </span>
+                        </div>
                     </div>
                 </div>
-                <div class="chat-input">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Enter a message...">
-                        <span class="input-group-btn">
-                            <button type="button" class="btn btn-primary">Send</button>
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </nav>
+            </nav>
 
 
-        <script src="assets/admin/js/jquery.js"></script>
-        <script src="assets/admin/js/jquery.cookie/jquery.cookie.js"></script>
-        <script src="assets/admin/js/jquery.pushmenu/js/jPushMenu.js"></script>
-        <script type="text/javascript" src="assets/admin/js/jquery.nanoscroller/jquery.nanoscroller.js"></script>
-        <script type="text/javascript" src="assets/admin/js/jquery.sparkline/jquery.sparkline.min.js"></script>
-        <script type="text/javascript" src="assets/admin/js/jquery.ui/jquery-ui.js" ></script>
-        <script type="text/javascript" src="assets/admin/js/jquery.gritter/js/jquery.gritter.js"></script>
-        <script type="text/javascript" src="assets/admin/js/behaviour/core.js"></script>
+            <script src="assets/admin/js/jquery.js"></script>
+            <script src="assets/admin/js/jquery.cookie/jquery.cookie.js"></script>
+            <script src="assets/admin/js/jquery.pushmenu/js/jPushMenu.js"></script>
+            <script type="text/javascript" src="assets/admin/js/jquery.nanoscroller/jquery.nanoscroller.js"></script>
+            <script type="text/javascript" src="assets/admin/js/jquery.sparkline/jquery.sparkline.min.js"></script>
+            <script type="text/javascript" src="assets/admin/js/jquery.ui/jquery-ui.js" ></script>
+            <script type="text/javascript" src="assets/admin/js/jquery.gritter/js/jquery.gritter.js"></script>
+            <script type="text/javascript" src="assets/admin/js/behaviour/core.js"></script>
 
         <!-- Bootstrap core JavaScript
-            ================================================== -->
+        ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="assets/admin/js/bootstrap/dist/js/bootstrap.min.js"></script>
         <style type="text/css">
-            #color-switcher{
-                position:fixed;
-                background:#272930;
-                padding:10px;
-                top:50%;
-                right:0;
-                margin-right:-109px;
-            }
+        #color-switcher{
+            position:fixed;
+            background:#272930;
+            padding:10px;
+            top:50%;
+            right:0;
+            margin-right:-109px;
+        }
 
-            #color-switcher .toggle{
-                cursor:pointer;
-                font-size:15px;
-                color: #FFF;
-                display:block;
-                position:absolute;
-                padding:4px 10px;
-                background:#272930;
-                width:25px;
-                height:30px;
-                left:-24px;
-                top:22px;
-            }
+        #color-switcher .toggle{
+            cursor:pointer;
+            font-size:15px;
+            color: #FFF;
+            display:block;
+            position:absolute;
+            padding:4px 10px;
+            background:#272930;
+            width:25px;
+            height:30px;
+            left:-24px;
+            top:22px;
+        }
 
-            #color-switcher p{color: rgba(255, 255, 255, 0.6);font-size:12px;margin-bottom:3px;}
-            #color-switcher .palette{padding:1px;}
-            #color-switcher .color{width:15px;height:15px;display:inline-block;cursor:pointer;}
-            #color-switcher .color.purple{background:#7761A7;}
-            #color-switcher .color.green{background:#19B698;}
-            #color-switcher .color.red{background:#EA6153;}
-            #color-switcher .color.blue{background:#54ADE9;}
-            #color-switcher .color.orange{background:#FB7849;}
-            #color-switcher .color.prusia{background:#476077;}
-            #color-switcher .color.yellow{background:#fec35d;}
-            #color-switcher .color.pink{background:#ea6c9c;}
-            #color-switcher .color.brown{background:#9d6835;}
-            #color-switcher .color.gray{background:#afb5b8;}
+        #color-switcher p{color: rgba(255, 255, 255, 0.6);font-size:12px;margin-bottom:3px;}
+        #color-switcher .palette{padding:1px;}
+        #color-switcher .color{width:15px;height:15px;display:inline-block;cursor:pointer;}
+        #color-switcher .color.purple{background:#7761A7;}
+        #color-switcher .color.green{background:#19B698;}
+        #color-switcher .color.red{background:#EA6153;}
+        #color-switcher .color.blue{background:#54ADE9;}
+        #color-switcher .color.orange{background:#FB7849;}
+        #color-switcher .color.prusia{background:#476077;}
+        #color-switcher .color.yellow{background:#fec35d;}
+        #color-switcher .color.pink{background:#ea6c9c;}
+        #color-switcher .color.brown{background:#9d6835;}
+        #color-switcher .color.gray{background:#afb5b8;}
         </style>
         <div id="color-switcher">
             <p>Select Color</p>
@@ -239,39 +239,39 @@
                 <div class="color brown" data-color="brown"></div>
                 <div class="color gray" data-color="gray"></div>
             </div>
-            <div class="toggle"><i class="fa fa-angle-left"></i></div>
+            <!-- <div class="toggle"><i class="fa fa-angle-left"></i></div> -->
         </div>
 
         <script type="text/javascript">
-            var link = $('link[href="assets/admin/css/style.css"]');
+        var link = $('link[href="assets/admin/css/style.css"]');
 
-            if ($.cookie("css")) {
-                link.attr("href", 'assets/admin/css/skin-' + $.cookie("css") + '.css');
-            }
+        if ($.cookie("css")) {
+            link.attr("href", 'assets/admin/css/skin-' + $.cookie("css") + '.css');
+        }
 
-            $(function () {
-                $("#color-switcher .toggle").click(function () {
-                    var s = $(this).parent();
-                    if (s.hasClass("open")) {
-                        s.animate({'margin-right': '-109px'}, 400).toggleClass("open");
-                    } else {
-                        s.animate({'margin-right': '0'}, 400).toggleClass("open");
-                    }
-                });
+        $(function () {
+            $("#color-switcher .toggle").click(function () {
+                var s = $(this).parent();
+                if (s.hasClass("open")) {
+                    s.animate({'margin-right': '-109px'}, 400).toggleClass("open");
+                } else {
+                    s.animate({'margin-right': '0'}, 400).toggleClass("open");
+                }
+            });
 
-                $("#color-switcher .color").click(function () {
-                    var color = $(this).data("color");
-                    $("body").fadeOut(function () {
+            $("#color-switcher .color").click(function () {
+                var color = $(this).data("color");
+                $("body").fadeOut(function () {
                         //link.attr('href','css/skin-' + color + '.css');
                         $.cookie("css", color, {expires: 365, path: '/'});
                         window.location.href = "";
                         $(this).fadeIn("slow");
                     });
-                });
             });
+        });
         </script>   
         <script type="text/javascript" src="assets/admin/js/jasny.bootstrap/extend/js/jasny-bootstrap.min.js">
-            < script type = "text/javascript" src = "assets/admin/js/jquery.upload/js/jquery.fileupload.js" ></script>
+        < script type = "text/javascript" src = "assets/admin/js/jquery.upload/js/jquery.fileupload.js" ></script>
         <script type="text/javascript" src="assets/admin/js/jquery.upload/js/"></script>
         <script type="text/javascript" src="assets/admin/js/jquery.upload/js/jquery.iframe-transport.js"></script>
         <script type="text/javascript" src="assets/admin/js/jquery.flot/jquery.flot.js"></script>
@@ -279,4 +279,4 @@
         <script type="text/javascript" src="assets/admin/js/jquery.flot/jquery.flot.resize.js"></script>
         <script type="text/javascript" src="assets/admin/js/jquery.flot/jquery.flot.labels.js"></script>
     </body>
-</html>
+    </html>

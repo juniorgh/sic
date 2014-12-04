@@ -13,7 +13,7 @@ class Default_IndexController extends Zend_Controller_Action
         $equipePostagem = new Admin_Model_EquipePostagem();
         $dados = $equipePostagem->find();
         
-        $img = $equipePostagem->listaEquipeImagens($id);
+        $img = $equipePostagem->listaEquipeImagens();
         
         $this->view->assign('postagens', $dados);
         $this->view->assign('caminhos', $img);

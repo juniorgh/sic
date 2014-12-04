@@ -1,93 +1,88 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <meta http-equiv = "Content-Type" content = "text/html; charset=UTF-8" />
-        <title>Semana de Iniciação Científica</title>
-        <link href = "assets/site/css/style.css"  rel = "stylesheet" />
-        <link href = "assets/site/css/posicionamento.css"  rel = "stylesheet" />
-        <link href = "assets/admin/js/bootstrap.multiselect/css/bootstrap-multiselect.css"  rel = "stylesheet"/>
-        <link href = "assets/site/css/galery.css"  rel = "stylesheet" />
-        <link rel="stylesheet" type="text/css" href="assets/admin/js/jquery.multiselect/css/multi-select.css"/>
-        <link href = "assets/site/css/ie.css"  rel = "stylesheet" />
-        <link href = "assets/site/css/reset.css"  rel = "stylesheet" />
-        <link href = "assets/site/css/ie-css3.htc"  rel = "stylesheet" />
-        <link href="assets/site/css/bootstrap.css" rel="stylesheet"/>
-        <link href = "assets/site/vendors/shadowbox/shadowbox.css" type = "text/css" rel = "stylesheet" />
-        <script src = "assets/site/vendors/jquery.min.js" type = "text/javascript"></script>
-        <script src="assets/site/vendors/shadowbox/shadowbox.js" type="text/javascript"></script>
-        <script src="assets/site/js/functions.js" type="text/javascript"></script>
-        <script src="assets/site/js/functions.js" type="text/javascript"></script>
-        <script src="assets/site/js/global.js" type="text/javascript"></script>
-        <script src="assets/admin/js/bootstrap.multiselect/js/bootstrap-multiselect.js"></script>    
-        <script src="assets/admin/js/jquery.multiselect/js/jquery.multi-select.js"></script>    
-        <script type="text/javascript">
-            Shadowbox.init();
-        </script>
+    <meta http-equiv = "Content-Type" content = "text/html; charset=UTF-8" />
+    <title>Semana de Iniciação Científica</title>
+    <link href = "assets/site/css/style.css"  rel = "stylesheet" />
+    <link href = "assets/site/css/posicionamento.css"  rel = "stylesheet" />
+    <link href = "assets/admin/js/bootstrap.multiselect/css/bootstrap-multiselect.css"  rel = "stylesheet"/>
+    <link href = "assets/site/css/galery.css"  rel = "stylesheet" />
+    <link rel="stylesheet" type="text/css" href="assets/admin/js/jquery.multiselect/css/multi-select.css"/>
+    <link href = "assets/site/css/ie.css"  rel = "stylesheet" />
+    <link href = "assets/site/css/reset.css"  rel = "stylesheet" />
+    <link href = "assets/site/css/ie-css3.htc"  rel = "stylesheet" />
+    <link href="assets/site/css/bootstrap.css" rel="stylesheet"/>
+    <link href = "assets/site/vendors/shadowbox/shadowbox.css" type = "text/css" rel = "stylesheet" />
+    <script src = "assets/site/vendors/jquery.min.js" type = "text/javascript"></script>
+    <script src="assets/site/vendors/shadowbox/shadowbox.js" type="text/javascript"></script>
+    <script src="assets/site/js/functions.js" type="text/javascript"></script>
+    <script src="assets/site/js/functions.js" type="text/javascript"></script>
+    <script src="assets/site/js/global.js" type="text/javascript"></script>
+    <script src="assets/admin/js/bootstrap.multiselect/js/bootstrap-multiselect.js"></script>    
+    <script src="assets/admin/js/jquery.multiselect/js/jquery.multi-select.js"></script>    
+    <script type="text/javascript">
+    Shadowbox.init();
+    </script>
 
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $('#filter_galery a').click(function () {
-                    $('#filter_galery a').removeClass('ativo');
-                    $(this).addClass('ativo');
-                });
-            });
-        </script>
-    </head>
-    <body class="body">
-        <div id="all">
-            <div id="logo">
-                <img src="assets/site/images/logo.png">
-                <ul id="menu">
-                    <li><a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'index', 'action' => 'index'), null, true); ?>">Home</a></li>
-                    <li><a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'projeto', 'action' => 'index'), null, true); ?>">Projetos</a></li>
-                    <li><a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'sobre', 'action' => 'index'), null, true); ?>">Sobre</a></li>
-                    <li><a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'curso', 'action' => 'index'), null, true); ?>">Cursos</a></li>
-                    <li><a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'desenvolvedor', 'action' => 'index'), null, true); ?>">Desenvolvedores</a></li>
-                    <?php if(!Zend_Auth::getInstance()->hasIdentity()){ ?> 
-                        <li>
-                            <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'auth', 'action' => 'index'), null, true); ?>"> login</a>
-                        </li>
-                    <?php } else {?>
-                        <li>
-                            <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'index'), null, true); ?>">Administrador</a>                            
-                        </li>
-                        <li>
-                            <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'auth', 'action' => 'logout'), null, true); ?>"> Sair</a>                            
-                        </li>
-                    <?php } ?>
-                </ul>
-            </div>
-
-            <?php echo $this->layout()->content; ?>
-            <div class="clear">
-            </div>
-
-            <br/>
-            <br/>
-            <footer id="footer">
-                <section id="footer_content">
-                    <aside class="left">
-                        <a href="http://www.uniandrade.br/">
-                            <img src="assets/site/images/uni_logo.png" />
-                        </a>
-                    </aside>
-                    <nav id="footer_menu" class="right">
-                        <ul>
-                            <li><a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'index', 'action' => 'index'), null, true); ?>">Home</a></li>
-                            <li><a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'projeto', 'action' => 'index'), null, true); ?>">Projetos</a></li>
-                            <li><a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'sobre', 'action' => 'index'), null, true); ?>">Sobre</a></li>
-                            <li><a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'curso', 'action' => 'index'), null, true); ?>">Cursos</a></li>
-                            <li><a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'desenvolvedor', 'action' => 'index'), null, true); ?>">Desenvolvedores</a></li>
-                        </ul>
-                    </nav>
-                </section>
-            </footer>
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $('#filter_galery a').click(function () {
+            $('#filter_galery a').removeClass('ativo');
+            $(this).addClass('ativo');
+        });
+    });
+    </script>
+</head>
+<body class="body">
+    <div id="all">
+        <div id="logo">
+            <img src="assets/site/images/logo.png">
+            <ul id="menu">
+                <li><a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'index', 'action' => 'index'), null, true); ?>">Home</a></li>
+                <li><a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'projeto', 'action' => 'index'), null, true); ?>">Projetos</a></li>
+                <li><a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'sobre', 'action' => 'index'), null, true); ?>">Sobre</a></li>
+                <li><a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'desenvolvedor', 'action' => 'index'), null, true); ?>">Desenvolvedores</a></li>
+                <?php if(!Zend_Auth::getInstance()->hasIdentity()){ ?> 
+                <li>
+                    <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'auth', 'action' => 'index'), null, true); ?>"> login</a>
+                </li>
+                <?php } else {?>
+                <li>
+                    <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'index'), null, true); ?>">Administrador</a>                            
+                </li>
+                <li>
+                    <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'auth', 'action' => 'logout'), null, true); ?>"> Sair</a>                            
+                </li>
+                <?php } ?>
+            </ul>
         </div>
-    </body>
+
+        <?php echo $this->layout()->content; ?>
+        <div class="clear">
+        </div>
+        <footer id="footer">
+            <section id="footer_content">
+                <aside class="left">
+                    <a href="http://www.uniandrade.br/">
+                        <img src="assets/site/images/uni_logo.png" />
+                    </a>
+                </aside>
+                <nav id="footer_menu" class="right">
+                    <ul>
+                        <li><a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'index', 'action' => 'index'), null, true); ?>">Home</a></li>
+                        <li><a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'projeto', 'action' => 'index'), null, true); ?>">Projetos</a></li>
+                        <li><a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'sobre', 'action' => 'index'), null, true); ?>">Sobre</a></li>
+                        <li><a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'desenvolvedor', 'action' => 'index'), null, true); ?>">Desenvolvedores</a></li>
+                    </ul>
+                </nav>
+            </section>
+        </footer>
+    </div>
+</body>
 </html>
 
 

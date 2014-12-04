@@ -24,7 +24,7 @@ class Application_Plugin_AuthPlugin extends Zend_Controller_Plugin_Abstract {
             if (!empty(Zend_Auth::getInstance()->getIdentity()) && $request->getActionName() != "logout" && $request->getControllerName() != "menu" && $request->getControllerName() != "index" && $request->getModuleName() == 'admin') {
                 if (!in_array($urlAtual, $acessos)) {
                     $redirector = new Zend_Controller_Action_Helper_Redirector;
-                    //$redirector->gotoUrl('admin/')->redirectAndExit();
+                    $redirector->gotoUrl('admin/')->redirectAndExit();
                 }
             }
         }

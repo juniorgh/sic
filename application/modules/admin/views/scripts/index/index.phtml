@@ -1,7 +1,14 @@
 <?php
 $usuario = Zend_Auth::getInstance()->getIdentity();
+?>
+<div>
+	<h3>
+		Painel Administrativo <h5>(configurações)</h5>
+	</h3>
 
-echo '<pre>';
-print_r($usuario);
-echo '</pre>';
+</div>
+<br/>
+Seja Bem-vindo
+<?php
+echo ' ' . $usuario->usuarioNome;
 ?>

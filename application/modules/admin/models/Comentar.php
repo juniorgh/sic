@@ -28,6 +28,17 @@ class Admin_Model_Comentar
 		}
 	}
 
+	public function findComentarUsuario($id) {
+        $comentar = new Admin_Model_DbTable_Comentar();
+        $query = $comentar->select()
+                ->setIntegrityCheck(false)
+                ->from(array('c' => 'comentar'))
+                ->join(array('u' => 'usuario'), 'c.comentarUsuarioId = u.usuarioId')
+                ->where('c.comentarEquipePostagemId = ?', $id);
+
+        return $comentar->fetchAll($query);
+    }
+
 	public function save($data = array()) {
 		$comentar = new Admin_Model_DbTable_Comentar();
 		return $comentar->insert($data);

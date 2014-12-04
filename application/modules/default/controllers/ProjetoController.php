@@ -25,7 +25,7 @@ class Default_ProjetoController extends Zend_Controller_Action
 
         $comentar = new Admin_Model_Comentar();
 
-        $comentarios = $comentar->comentarEquipePostagemId($id);
+        $comentarios = $comentar->findComentarUsuario($id);
 
         $equipeUpload = new Admin_Model_EquipeUpload();
 

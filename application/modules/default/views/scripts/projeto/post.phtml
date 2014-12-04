@@ -18,12 +18,10 @@
                 <img src="<?php echo 'http://' . $_SERVER['SERVER_NAME'] . '/sic/public/imagens/' . $value['equipeUploadCaminho']; ?>" style="width: 263px;">
                 <?php } ?>
             </div>
-            <div style="background: #ecebec; border-radius: 10px;">
+            <div style="background: #ecebec; border-radius: 10px; width:800px; margin:auto;">
                 <p>
                     <i>
-                        <?php
-                        echo $this->posts['equipePostagemDescricao'];
-                        ?>
+                        <?php echo $this->posts['equipePostagemDescricao']; ?>
                     </i>
                 </p>
             </div>
@@ -32,24 +30,35 @@
         </div>
         <div style="text-align: center;">
             <b>Postado por</b>: <i>Gilson Goncalves Junior</i><br/>
-            <b>data</b>: <i>01/12/2014</i><br/><br/>
+            <b>data</b>: <i>01/12/2014</i><br/>
+            <b>Curso</b>: <i>Psicologia</i><br/><br/>
 
-            <div>
-                <hr>
-                <?php
-                foreach ($this->comentario as $value) {
-                    echo $value['comentarDesc'].'<br/>';
-                } 
-                ?>
-                <hr>
+
+            <div style="">
+                <?php foreach ($this->comentario as $value) { ?>
+                <div id="foto"><br/>
+                    <b>Comentado por</b>: <?php echo $value['usuarioNome']; ?>
+                </div>
+                <div style="background: #ecebec; width: 800px; height: 40px; margin: auto;">
+                    <?php echo $value['comentarDesc']; ?>
+                </div>
+                <br/>
+                <?php } ?>
+
             </div>
 
             <form method="post" action="<?php echo $this->url(array('module' => 'default', 'controller' => 'projeto', 'action' => 'save-post'),null,true); ?>">
                 <input type="hidden" name='comentarEquipePostagemId' value="<?php echo $this->posts['equipePostagemId']; ?>">
                 <input name="comentarUsuarioId" type="hidden" value="<?php echo Zend_Auth::getInstance()->getIdentity()->usuarioId; ?>">
+                <br/><br/>
                 <label>Deixe seu comentario</label><br/>
                 <textarea cols="100" rows="6" name="comentarDesc"></textarea><br/><br/>
-                <input type="submit" value="enviar">        
+                <input type="submit" value="enviar">
+
+                <a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'projeto', 'action' => 'index'),null,true)?>">
+                    Voltar
+                </a> 
+
             </form>
         </div>
         <br/>
